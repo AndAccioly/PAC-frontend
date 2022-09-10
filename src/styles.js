@@ -74,7 +74,7 @@ const useStyles = makeStyles({
         }
     },
     menuLateralIconArrow: {
-        transform: 'translateY(50%)',
+        transform: 'translateY(20%)',
     },
     menuLateralItem:{
         marginTop: '5%',
@@ -82,10 +82,20 @@ const useStyles = makeStyles({
         textAlign: 'left',
     },
     menuLateralItens:{
-        marginTop: '10%'
+        marginTop: '10%',
     },
     menuLateralTopo:{
         height: '10%'
+    },
+    menuLink: {
+        textDecoration: 'none',
+        display: 'flex',
+        color: corAzul4,
+        "&:hover": {
+            background: corAzul0,
+            cursor: 'pointer',
+            color: corAzul4
+        }
     },
     versao: {
         position:'fixed',
@@ -115,7 +125,8 @@ const useStyles = makeStyles({
             cursor: 'pointer',
             color: corAzul3
         }
-    }
+    },
+    
     
 })
 export default useStyles;

@@ -13,8 +13,8 @@ function Page(props) {
     return (
         <div className={classes.root}>
             <Header classes = {classes}/>
-            <MenuLateral classes={classes}/>
-            <Wrapper classes = {classes}/>
+            <MenuLateral classes={classes} corpo={props.corpo}/>
+            <Wrapper classes = {classes} corpo={props.corpo}/>
             <Footer classes = {classes}/>
         </div>
     )

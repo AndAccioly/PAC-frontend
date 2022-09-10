@@ -14,14 +14,22 @@ function LinkMenu(props) {
                 <MenuLateralItem 
                     titulo='Meu perfil'
                     classes={classes}
+                    url='/cliente'
                 />
                 <MenuLateralItem 
-                    titulo='Exames e consultas'
+                    titulo='Exames'
                     classes={classes}
+                    url='/exame'
+                />
+                <MenuLateralItem 
+                    titulo='Consultas'
+                    classes={classes}
+                    url='/consulta'
                 />
                 <MenuLateralItem 
                     titulo='Financeiro'
                     classes={classes}
+                    url='/financeiro'
                 />
 
                 <div className={classes.menuLinha}></div>
@@ -29,14 +37,22 @@ function LinkMenu(props) {
                 <MenuLateralItem 
                     titulo='Cadastrar cliente'
                     classes={classes}
+                    url='/cliente/cadastro'
                 />
                 <MenuLateralItem 
                     titulo='Consultório'
                     classes={classes}
+                    url='/consultorio'
                 />
                 <MenuLateralItem 
                     titulo='Agenda'
                     classes={classes}
+                    url='/agenda'
+                />
+                <MenuLateralItem 
+                    titulo='Relatórios'
+                    classes={classes}
+                    url='/relatorios'
                 />
             </div>
             <div className={classes.versao}>Version 0.0.0</div>
