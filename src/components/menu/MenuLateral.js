@@ -1,7 +1,8 @@
-    import * as React from 'react';
+import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import MenuLateralItem from './MenuLateralItem'
 
 function LinkMenu(props) {
     const classes = props.classes;
@@ -10,34 +11,33 @@ function LinkMenu(props) {
             <div className={classes.menuLateralTopo}></div>
             <div className={classes.menuLateralItens}>
 
-                <div className={classes.menuLateralItemArrow}>
-                    <ArrowRightIcon className={classes.menuLateralIconArrow}/>
-                    <div className={classes.menuLateralItem}>Meu perfil</div>
-                </div>
-                <div className={classes.menuLateralItemArrow}>
-                    <ArrowRightIcon className={classes.menuLateralIconArrow}/>
-                    <div className={classes.menuLateralItem}>Exames e consultas</div>
-                </div>
-                <div className={classes.menuLateralItemArrow}>
-                    <ArrowRightIcon className={classes.menuLateralIconArrow}/>
-                    <div className={classes.menuLateralItem}>Financeiro</div>
-                </div>
+                <MenuLateralItem 
+                    titulo='Meu perfil'
+                    classes={classes}
+                />
+                <MenuLateralItem 
+                    titulo='Exames e consultas'
+                    classes={classes}
+                />
+                <MenuLateralItem 
+                    titulo='Financeiro'
+                    classes={classes}
+                />
 
                 <div className={classes.menuLinha}></div>
 
-                <div className={classes.menuLateralItemArrow}>
-                    <ArrowRightIcon className={classes.menuLateralIconArrow}/>
-                    <div className={classes.menuLateralItem}>Cadastrar cliente</div>
-                </div>
-                <div className={classes.menuLateralItemArrow}>
-                    <ArrowRightIcon className={classes.menuLateralIconArrow}/>
-                    <div className={classes.menuLateralItem}>Consultório</div>
-                </div>
-                <div className={classes.menuLateralItemArrow}>
-                    <ArrowRightIcon className={classes.menuLateralIconArrow}/>
-                    <div className={classes.menuLateralItem}>Agenda</div>
-                </div>
-                
+                <MenuLateralItem 
+                    titulo='Cadastrar cliente'
+                    classes={classes}
+                />
+                <MenuLateralItem 
+                    titulo='Consultório'
+                    classes={classes}
+                />
+                <MenuLateralItem 
+                    titulo='Agenda'
+                    classes={classes}
+                />
             </div>
             <div className={classes.versao}>Version 0.0.0</div>
         </div>

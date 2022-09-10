@@ -21,18 +21,8 @@ function Body(props) {
     return (
         <div className={classes.wrapper}>
             <div className={classes.conteudo}>
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>
-        
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>   <p>asaasdasd</p>
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>
-                <p>asaasdasd</p>
+                <div></div>
+               
             </div>
             {defineCorpo(props.corpo, classes)}
         </div>
