@@ -1,12 +1,12 @@
 
-function Cliente(props) {
+function Perfil(props) {
     const classes = props.classes;
     return (
         <div className={classes.wrapper}>
-            Página de Cliente
+            Página de Perfil
         </div>
     )
 }
 
 
-export default Cliente;
+export default Perfil;

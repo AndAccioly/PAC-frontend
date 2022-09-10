@@ -13,8 +13,8 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Page corpo={0}/>} />
-					<Route path="cliente" element={<Page corpo={1}/>} />
-					<Route path="cliente/cadastro" element={<Page corpo={11}/>} />
+					<Route path="perfil" element={<Page corpo={1}/>} />
+					<Route path="cliente" element={<Page corpo={11}/>} />
 					<Route path="exame" element={<Page corpo={2}/>} />
 					<Route path="consulta" element={<Page corpo={3}/>} />
 					<Route path="financeiro" element={<Page corpo={4}/>} />

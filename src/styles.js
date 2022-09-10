@@ -30,13 +30,13 @@ const useStyles = makeStyles({
     wrapper: {
         position: 'relative',
         backgroundColor: 'white',
-        minHeight: '80%',
-        marginLeft: menuWidth,
+        minHeight: '84%',
+
     },
     header: {
         position: 'relative',
         backgroundColor: corAzul1,
-        minHeight: '10%',
+        minHeight: '8%',
         marginLeft: menuWidth,
         width: restoWidth,
         zIndex: '5',
@@ -46,7 +46,7 @@ const useStyles = makeStyles({
     footer: {
         position: 'relative',
         backgroundColor: corAzul2,
-        minHeight: '10%',
+        minHeight: '8%',
         marginLeft: menuWidth,
         width: restoWidth,
         zIndex: '1',
@@ -126,6 +126,12 @@ const useStyles = makeStyles({
             color: corAzul3
         }
     },
+    paperForm: {
+        marginTop: '1%',
+        marginLeft: '15%',
+        marginRight: '3%',
+        padding: '1%'
+    }
     
     
 })

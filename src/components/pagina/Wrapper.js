@@ -1,17 +1,18 @@
-import Cliente from '../cliente/Cliente'
-import Consultorio from '../consultorio/Consultorio'
+import Cliente from './cliente/Cliente'
+import Perfil from '../perfil/Perfil'
+import Consultorio from './consultorio/Consultorio'
 import Home from '../Home'
-import Financeiro from '../financeiro/Financeiro'
-import Cirurgia from '../cirurgia/Cirurgia'
-import Consulta from '../consulta/Consulta'
-import Exame from '../exame/Exame'
-import Agenda from '../agenda/Agenda'
+import Financeiro from './financeiro/Financeiro'
+import Cirurgia from './cirurgia/Cirurgia'
+import Consulta from './consulta/Consulta'
+import Exame from './exame/Exame'
+import Agenda from './agenda/Agenda'
 import Relatorios from '../relatorios/Relatorios'
 
 function defineCorpo(corpoId, classes){
     switch(corpoId){
         case 1:
-            return <Cliente classes={classes}/>
+            return <Perfil classes={classes}/>
         case 11:
             return <Cliente classes={classes}/>
         case 2:
@@ -35,8 +36,6 @@ function defineCorpo(corpoId, classes){
 
 function Body(props) {
     const classes = props.classes;
-    console.log('CORPO')
-    console.log(props.corpo)
     return (
         <div className={classes.wrapper}>
             <div className={classes.conteudo}>
