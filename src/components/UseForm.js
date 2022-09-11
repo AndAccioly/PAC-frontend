@@ -1,6 +1,17 @@
 import { makeStyles } from "@material-ui/styles"
 import {useState} from 'react'
 
+const useStyles = makeStyles({
+    root: {
+        marginTop: '2%',
+        textAlign: 'left',
+        '& .MuiFormControl-root':{
+            marginTop: '20px',
+            width: '90%',
+        }
+    }
+})
+
 export function useForm(initialValues){
     
     const [values, setValues] = useState(initialValues)
@@ -21,21 +32,34 @@ export function useForm(initialValues){
 
 }
 
-const useStyles = makeStyles({
-    root: {
-        '& .MuiFormControl-root':{
-            marginLeft: '10px',
-            marginTop: '10px'
-        }
+
+export function useEnderecoForm(initialValues){
+
+    const [enderecoValues, setEnderecoValues] = useState(initialValues)
+    
+    const handleEnderecoInputChange = e => {
+        const {name, value} = e.target
+        setEnderecoValues({
+            ...enderecoValues,
+            [name]: value
+        })
     }
-})
+
+    return {
+        enderecoValues,
+        setEnderecoValues,
+        handleEnderecoInputChange
+    }
+
+}
+
 
 export function Form(props){
 
     const classes = useStyles()
 
     return(
-        <form className={classes.root}>
+        <form className={classes.root} autoComplete="off">
             {props.children}
         </form>
     )

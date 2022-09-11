@@ -29,8 +29,6 @@ function defineCorpo(corpoId, classes){
 
 function Header(props) {
     const classes = props.classes;
-    console.log('CORPO')
-    console.log(props.corpo)
     return( 
         <div className = {classes.header}>
             <div className={classes.headerTitulo}>{defineCorpo(props.corpo)}</div>

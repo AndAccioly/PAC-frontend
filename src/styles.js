@@ -5,6 +5,9 @@ const corAzul1 = '#cfedfc'
 const corAzul2 = '#98d4f5'
 const corAzul3 = '#4791ba'
 const corAzul4 = '#205775'
+const corAzul5 = '#1976d2'
+const corAzul6 = '#125da6'
+
 const menuWidth = '12%'
 const restoWidth = '88%'
 
@@ -102,13 +105,13 @@ const useStyles = makeStyles({
         bottom: '0',
         marginBottom: '1%',
         marginLeft: '3%',
-        color: corAzul3
+        color: corAzul5
     },
     headerTitulo: {
         fontSize: '35px',
         transform: 'translateY(20%)',
         marginLeft: '4%',
-        color: corAzul3
+        color: corAzul5
     },
     logOut: {
         color: corAzul4,
@@ -120,17 +123,40 @@ const useStyles = makeStyles({
     logOutText: {
         transform: 'translateY(50%)',
         borderRadius: '50px',
+        color: corAzul5,
         "&:hover": {
             background: corAzul0,
             cursor: 'pointer',
-            color: corAzul3
         }
     },
-    paperForm: {
+    paper: {
         marginTop: '1%',
         marginLeft: '15%',
         marginRight: '3%',
         padding: '1%'
+    },
+    paperTitulo:{
+        fontSize: '26px',
+        marginLeft: '2%',
+        display: 'flex',
+        color: corAzul5
+    },
+    paperSubtitulo:{
+        fontSize: '20px',
+        marginLeft: '1%',
+        display: 'flex',
+        color: corAzul5,
+        marginTop: '2%'
+    },
+    paperForm:{
+        marginTop: '4%',
+    },
+    linhaForm:{
+        height: '1px',
+        background: corAzul5,
+        width: '98%',
+        marginTop: '2%',
+        marginBottom: '2%'
     }
     
     
