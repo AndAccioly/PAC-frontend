@@ -2,9 +2,11 @@ import { Grid } from "@mui/material";
 import Controls from "../../controls/Controls";
 import { useForm, Form, useEnderecoForm } from '../../UseForm';
 import * as planoSaudeService from '../../../services/planoSaudeService'
+import * as pacienteService from '../../../services/pacienteService'
 import EnderecoForm from "./EnderecoForm";
 
-
+const CAMPO_OBRIGATORIO = 'Campo obrigatório.'
+const CAMPO_INVALIDO = 'Valor inválido.'
 const initialValues = {
     nome: '',
     cpf: '',
@@ -15,7 +17,7 @@ const initialValues = {
     dataNascimento: new Date(),
 }
 
-const endereco = {
+const enderecoInicial = {
     bairro: '',
     rua: '',
     cep: '',
@@ -30,44 +32,71 @@ const sexoItems = [
     { id: 'feminino', title: 'Feminino' },
     { id: 'outro', title: 'Outro' }
 ]
+
 export default function PacienteCadastroForm(props) {
     const classes = props.classes
+
+    const validate = (fieldValues = values) => {
+        console.log('erros')
+        console.log(erros)
+        let temp = {...erros}
+        if ('nome' in fieldValues)
+            temp.nome = fieldValues.nome ? '' : CAMPO_OBRIGATORIO
+        if ('email' in fieldValues)
+            temp.email = (/^$|.+@.+..+/).test(fieldValues.email) ? '' : CAMPO_INVALIDO
+        if ('cpf' in fieldValues)
+            temp.cpf = fieldValues.cpf.length >= 11 ? '' : CAMPO_OBRIGATORIO
+        if ('telefone' in fieldValues)
+            temp.telefone = fieldValues.telefone.length > 5 ? '' : CAMPO_OBRIGATORIO
+        if ('planoSaude' in fieldValues)
+            temp.planoSaude = fieldValues.planoSaude.length != 0 ? '' : CAMPO_OBRIGATORIO
+
+        setErros({
+            ...temp
+        })
+        console.log(fieldValues)
+        console.log(values)
+        if(fieldValues == values)
+            console.log('aqui')
+            console.log(temp)
+            return Object.values(temp).every(x => x == "")
+    }
+
     const {
         values,
         setValues,
-        handleInputChange
-    } = useForm(initialValues)
+        handleInputChange,
+        erros,
+        resetForm,
+        setErros
+    } = useForm(initialValues, true, validate)
 
     const {
         enderecoValues,
         setEnderecoValues,
-        handleEnderecoInputChange
-    } = useEnderecoForm(endereco)
+        handleEnderecoInputChange,
+        enderecoErros,
+        resetFormEndereco,
+        setEnderecoErros
+    } = useEnderecoForm(enderecoInicial, true, validate)
 
-    function onClickLimpar(){
-        console.log('chamou')
-        setValues({ 
-            nome: '',
-            cpf: '',
-            email: '',
-            telefone: '',
-            sexo: 'masculino',
-            planoSaude: '',
-            dataNascimento: new Date(),
-        })
-        setEnderecoValues({
-            bairro: '',
-            rua: '',
-            cep: '',
-            numero: '',
-            estado: '',
-            cidade: '',
-            complemento: '',
-        })
+    function onClickLimpar() {
+        resetForm()
+        resetFormEndereco()
+    }
+
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (validate()){
+            console.log('validou')
+            pacienteService.insertPaciente(values)
+        }else{
+            console.log('errou')
+        }
     }
 
     return (
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Grid container>
                 <Grid item md={4} xs={6}>
                     <Controls.Input
@@ -75,6 +104,7 @@ export default function PacienteCadastroForm(props) {
                         label='Nome'
                         value={values.nome}
                         onChange={handleInputChange}
+                        error={erros.nome}
                     />
                 </Grid>
                 <Grid item md={2} xs={6}>
@@ -83,6 +113,7 @@ export default function PacienteCadastroForm(props) {
                         label='Cpf'
                         value={values.cpf}
                         onChange={handleInputChange}
+                        error={erros.cpf}
                     />
                 </Grid>
                 <Grid item md={3} xs={6}>
@@ -91,6 +122,7 @@ export default function PacienteCadastroForm(props) {
                         label='Email'
                         value={values.email}
                         onChange={handleInputChange}
+                        error={erros.email}
                     />
                 </Grid>
                 <Grid item md={3} xs={6}>
@@ -99,6 +131,7 @@ export default function PacienteCadastroForm(props) {
                         label='Telefone'
                         value={values.telefone}
                         onChange={handleInputChange}
+                        error={erros.telefone}
                     />
                 </Grid>
                 <Grid item md={2} xs={4}>
@@ -108,14 +141,15 @@ export default function PacienteCadastroForm(props) {
                         value={values.dataNascimento}
                         onChange={handleInputChange}
                     />
-                     </Grid>
-                    <Grid item md={2} xs={4}>
+                </Grid>
+                <Grid item md={2} xs={4}>
                     <Controls.Select
                         name='planoSaude'
                         label='Plano de Saúde'
                         value={values.planoSaude}
                         onChange={handleInputChange}
                         options={planoSaudeService.getPlanosSaudeLista()}
+                        error={erros.planoSaude}
                     />
                 </Grid>
 
@@ -132,13 +166,13 @@ export default function PacienteCadastroForm(props) {
             </Grid>
             <div className={classes.paperSubtitulo}>Endereço</div>
             <div className={classes.linhaForm}></div>
-            
+
             <EnderecoForm
                 values={enderecoValues}
                 handleInputChange={handleEnderecoInputChange}
-                
+
             />
-            
+
             <div className={classes.linhaForm}></div>
             <Grid item xs={2}>
                 <Controls.Button

@@ -12,9 +12,15 @@ const useStyles = makeStyles({
     }
 })
 
-export function useForm(initialValues){
+export function useForm(initialValues, validateOnChange=false, validate){
     
     const [values, setValues] = useState(initialValues)
+    const [erros, setErros] = useState(initialValues)
+    
+    function resetForm(){
+        setValues(initialValues)
+        setErros({})
+    }
     
     const handleInputChange = e => {
         const {name, value} = e.target
@@ -22,33 +28,49 @@ export function useForm(initialValues){
             ...values,
             [name]: value
         })
+        if(validateOnChange)
+            validate({[name]: value})
     }
 
     return {
         values,
+        erros,
+        setErros,
         setValues,
-        handleInputChange
+        handleInputChange,
+        resetForm
     }
 
 }
 
 
-export function useEnderecoForm(initialValues){
+export function useEnderecoForm(initialValues, validateOnChange=false, validate){
 
     const [enderecoValues, setEnderecoValues] = useState(initialValues)
+    const [enderecoErros, setEnderecoErros] = useState(initialValues)
     
+    function resetFormEndereco(){
+        setEnderecoValues(initialValues)
+        setEnderecoErros({})
+    }
+
     const handleEnderecoInputChange = e => {
         const {name, value} = e.target
         setEnderecoValues({
             ...enderecoValues,
             [name]: value
         })
+        if(validateOnChange)
+        validate({[name]: value})
     }
 
     return {
+        enderecoErros,
+        setEnderecoErros,
         enderecoValues,
         setEnderecoValues,
-        handleEnderecoInputChange
+        handleEnderecoInputChange,
+        resetFormEndereco
     }
 
 }
@@ -57,9 +79,9 @@ export function useEnderecoForm(initialValues){
 export function Form(props){
 
     const classes = useStyles()
-
+    const {children, ...other} = props
     return(
-        <form className={classes.root} autoComplete="off">
+        <form className={classes.root} autoComplete="off" {...other}>
             {props.children}
         </form>
     )
