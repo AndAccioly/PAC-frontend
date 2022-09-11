@@ -1,5 +1,5 @@
-import Cliente from './cliente/Cliente'
-import Perfil from '../perfil/Perfil'
+import Paciente from './paciente/Paciente'
+import Perfil from './perfil/Perfil'
 import Consultorio from './consultorio/Consultorio'
 import Home from '../Home'
 import Financeiro from './financeiro/Financeiro'
@@ -14,7 +14,7 @@ function defineCorpo(corpoId, classes){
         case 1:
             return <Perfil classes={classes}/>
         case 11:
-            return <Cliente classes={classes}/>
+            return <Paciente classes={classes}/>
         case 2:
             return <Exame classes={classes}/>
         case 3:

@@ -30,7 +30,7 @@ const sexoItems = [
     { id: 'feminino', title: 'Feminino' },
     { id: 'outro', title: 'Outro' }
 ]
-export default function ClienteCadastroForm(props) {
+export default function PacienteCadastroForm(props) {
     const classes = props.classes
     const {
         values,

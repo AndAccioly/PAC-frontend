@@ -7,7 +7,7 @@ function defineCorpo(corpoId, classes){
         case 1:
             return 'Perfil'
         case 11:
-            return 'Cliente'
+            return 'Paciente'
         case 2:
             return 'Exame'
         case 3:

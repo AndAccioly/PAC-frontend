@@ -35,9 +35,9 @@ function LinkMenu(props) {
                 <div className={classes.menuLinha}></div>
 
                 <MenuLateralItem 
-                    titulo='Cliente'
+                    titulo='Paciente'
                     classes={classes}
-                    url='/cliente'
+                    url='/paciente'
                 />
                 <MenuLateralItem 
                     titulo='Consultório'

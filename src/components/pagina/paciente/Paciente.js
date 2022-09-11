@@ -1,21 +1,21 @@
 import { Paper } from "@mui/material";
-import ClienteCadastroForm from "./ClienteCadastroForm";
+import PacienteCadastroForm from "./PacienteCadastroForm";
 
 
 
 
-function Cliente(props) {
+function Paciente(props) {
     const classes = props.classes
     return (
         <div className={classes.wrapper}>
             <Paper className={classes.paper}>
-                <div className={classes.paperTitulo}>Cadastrar Cliente</div>
+                <div className={classes.paperTitulo}>Cadastrar Paciente</div>
                 <div className={classes.linhaForm}></div>
-                <ClienteCadastroForm classes={classes}/>
+                <PacienteCadastroForm classes={classes}/>
             </Paper>
         </div>
     )
 }
 
 
-export default Cliente;
+export default Paciente;
