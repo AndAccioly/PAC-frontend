@@ -15,7 +15,7 @@ const useStyles = makeStyles({
 export function useForm(initialValues, validateOnChange=false, validate){
     
     const [values, setValues] = useState(initialValues)
-    const [erros, setErros] = useState(initialValues)
+    const [erros, setErros] = useState({})
     
     function resetForm(){
         setValues(initialValues)

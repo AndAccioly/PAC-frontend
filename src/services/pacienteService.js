@@ -1,3 +1,5 @@
+import * as planoSaudeService from './planoSaudeService'
+
 const KEYS = {
     paciente: 'paciente',
     pacienteId: 'pacienteId'
@@ -23,5 +25,11 @@ export function generatePacienteId(){
 export function getAllPacientes(){
     if(localStorage.getItem(KEYS.paciente) == null)
         localStorage.setItem(KEYS.paciente, JSON.stringify([]))
-    return JSON.parse(localStorage.getItem(KEYS.paciente))
+    let pacientes = JSON.parse(localStorage.getItem(KEYS.paciente))
+    let planosSaude = planoSaudeService.getPlanosSaudeLista()
+    return pacientes.map( x => ({
+        ...x,
+        planoSaudeTexto: planosSaude[x.planoSaude-1].value
+    }))
+    
 }

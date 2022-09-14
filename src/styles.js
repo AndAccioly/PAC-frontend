@@ -33,8 +33,6 @@ const useStyles = makeStyles({
     wrapper: {
         position: 'relative',
         backgroundColor: 'white',
-        minHeight: '84%',
-
     },
     header: {
         position: 'relative',
@@ -157,6 +155,9 @@ const useStyles = makeStyles({
         width: '98%',
         marginTop: '2%',
         marginBottom: '2%'
+    },
+    buscar: {
+        width: '75%'
     }
     
     
