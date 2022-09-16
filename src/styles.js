@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: '#f5e689',
+        backgroundColor: corAzul0,
         height: '100%',
         position: 'absolute',
         width: '100%',
@@ -32,12 +32,12 @@ const useStyles = makeStyles({
     },
     wrapper: {
         position: 'relative',
-        backgroundColor: 'white',
+        
     },
     header: {
         position: 'relative',
         backgroundColor: corAzul1,
-        minHeight: '8%',
+        minHeight: '100%',
         marginLeft: menuWidth,
         width: restoWidth,
         zIndex: '5',
@@ -63,6 +63,17 @@ const useStyles = makeStyles({
         marginLeft: '5%',
         marginTop: '10%',
         marginBottom: '10%'
+    },
+    headerLinha: {
+        height: '1px',
+        background: corAzul3,
+        width: '100%',
+        marginLeft: '5%',
+    },
+    headerTodo:{
+        position: 'relative',
+        backgroundColor: corAzul1,
+        minHeight: '8%',
     },
     menuLateralItemArrow: {
         display: 'flex',
@@ -140,7 +151,7 @@ const useStyles = makeStyles({
         color: corAzul5
     },
     paperSubtitulo:{
-        fontSize: '20px',
+        fontSize: '18px',
         marginLeft: '1%',
         display: 'flex',
         color: corAzul5,
@@ -158,6 +169,10 @@ const useStyles = makeStyles({
     },
     buscar: {
         width: '75%'
+    },
+    botaoAdicionar:{
+        
+        marginLeft: '10px'
     }
     
     

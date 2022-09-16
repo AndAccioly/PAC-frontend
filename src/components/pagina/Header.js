@@ -2,8 +2,8 @@ import Box from '@mui/material/Box'
 import Media from 'react-media'
 
 
-function defineCorpo(corpoId, classes){
-    switch(corpoId){
+function defineCorpo(corpoId, classes) {
+    switch (corpoId) {
         case 1:
             return 'Perfil'
         case 11:
@@ -29,12 +29,16 @@ function defineCorpo(corpoId, classes){
 
 function Header(props) {
     const classes = props.classes;
-    return( 
-        <div className = {classes.header}>
-            <div className={classes.headerTitulo}>{defineCorpo(props.corpo)}</div>
-            <div className={classes.logOut}>
-                <div className={classes.logOutText}>Log out</div>
+    return (
+        <div className={classes.headerTodo}>
+            <div className={classes.header}>
+                <div className={classes.headerTitulo}>{defineCorpo(props.corpo)}</div>
+                <div className={classes.logOut}>
+                    <div className={classes.logOutText}>Log out</div>
+                </div>
+
             </div>
+            <div className={classes.headerLinha}></div>
         </div>
     )
 }

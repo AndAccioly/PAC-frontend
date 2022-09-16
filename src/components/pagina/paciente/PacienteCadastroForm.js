@@ -4,10 +4,12 @@ import { useForm, Form, useEnderecoForm } from '../../UseForm';
 import * as planoSaudeService from '../../../services/planoSaudeService'
 import * as pacienteService from '../../../services/pacienteService'
 import EnderecoForm from "./EnderecoForm";
+import { useEffect } from "react";
 
 const CAMPO_OBRIGATORIO = 'Campo obrigatório.'
 const CAMPO_INVALIDO = 'Valor inválido.'
 const initialValues = {
+    id: 0,
     nome: '',
     cpf: '',
     email: '',
@@ -36,10 +38,13 @@ const sexoItems = [
 export default function PacienteCadastroForm(props) {
     const classes = props.classes
 
+    const { addOrEdit, recordForEdit } = props
+    
+
     const validate = (fieldValues = values) => {
         console.log('erros')
         console.log(erros)
-        let temp = {...erros}
+        let temp = { ...erros }
         if ('nome' in fieldValues)
             temp.nome = fieldValues.nome ? '' : CAMPO_OBRIGATORIO
         if ('email' in fieldValues)
@@ -56,10 +61,10 @@ export default function PacienteCadastroForm(props) {
         })
         console.log(fieldValues)
         console.log(values)
-        if(fieldValues == values)
+        if (fieldValues == values)
             console.log('aqui')
-            console.log(temp)
-            return Object.values(temp).every(x => x == "")
+        console.log(temp)
+        return Object.values(temp).every(x => x == "")
     }
 
     const {
@@ -87,13 +92,20 @@ export default function PacienteCadastroForm(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (validate()){
+        if (validate()) {
             console.log('validou')
-            pacienteService.insertPaciente(values)
-        }else{
+            addOrEdit(values, resetForm)
+        } else {
             console.log('errou')
         }
     }
+
+    useEffect(() => {
+        if(recordForEdit != null)
+            setValues({
+                ...recordForEdit
+            })
+    }, [recordForEdit])
 
     return (
         <Form onSubmit={handleSubmit}>

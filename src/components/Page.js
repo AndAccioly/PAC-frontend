@@ -15,7 +15,7 @@ function Page(props) {
             <Header classes = {classes} corpo={props.corpo}/>
             <MenuLateral classes={classes} />
             <Wrapper classes = {classes} corpo={props.corpo}/>
-            <Footer classes = {classes}/>
+            {/*<Footer classes = {classes}/>*/}
         </div>
     )
 }
