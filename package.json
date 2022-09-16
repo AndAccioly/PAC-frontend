@@ -16,6 +16,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "date-fns": "^2.29.2",
+    "express": "^4.18.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-materialize": "^3.10.0",
@@ -25,9 +26,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "serve -s build",
-    "test": "react-scripts test",
+    "dev": "webpack serve",
+    "start": "node server.js",
+    "build": "webpack --mode production",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
