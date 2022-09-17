@@ -1,14 +1,51 @@
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
+import Cores from '../../util/cores';
+
+const useStyles = makeStyles({
+    menuLateralItemArrow: {
+        display: 'flex',
+        paddingLeft: '10%',
+        color: Cores.azul4,
+        "&:hover": {
+            background: Cores.azul0,
+            cursor: 'pointer',
+            color: Cores.azul4
+        }
+    },
+    menuLink: {
+        textDecoration: 'none',
+        display: 'flex',
+        color: Cores.azul4,
+        "&:hover": {
+            background: Cores.azul0,
+            cursor: 'pointer',
+        }
+    },
+    menuLateralItem:{
+        marginTop: '8%',
+        marginBottom: '5%',
+        textAlign: 'left',
+        marginLeft: '10px',
+        fontWeight: '500'
+    },
+    menuLateralIconArrow: {
+        transform: 'translateY(18%)',
+        marginLeft: '10px'
+    },
+})
 
 function MenuLateralItem(props) {
-    const classes = props.classes
 
+    const {icon, url, titulo} = props
+    const classes = useStyles()
     return (
-        <Link to={props.url} className={classes.menuLink}>
+        <Link to={url} className={classes.menuLink}>
             <div className={classes.menuLateralItemArrow}>
-                <ArrowRightIcon className={classes.menuLateralIconArrow} />
-                <div className={classes.menuLateralItem}>{props.titulo}</div>
+                <div className={classes.menuLateralIconArrow}>
+                    {icon}
+                </div>
+                <div className={classes.menuLateralItem}>{titulo}</div>
             </div>
         </Link>
 

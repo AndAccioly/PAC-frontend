@@ -71,39 +71,11 @@ const useStyles = makeStyles({
         backgroundColor: Cores.azul1,
         minHeight: '8%',
     },
-    menuLateralItemArrow: {
-        display: 'flex',
-        paddingLeft: '10%',
-        color: Cores.azul4,
-        "&:hover": {
-            background: Cores.azul0,
-            cursor: 'pointer',
-            color: Cores.azul4
-        }
-    },
-    menuLateralIconArrow: {
-        transform: 'translateY(20%)',
-    },
-    menuLateralItem:{
-        marginTop: '5%',
-        marginBottom: '5%',
-        textAlign: 'left',
-    },
     menuLateralItens:{
         marginTop: '10%',
     },
     menuLateralTopo:{
         height: '10%'
-    },
-    menuLink: {
-        textDecoration: 'none',
-        display: 'flex',
-        color: Cores.azul4,
-        "&:hover": {
-            background: Cores.azul0,
-            cursor: 'pointer',
-            color: Cores.azul4
-        }
     },
     versao: {
         position:'fixed',
