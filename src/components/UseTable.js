@@ -3,22 +3,20 @@ import { makeStyles } from "@material-ui/styles"
 import { Sort } from "@mui/icons-material"
 import { TableSortLabel } from "@mui/material"
 import { useState } from "react"
-
-const corAzul0 = '#ebf5fa'
-const corAzul1 = '#cfedfc'
+import Cores from "../util/cores"
 
 const useStyles = makeStyles({
     table: {
         marginTop: '1%',
         '& thead th': {
-            backgroundColor: corAzul1,
+            backgroundColor: Cores.azul1,
             fontWeight: '600'
         },
         '& tbody td': {
             fontWeight: '300'
         },
         '& tbody tr:hover': {
-            backgroundColor: corAzul0,
+            backgroundColor: Cores.azul0,
             cursor: 'pointer'
         }
     }

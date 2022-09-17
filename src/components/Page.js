@@ -1,8 +1,8 @@
 import useStyles from "../styles"
 import React, { useEffect } from 'react';
-import Wrapper from "./pagina/Wrapper"
-import Header from "./pagina/Header"
-import Footer from "./pagina/Footer"
+import Wrapper from "./corpo/Wrapper"
+import Header from "./corpo/Header"
+import Footer from "./corpo/Footer"
 import MenuLateral from "./menu/MenuLateral"
 
 function Page(props) {

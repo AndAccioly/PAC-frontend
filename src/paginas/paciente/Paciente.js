@@ -1,18 +1,17 @@
 import { InputAdornment, Paper, TableBody, Toolbar } from "@mui/material";
 import PacienteCadastroForm from "./PacienteCadastroForm";
-import UseTable from '../../UseTable'
-import * as pacienteService from '../../../services/pacienteService'
+import UseTable from '../../components/UseTable'
+import * as pacienteService from '../../services/pacienteService'
 import { TableCell, TableRow } from "@material-ui/core";
 import { useState } from "react";
-import Controls from "../../controls/Controls";
+import Controls from "../../components/controls/Controls";
 import { Search } from "@mui/icons-material";
-import { makeStyles } from "@material-ui/styles";
 import AddIcon from '@mui/icons-material/Add'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import CloseIcon from '@mui/icons-material/Close'
-import Popup from '../../Popup'
-import Notificacao from "../../Notificacao";
-import ConfirmDialog from "../../ConfirmDialog";
+import Popup from '../../components/Popup'
+import Notificacao from "../../components/Notificacao";
+import ConfirmDialog from "../../components/ConfirmDialog";
 
 const headCells = [
     { id: 'nome', label: 'Nome' },

@@ -1,3 +1,5 @@
+import ConsultorioForm from './ConsultorioForm'
+
 
 function Consultorio(props) {
     const classes = props.classes;
@@ -6,7 +8,7 @@ function Consultorio(props) {
             Página de Consultório
         </div>
     )
-}
+} 
 
 
 export default Consultorio;

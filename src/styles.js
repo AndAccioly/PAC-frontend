@@ -1,12 +1,8 @@
 import { makeStyles } from "@material-ui/styles"
+import { CompareArrows } from "@mui/icons-material"
+import Cores from "./util/cores"
 
-const corAzul0 = '#ebf5fa'
-const corAzul1 = '#cfedfc'
-const corAzul2 = '#98d4f5'
-const corAzul3 = '#4791ba'
-const corAzul4 = '#205775'
-const corAzul5 = '#1976d2'
-const corAzul6 = '#125da6'
+
 
 const menuWidth = '12%'
 const restoWidth = '88%'
@@ -15,20 +11,20 @@ const useStyles = makeStyles({
     root: {
         display: 'flex',
         flexDirection: 'column',
-        backgroundColor: corAzul0,
+        backgroundColor: Cores.azul0,
         height: '100%',
         position: 'absolute',
         width: '100%',
         minWidth: '100%'
     },
     menuLateral: {
-        backgroundColor: corAzul1,
+        backgroundColor: Cores.azul1,
         height: '100%',
         width: menuWidth,
         minHeight: '100%',
         position: 'fixed',
         zIndex: '5',
-        borderRight: '2px solid' + corAzul3,
+        borderRight: '2px solid' + Cores.azul3,
     },
     wrapper: {
         position: 'relative',
@@ -36,7 +32,7 @@ const useStyles = makeStyles({
     },
     header: {
         position: 'relative',
-        backgroundColor: corAzul1,
+        backgroundColor: Cores.azul1,
         minHeight: '100%',
         marginLeft: menuWidth,
         width: restoWidth,
@@ -46,7 +42,7 @@ const useStyles = makeStyles({
     },
     footer: {
         position: 'relative',
-        backgroundColor: corAzul2,
+        backgroundColor: Cores.azul2,
         minHeight: '8%',
         marginLeft: menuWidth,
         width: restoWidth,
@@ -58,7 +54,7 @@ const useStyles = makeStyles({
     },
     menuLinha: {
         height: '1px',
-        background: corAzul3,
+        background: Cores.azul3,
         width: '90%',
         marginLeft: '5%',
         marginTop: '10%',
@@ -66,23 +62,23 @@ const useStyles = makeStyles({
     },
     headerLinha: {
         height: '1px',
-        background: corAzul3,
+        background: Cores.azul3,
         width: '100%',
         marginLeft: '5%',
     },
     headerTodo:{
         position: 'relative',
-        backgroundColor: corAzul1,
+        backgroundColor: Cores.azul1,
         minHeight: '8%',
     },
     menuLateralItemArrow: {
         display: 'flex',
         paddingLeft: '10%',
-        color: corAzul4,
+        color: Cores.azul4,
         "&:hover": {
-            background: corAzul0,
+            background: Cores.azul0,
             cursor: 'pointer',
-            color: corAzul4
+            color: Cores.azul4
         }
     },
     menuLateralIconArrow: {
@@ -102,11 +98,11 @@ const useStyles = makeStyles({
     menuLink: {
         textDecoration: 'none',
         display: 'flex',
-        color: corAzul4,
+        color: Cores.azul4,
         "&:hover": {
-            background: corAzul0,
+            background: Cores.azul0,
             cursor: 'pointer',
-            color: corAzul4
+            color: Cores.azul4
         }
     },
     versao: {
@@ -114,16 +110,16 @@ const useStyles = makeStyles({
         bottom: '0',
         marginBottom: '1%',
         marginLeft: '3%',
-        color: corAzul5
+        color: Cores.azul5
     },
     headerTitulo: {
         fontSize: '35px',
         transform: 'translateY(20%)',
         marginLeft: '4%',
-        color: corAzul5
+        color: Cores.azul5
     },
     logOut: {
-        color: corAzul4,
+        color: Cores.azul4,
         fontSize: '20px',
         marginRight: '4%',
         width: '7%',
@@ -132,9 +128,9 @@ const useStyles = makeStyles({
     logOutText: {
         transform: 'translateY(50%)',
         borderRadius: '50px',
-        color: corAzul5,
+        color: Cores.azul5,
         "&:hover": {
-            background: corAzul0,
+            background: Cores.azul0,
             cursor: 'pointer',
         }
     },
@@ -148,13 +144,13 @@ const useStyles = makeStyles({
         fontSize: '26px',
         marginLeft: '2%',
         display: 'flex',
-        color: corAzul5
+        color: Cores.azul5
     },
     paperSubtitulo:{
         fontSize: '18px',
         marginLeft: '1%',
         display: 'flex',
-        color: corAzul5,
+        color: Cores.azul5,
         marginTop: '2%'
     },
     paperForm:{
@@ -162,7 +158,7 @@ const useStyles = makeStyles({
     },
     linhaForm:{
         height: '1px',
-        background: corAzul5,
+        background: Cores.azul5,
         width: '98%',
         marginTop: '2%',
         marginBottom: '2%'
@@ -173,8 +169,7 @@ const useStyles = makeStyles({
     botaoAdicionar:{
         
         marginLeft: '10px'
-    }
-    
+    },
     
 })
 export default useStyles;

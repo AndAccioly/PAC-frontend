@@ -1,4 +1,4 @@
-import Controls from "../../controls/Controls";
+import Controls from "./controls/Controls";
 import { Grid } from "@mui/material";
 
 export default function EnderecoForm(props) {
@@ -6,7 +6,7 @@ export default function EnderecoForm(props) {
     return (
         <div>
             <Grid container>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='cep'
                         label='CEP'
@@ -14,7 +14,7 @@ export default function EnderecoForm(props) {
                         onChange={props.handleInputChange}
                     />
                 </Grid>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='estado'
                         label='Estado'
@@ -22,7 +22,7 @@ export default function EnderecoForm(props) {
                         onChange={props.handleInputChange}
                     />
                 </Grid>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='cidade'
                         label='Cidade'
@@ -30,7 +30,7 @@ export default function EnderecoForm(props) {
                         onChange={props.handleInputChange}
                     />
                 </Grid>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='bairro'
                         label='Bairro'
@@ -38,7 +38,7 @@ export default function EnderecoForm(props) {
                         onChange={props.handleInputChange}
                     />
                 </Grid>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='rua'
                         label='Rua'
@@ -46,7 +46,7 @@ export default function EnderecoForm(props) {
                         onChange={props.handleInputChange}
                     />
                 </Grid>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='numero'
                         label='Número'
@@ -54,7 +54,7 @@ export default function EnderecoForm(props) {
                         onChange={props.handleInputChange}
                     />
                 </Grid>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='complemento'
                         label='Complemento'

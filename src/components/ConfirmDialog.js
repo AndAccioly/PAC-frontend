@@ -3,13 +3,13 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from "@
 import Controls from "./controls/Controls";
 import NotListedLocation from "@mui/icons-material/NotListedLocation";
 
-const corAzul0 = '#ebf5fa'
-const corAzul1 = '#cfedfc'
-const corAzul2 = '#98d4f5'
-const corAzul3 = '#4791ba'
-const corAzul4 = '#205775'
-const corAzul5 = '#1976d2'
-const corAzul6 = '#125da6'
+const azul0 = '#ebf5fa'
+const azul1 = '#cfedfc'
+const azul2 = '#98d4f5'
+const azul3 = '#4791ba'
+const azul4 = '#205775'
+const azul5 = '#1976d2'
+const azul6 = '#125da6'
 
 const useStyles = makeStyles({
     dialog: {
@@ -29,18 +29,18 @@ const useStyles = makeStyles({
     titleIcon: {
 
         '&:hover': {
-            color: corAzul6
+            color: azul6
         },
         '& .MuiSvgIcon-root': {
             fontSize: '8rem'
         }
     },
     icon: {
-        color: corAzul5,
-        backgroundColor: corAzul0,
+        color: azul5,
+        backgroundColor: azul0,
         borderRadius: '150px',
         '&:hover': {
-            color: corAzul6,
+            color: azul6,
         },
     }
 })

@@ -1,10 +1,10 @@
 import { Grid } from "@mui/material";
-import Controls from "../../controls/Controls";
-import { useForm, Form, useEnderecoForm } from '../../UseForm';
-import * as planoSaudeService from '../../../services/planoSaudeService'
-import * as pacienteService from '../../../services/pacienteService'
-import EnderecoForm from "./EnderecoForm";
+import Controls from "../../components/controls/Controls";
+import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
+import * as planoSaudeService from '../../services/planoSaudeService'
+import EnderecoForm from "../../components/EnderecoForm";
 import { useEffect } from "react";
+import Mascaras from "../../util/mascaras";
 
 const CAMPO_OBRIGATORIO = 'Campo obrigatório.'
 const CAMPO_INVALIDO = 'Valor inválido.'
@@ -40,7 +40,6 @@ export default function PacienteCadastroForm(props) {
 
     const { addOrEdit, recordForEdit } = props
     
-
     const validate = (fieldValues = values) => {
         console.log('erros')
         console.log(erros)
@@ -110,7 +109,7 @@ export default function PacienteCadastroForm(props) {
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
-                <Grid item md={4} xs={6}>
+                <Grid item md={5} xs={6}>
                     <Controls.Input
                         name='nome'
                         label='Nome'
@@ -119,16 +118,16 @@ export default function PacienteCadastroForm(props) {
                         error={erros.nome}
                     />
                 </Grid>
-                <Grid item md={2} xs={6}>
+                <Grid item md={3} xs={6}>
                     <Controls.Input
                         name='cpf'
                         label='Cpf'
-                        value={values.cpf}
+                        value={Mascaras.cpf(values.cpf)}
                         onChange={handleInputChange}
                         error={erros.cpf}
                     />
                 </Grid>
-                <Grid item md={3} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='email'
                         label='Email'
@@ -146,7 +145,7 @@ export default function PacienteCadastroForm(props) {
                         error={erros.telefone}
                     />
                 </Grid>
-                <Grid item md={2} xs={4}>
+                <Grid item md={3} xs={6}>
                     <Controls.DatePicker
                         name='dataNascimento'
                         label='Data de Nascimento'
@@ -154,7 +153,7 @@ export default function PacienteCadastroForm(props) {
                         onChange={handleInputChange}
                     />
                 </Grid>
-                <Grid item md={2} xs={4}>
+                <Grid item md={2} xs={6}>
                     <Controls.Select
                         name='planoSaude'
                         label='Plano de Saúde'

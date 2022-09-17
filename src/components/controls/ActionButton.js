@@ -1,12 +1,5 @@
 import { Button as MuiButton, makeStyles } from '@material-ui/core'
-
-const corAzul0 = '#ebf5fa'
-const corAzul1 = '#cfedfc'
-const corAzul2 = '#98d4f5'
-const corAzul3 = '#4791ba'
-const corAzul4 = '#205775'
-const corAzul5 = '#1976d2'
-const corAzul6 = '#125da6'
+import Cores from '../../util/cores'
 
 const useStyles = makeStyles({
     root: {
@@ -14,17 +7,16 @@ const useStyles = makeStyles({
         minWidth: 0,
     },
     secondary: {
-        backgroundColor: '#f77e7e',
+        backgroundColor: Cores.vermelhoClose,
         '& .MuiButton-label':{
             color: 'white'
         }
     },
     primary: {
         marginRight: '6%',
-        marginLeft: '-10%',
-        backgroundColor: corAzul1,
+        backgroundColor: Cores.azul2,
         '& .MuiButton-label':{
-            color: corAzul5
+            color: Cores.azul6
         }
     }
 
