@@ -2,14 +2,7 @@ import { Dialog, DialogContent, DialogTitle, Typography } from "@mui/material"
 import { makeStyles } from '@material-ui/core'
 import Controls from "./controls/Controls"
 import CloseIcon from '@mui/icons-material/Close'
-
-const azul0 = '#ebf5fa'
-const azul1 = '#cfedfc'
-const azul2 = '#98d4f5'
-const azul3 = '#4791ba'
-const azul4 = '#205775'
-const azul5 = '#1976d2'
-const azul6 = '#125da6'
+import Cores from "../util/cores"
 
 const useStyles = makeStyles({
     dialogWrapper: {
@@ -17,8 +10,8 @@ const useStyles = makeStyles({
     },
     dialogTitle: {
         paddingRight: '0px',
-        backgroundColor: azul0,
-        color: azul5
+        backgroundColor: Cores.azul0,
+        color: Cores.azul5
     }
 
 

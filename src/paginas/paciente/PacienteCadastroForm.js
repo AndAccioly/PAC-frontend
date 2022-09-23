@@ -58,8 +58,7 @@ export default function PacienteCadastroForm(props) {
         setErros({
             ...temp
         })
-        console.log(fieldValues)
-        console.log(values)
+        
         if (fieldValues == values)
             console.log('aqui')
         console.log(temp)

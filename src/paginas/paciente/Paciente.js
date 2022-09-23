@@ -11,7 +11,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import CloseIcon from '@mui/icons-material/Close'
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
-import ConfirmDialog from "../../components/ConfirmDialog";
+import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 
 const headCells = [
     { id: 'nome', label: 'Nome' },
@@ -87,8 +87,7 @@ function Paciente(props) {
     }
 
     return (
-        <div className={classes.wrapper}>
-
+        <div>
             <Paper className={classes.paper}>
                 <Toolbar >
                     <Controls.Input
@@ -120,8 +119,7 @@ function Paciente(props) {
                                     <Controls.ActionButton
                                         color='primary'
                                         onClick={() => { openInPopup(item) }}>
-                                        <EditOutlinedIcon fontSize='small'
-                                        />
+                                        <EditOutlinedIcon fontSize='small'/>
                                     </Controls.ActionButton>
                                     <Controls.ActionButton
                                         color='secondary'

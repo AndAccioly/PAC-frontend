@@ -13,6 +13,7 @@ function App() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Page corpo={0}/>} />
+					<Route path="dashboard" element={<Page corpo={10}/>} />
 					<Route path="perfil" element={<Page corpo={1}/>} />
 					<Route path="paciente" element={<Page corpo={11}/>} />
 					<Route path="exame" element={<Page corpo={2}/>} />
@@ -22,6 +23,7 @@ function App() {
 					<Route path="agenda" element={<Page corpo={6}/>} />
 					<Route path="cirurgia" element={<Page corpo={7}/>} />
 					<Route path="relatorios" element={<Page corpo={8}/>} />
+					<Route path="funcionario" element={<Page corpo={9}/>} />
 				</Routes>
 			</BrowserRouter>
 		</div>

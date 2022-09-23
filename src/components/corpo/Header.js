@@ -22,6 +22,10 @@ function defineCorpo(corpoId, classes) {
             return 'Cirurgia'
         case 8:
             return 'Relatórios'
+        case 9:
+            return 'Funcionários'
+        case 10:
+            return 'Dashboard'
         default:
             return 'Início'
     }

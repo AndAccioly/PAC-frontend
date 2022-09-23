@@ -1,15 +1,8 @@
 import { Typography, makeStyles } from "@material-ui/core";
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from "@mui/material";
-import Controls from "./controls/Controls";
+import Controls from "../controls/Controls";
 import NotListedLocation from "@mui/icons-material/NotListedLocation";
-
-const azul0 = '#ebf5fa'
-const azul1 = '#cfedfc'
-const azul2 = '#98d4f5'
-const azul3 = '#4791ba'
-const azul4 = '#205775'
-const azul5 = '#1976d2'
-const azul6 = '#125da6'
+import Cores from "../../util/cores";
 
 const useStyles = makeStyles({
     dialog: {
@@ -29,18 +22,18 @@ const useStyles = makeStyles({
     titleIcon: {
 
         '&:hover': {
-            color: azul6
+            color: Cores.azul6
         },
         '& .MuiSvgIcon-root': {
             fontSize: '8rem'
         }
     },
     icon: {
-        color: azul5,
-        backgroundColor: azul0,
+        color: Cores.azul5,
+        backgroundColor: Cores.azul0,
         borderRadius: '150px',
         '&:hover': {
-            color: azul6,
+            color: Cores.azul6,
         },
     }
 })
@@ -54,7 +47,7 @@ export default function ConfirmDialog(props) {
     return (
         <Dialog open={confirmDialog.isOpen} classes={{ paper: classes.dialog }}>
             <DialogTitle className={classes.dialogTitle}>
-                <IconButton disableTipple className={classes.titleIcon}>
+                <IconButton disableRipple className={classes.titleIcon}>
                     <NotListedLocation className={classes.icon} />
                 </IconButton>
             </DialogTitle>

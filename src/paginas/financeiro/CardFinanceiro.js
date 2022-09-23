@@ -1,4 +1,4 @@
-import { CardContent, Card, Typography, CardHeader } from "@mui/material";
+import { CardContent, Card, CardHeader } from "@mui/material";
 import { makeStyles } from '@material-ui/core'
 import Mascaras from '../../util/mascaras'
 import Cores from "../../util/cores";
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'space-between',
         marginLeft: '5%',
-        
+
     },
     negativo: {
         paddingBottom: '10%',
@@ -49,13 +49,14 @@ const useStyles = makeStyles({
     },
     positivo: {
         paddingBottom: '10%',
-        color: Cores.verdePositivo, 
+        color: Cores.verdePositivo,
     }
 })
 
 export default function CardFinanceiro(props) {
-    const { title, subtitle, content } = props
+    const { itemFinanceiro, title, subtitle, content, onClickPopup, onClickPopupVisualizar } = props
     const classes = useStyles()
+
     return (
 
         <Card className={classes.root}>
@@ -64,7 +65,10 @@ export default function CardFinanceiro(props) {
                 title={
                     <div className={classes.headerContent}>
                         {title}
-                        <Controls.ActionButton className={classes.teste} color='primary'>
+                        <Controls.ActionButton
+                            className={classes.teste} color='primary'
+                            onClick={() => { onClickPopup(itemFinanceiro.items) }}
+                        >
                             <EditOutlinedIcon fontSize='small' />
                         </Controls.ActionButton>
                     </div>
@@ -72,9 +76,9 @@ export default function CardFinanceiro(props) {
                 subheader={subtitle || ""}>
 
             </CardHeader>
-            <CardContent className={content < 0 ? classes.contentNegativo : classes.contentPositivo}>
+            <CardContent className={content < 0 ? classes.contentNegativo : classes.contentPositivo} onClick={() => { onClickPopupVisualizar(itemFinanceiro.items) }}>
                 <div className={content < 0 ? classes.negativo : classes.positivo}>
-                    {Mascaras.dinheiro(content.replace('-', ''))}
+                    {Mascaras.dinheiroCifrao(content.replace('-', ''))}
                 </div>
             </CardContent>
             <div className={classes.botoes}>

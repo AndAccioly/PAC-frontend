@@ -2,6 +2,9 @@ import { CardContent, Card, Typography, CardHeader } from "@mui/material";
 import { makeStyles } from '@material-ui/core'
 import AddIcon from '@mui/icons-material/Add';
 import Cores from "../../util/cores";
+import Popup from "../../components/Popup";
+import { useState } from "react";
+import ItemFinanceiroForm from "./ItemFinanceiroForm";
 
 const useStyles = makeStyles({
     root: {
@@ -35,22 +38,38 @@ const useStyles = makeStyles({
 
 export default function CardFinanceiro(props) {
     const { title, subtitle, content } = props
+    const [openPopup, setOpenPopup] = useState(false)
+
+    const openInPopup = () => {
+        setOpenPopup(true)
+    }
+
     const classes = useStyles()
     return (
+        <div className={classes.root}>
+            <Card >
+                <CardHeader
+                    className={classes.header}
+                    title='Novo'
+                >
 
-        <Card className={classes.root}>
-            <CardHeader
-                className={classes.header}
-                title='Novo'
+                </CardHeader>
+                <CardContent className={classes.content}>
+                    <AddIcon 
+                        onClick={() => { openInPopup() }}
+                    />
+
+                </CardContent>
+
+            </Card>
+            <Popup
+                openPopup={openPopup}
+                setOpenPopup={setOpenPopup}
+                title='Inserir novo item financeiro'
             >
+                <ItemFinanceiroForm />
 
-            </CardHeader>
-            <CardContent className={classes.content}>
-                <AddIcon />
-
-            </CardContent>
-
-        </Card>
-
+            </Popup>
+        </div>
     )
 }

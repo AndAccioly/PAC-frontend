@@ -1,10 +1,11 @@
+import { Paper } from "@mui/material";
 
 function Agenda(props) {
     const classes = props.classes;
     return (
-        <div className={classes.wrapper}>
+        <Paper className={classes.paper}>
             Página de Agenda
-        </div>
+        </Paper>
     )
 }
 

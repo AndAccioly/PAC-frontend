@@ -9,26 +9,20 @@ const initialValues = {
     id: 0,
     paciente: '',
     funcionario: '',
-    agendamento: new Date(),
     horaInicio: '',
     duracao: '',
     valor: 0,
+    funcao: '',
     planoSaude: '',
-    consultorio: ''
+    consultorio: '',
+    dataNascimento: new Date()
 }
 
-const pacientes = [
-    { id: '1', value: 'João dos testes' },
-    { id: '2', value: 'Maria das dores' },
-    { id: '3', value: 'José Enfermo' },
-    { id: '4', value: 'Joana Pé Quebrado' }
-]
 
-const funcionarios = [
-    { id: '1', value: 'João dos testes' },
-    { id: '2', value: 'Maria das dores' },
-    { id: '3', value: 'José Enfermo' },
-    { id: '4', value: 'Joana Pé Quebrado' }
+const funcoes = [
+    { id: '1', value: 'Médico(a)' },
+    { id: '2', value: 'Secretário(a)' },
+    { id: '3', value: 'Auxiliar administrativo(a)' },
 ]
 
 const consultorios = [
@@ -37,7 +31,7 @@ const consultorios = [
     { id: '3', value: 'Consultório 3' }
 ]
 
-export default function ConsultorioForm(props) {
+export default function FuncionarioForm(props) {
 
     //const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
@@ -68,15 +62,13 @@ export default function ConsultorioForm(props) {
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
-
                 <Grid item md={4} xs={6}>
-                    <Controls.Select
-                        name='paciente'
-                        label='Paciente'
-                        value={values.paciente}
+                    <Controls.Input
+                        name='nome'
+                        label='Nome'
+                        value={values.nome}
                         onChange={handleInputChange}
-                        options={pacientes}
-                        error={erros.paciente}
+                        error={erros.nome}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
@@ -91,12 +83,12 @@ export default function ConsultorioForm(props) {
                 </Grid>
                 <Grid item md={4} xs={6}>
                     <Controls.Select
-                        name='funcionario'
-                        label='Atendimento'
-                        value={values.funcionario}
+                        name='funcao'
+                        label='Função'
+                        value={values.funcao}
                         onChange={handleInputChange}
-                        options={funcionarios}
-                        error={erros.funcionario}
+                        options={funcoes}
+                        error={erros.funcao}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
@@ -112,20 +104,10 @@ export default function ConsultorioForm(props) {
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
-                    <Controls.Select
-                        name='planoSaude'
-                        label='Plano de Saúde'
-                        value={values.planoSaude}
-                        onChange={handleInputChange}
-                        options={planoSaudeService.getPlanosSaudeLista()}
-                        error={erros.planoSaude}
-                    />
-                </Grid>
-                <Grid item md={4} xs={6}>
                     <Controls.DatePicker
-                        name='agendamento'
-                        label='Agendamento'
-                        value={values.agendamento}
+                        name='dataNascimento'
+                        label='Data de Nascimento'
+                        value={values.dataNascimento}
                         onChange={handleInputChange}
                     />
                 </Grid>

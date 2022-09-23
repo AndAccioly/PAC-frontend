@@ -7,30 +7,36 @@ import Cirurgia from '../../paginas/cirurgia/Cirurgia'
 import Consulta from '../../paginas/consulta/Consulta'
 import Exame from '../../paginas/exame/Exame'
 import Agenda from '../../paginas/agenda/Agenda'
-import Relatorios from '../relatorios/Relatorios'
+import Relatorios from '../../paginas/relatorios/Relatorios'
+import Funcionario from '../../paginas/funcionario/Funcionario'
+import { Dashboard } from '@mui/icons-material'
 
-function defineCorpo(corpoId, classes){
-    switch(corpoId){
+function defineCorpo(corpoId, classes) {
+    switch (corpoId) {
         case 1:
-            return <Perfil classes={classes}/>
+            return <Perfil classes={classes} />
         case 11:
-            return <Paciente classes={classes}/>
+            return <Paciente classes={classes} />
         case 2:
-            return <Exame classes={classes}/>
+            return <Exame classes={classes} />
         case 3:
-            return <Consulta classes={classes}/>
+            return <Consulta classes={classes} />
         case 4:
-            return <Financeiro classes={classes}/>
+            return <Financeiro classes={classes} />
         case 5:
-            return <Consultorio classes={classes}/>
+            return <Consultorio classes={classes} />
         case 6:
-            return <Agenda classes={classes}/>
+            return <Agenda classes={classes} />
         case 7:
-            return <Cirurgia classes={classes}/>
+            return <Cirurgia classes={classes} />
         case 8:
-            return <Relatorios classes={classes}/>
+            return <Relatorios classes={classes} />
+        case 9:
+            return <Funcionario classes={classes} />
+        case 10:
+            return <Dashboard classes={classes} />
         default:
-            return <Home classes={classes}/>    
+            return <Home classes={classes} />
     }
 }
 
@@ -40,11 +46,11 @@ function Body(props) {
         <div className={classes.wrapper}>
             <div className={classes.conteudo}>
                 <div></div>
-               
+
             </div>
             {defineCorpo(props.corpo, classes)}
         </div>
     )
 }
-					
+
 export default Body;

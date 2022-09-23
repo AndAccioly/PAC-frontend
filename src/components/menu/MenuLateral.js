@@ -21,7 +21,7 @@ function LinkMenu(props) {
                 <MenuLateralItem
                     titulo='Dashboard'
                     classes={classes}
-                    url='/perfil'
+                    url='/dashboard'
                     icon={<DashboardIcon/>}
                 />
                 <MenuLateralItem
@@ -66,7 +66,7 @@ function LinkMenu(props) {
                 <MenuLateralItem
                     titulo='Funcionários'
                     classes={classes}
-                    url='/consultorio'
+                    url='/funcionario'
                     icon={<PeopleIcon />}
                 />
                 <MenuLateralItem

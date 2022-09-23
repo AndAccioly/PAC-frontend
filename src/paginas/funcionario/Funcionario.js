@@ -10,44 +10,39 @@ import CloseIcon from '@mui/icons-material/Close'
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
-import ConsultorioForm from "./ConsultorioForm";
+import FuncionarioForm from "./FuncionarioForm";
 
 const initialValues = [{
     id: '1',
-    data: '10/11/2022',
     nome: 'João dos Testes',
     cpf: '123.456.789-10',
-    tipo: 'Ortopedia',
-    hora: '12:00',
+    funcao: 'Médico',
+    matricula: 'M00001',
     consultorio: 'Consultório 1',
-    atendimento: 'Médico José'
+    atendimento: 'José Torres'
 },
 {
     id: '2',
-    data: '10/11/2022 12',
     nome: 'Maria das Dores',
-    hora: '12:30',
     cpf: '123.456.789-10',
-    tipo: 'Buco Maxilo',
+    matricula: 'S00002',
+    funcao: 'Secretária',
     consultorio: 'Consultório 2',
-    atendimento: 'Médica Joana',
+    atendimento: 'Jurema',
 
 },
 ]
 
 const headCells = [
-    { id: 'data', label: 'Data' },
-    { id: 'hora', label: 'Hora' },
     { id: 'nome', label: 'Nome' },
-    { id: 'cpf', label: 'CPF' },
+    { id: 'matricula', label: 'Matrícula' },
     { id: 'consultorio', label: 'Consultório' },
-    { id: 'atendimento', label: 'Atendimento' },
-    { id: 'tipo', label: 'Tipo' },
+    { id: 'funcao', label: 'Função' },
     { id: 'actions', label: 'Ações', disableSorting: true }
 ]
 
 
-function Consultorio(props) {
+function Funcionario(props) {
     const classes = props.classes;
 
     const [records, setRecords] = useState(initialValues)
@@ -78,7 +73,7 @@ function Consultorio(props) {
         <div>
             <Paper className={classes.paper}>
                 <Controls.Button
-                    text='Novo Consultório'
+                    text='Adicionar funcionário'
                     variant='outlined'
                     startIcon={<AddIcon />}
                     className={classes.botaoAdicionar}
@@ -89,13 +84,10 @@ function Consultorio(props) {
                     <TableBody>
                         {recordsAfterPagingAndSorting().map(item => (
                             <TableRow key={item.id}>
-                                <TableCell>{item.data}</TableCell>
-                                <TableCell>{item.hora}</TableCell>
                                 <TableCell>{item.nome}</TableCell>
-                                <TableCell>{item.cpf}</TableCell>
+                                <TableCell>{item.matricula}</TableCell>
                                 <TableCell>{item.consultorio}</TableCell>
-                                <TableCell>{item.atendimento}</TableCell>
-                                <TableCell>{item.tipo}</TableCell>
+                                <TableCell>{item.funcao}</TableCell>
                                 <TableCell>
                                     <Controls.ActionButton
                                         color='primary'
@@ -129,11 +121,11 @@ function Consultorio(props) {
                 setOpenPopup={setOpenPopup}
                 title='Criar nova consulta'
             >
-                <ConsultorioForm />
+                <FuncionarioForm />
             </Popup>
         </div>
     )
 }
 
 
-export default Consultorio;
+export default Funcionario;

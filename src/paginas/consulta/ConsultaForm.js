@@ -37,7 +37,7 @@ const consultorios = [
     { id: '3', value: 'Consultório 3' }
 ]
 
-export default function ConsultorioForm(props) {
+export default function ConsultaForm(props) {
 
     //const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {

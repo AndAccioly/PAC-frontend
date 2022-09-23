@@ -112,6 +112,12 @@ const useStyles = makeStyles({
         marginRight: '3%',
         padding: '1%'
     },
+    subPaper: {
+        marginTop: '1%',
+        marginLeft: '3%',
+        marginRight: '3%',
+        padding: '1%'
+    },
     paperTitulo:{
         fontSize: '26px',
         marginLeft: '2%',
@@ -119,7 +125,7 @@ const useStyles = makeStyles({
         color: Cores.azul5
     },
     paperSubtitulo:{
-        fontSize: '18px',
+        fontSize: '22px',
         marginLeft: '1%',
         display: 'flex',
         color: Cores.azul5,
@@ -132,7 +138,7 @@ const useStyles = makeStyles({
         height: '1px',
         background: Cores.azul5,
         width: '98%',
-        marginTop: '2%',
+        marginTop: '1%',
         marginBottom: '2%'
     },
     buscar: {

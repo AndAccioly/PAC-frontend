@@ -4,6 +4,7 @@ import { Button as MuiButton, makeStyles } from '@material-ui/core'
 const useStyles = makeStyles({
     root: {
         margin: '4px',
+        marginTop: '20px'
     },
     label: {
         textTransform: 'none'
