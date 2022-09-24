@@ -4,17 +4,28 @@ import Wrapper from "./corpo/Wrapper"
 import Header from "./corpo/Header"
 import Footer from "./corpo/Footer"
 import MenuLateral from "./menu/MenuLateral"
+import Media from 'react-media'
+import MenuRecolhido from "./menu/MenuRecolhido";
 
 function Page(props) {
     const classes = useStyles();
     useEffect(() => {
         document.title = "PAC"
-     }, []);
+    }, []);
     return (
         <div className={classes.root}>
-            <Header classes = {classes} corpo={props.corpo}/>
-            <MenuLateral classes={classes} />
-            <Wrapper classes = {classes} corpo={props.corpo}/>
+            <Header classes={classes} corpo={props.corpo} />
+
+            <Media queries={{ small: { maxWidth: 699 } }}>
+                {matches =>
+                    matches.small ? (
+                        <MenuRecolhido classes={classes} />
+                    ) : (
+                        <MenuLateral classes={classes} />
+                    )
+                }
+            </Media>
+            <Wrapper classes={classes} corpo={props.corpo} />
             {/*<Footer classes = {classes}/>*/}
         </div>
     )

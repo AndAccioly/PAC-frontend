@@ -10,6 +10,7 @@ import SickIcon from '@mui/icons-material/Sick';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import PeopleIcon from '@mui/icons-material/People';
+import Icones from '../../util/icones';
 
 function LinkMenu(props) {
     const classes = props.classes;
@@ -22,31 +23,31 @@ function LinkMenu(props) {
                     titulo='Dashboard'
                     classes={classes}
                     url='/dashboard'
-                    icon={<DashboardIcon/>}
+                    icon={Icones.dashboardIcon}
                 />
                 <MenuLateralItem
                     titulo='Perfil'
                     classes={classes}
                     url='/perfil'
-                    icon={<AccountCircleIcon/>}
+                    icon={Icones.perfilIcon}
                 />
                 <MenuLateralItem
                     titulo='Exames'
                     classes={classes}
                     url='/exame'
-                    icon={<ContentPasteIcon/>}
+                    icon={Icones.examesIcon}
                 />
                 <MenuLateralItem
                     titulo='Consultas'
                     classes={classes}
                     url='/consulta'
-                    icon={<SickIcon/>}
+                    icon={Icones.consultaIcon}
                 />
                 <MenuLateralItem
                     titulo='Financeiro'
                     classes={classes}
                     url='/financeiro'
-                    icon={<AttachMoneyIcon/>}
+                    icon={Icones.financeiroIcon}
                 />
 
                 <div className={classes.menuLinha}></div>
@@ -55,31 +56,31 @@ function LinkMenu(props) {
                     titulo='Paciente'
                     classes={classes}
                     url='/paciente'
-                    icon={<SentimentSatisfiedAltIcon />}
+                    icon={Icones.pacienteIcon}
                 />
                 <MenuLateralItem
                     titulo='Consultório'
                     classes={classes}
                     url='/consultorio'
-                    icon={<StoreIcon />}
+                    icon={Icones.consultorioIcon}
                 />
                 <MenuLateralItem
                     titulo='Funcionários'
                     classes={classes}
                     url='/funcionario'
-                    icon={<PeopleIcon />}
+                    icon={Icones.funcionariosIcon}
                 />
                 <MenuLateralItem
                     titulo='Agenda'
                     classes={classes}
                     url='/agenda'
-                    icon={<CalendarMonthIcon />}
+                    icon={Icones.calendarioIcon}
                 />
                 <MenuLateralItem
                     titulo='Relatórios'
                     classes={classes}
                     url='/relatorios'
-                    icon={<AssignmentIcon />}
+                    icon={Icones.relatoriosIcon}
                 />
             </div>
             <div className={classes.versao}>Version 0.0.0</div>

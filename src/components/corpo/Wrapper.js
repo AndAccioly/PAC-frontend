@@ -9,7 +9,9 @@ import Exame from '../../paginas/exame/Exame'
 import Agenda from '../../paginas/agenda/Agenda'
 import Relatorios from '../../paginas/relatorios/Relatorios'
 import Funcionario from '../../paginas/funcionario/Funcionario'
-import { Dashboard } from '@mui/icons-material'
+import Dashboard from '../../paginas/dashboard/Dashboard'
+import Media from 'react-media'
+
 
 function defineCorpo(corpoId, classes) {
     switch (corpoId) {
@@ -43,12 +45,25 @@ function defineCorpo(corpoId, classes) {
 function Body(props) {
     const classes = props.classes;
     return (
-        <div className={classes.wrapper}>
-            <div className={classes.conteudo}>
-                <div></div>
+        <div>
+            <Media queries={{ small: { maxWidth: 699 } }}>
+                {matches =>
+                    matches.small ? (
+                        <div className={classes.paperMobile}>
+                            <div className={classes.wrapper}>
+                                {defineCorpo(props.corpo, classes)}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={classes.paperWeb}>
+                            <div className={classes.wrapper}>
+                                {defineCorpo(props.corpo, classes)}
+                            </div>
+                        </div>
+                    )
+                }
+            </Media>
 
-            </div>
-            {defineCorpo(props.corpo, classes)}
         </div>
     )
 }

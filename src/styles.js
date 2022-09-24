@@ -26,6 +26,20 @@ const useStyles = makeStyles({
         zIndex: '5',
         borderRight: '2px solid' + Cores.azul3,
     },
+    menuRecolhido: {
+        width: menuWidth,
+        position: 'fixed',
+        zIndex: '5',
+        '& .MuiSvgIcon-root': {
+            color: Cores.azul5,
+            marginTop: '5px',
+            fontSize: '3.6rem'
+        }
+    },
+    menuRecolhidoIcon: {
+        transform: 'translateY(18%)',
+        marginLeft: '10px'
+    },
     wrapper: {
         position: 'relative',
         
@@ -49,9 +63,6 @@ const useStyles = makeStyles({
         zIndex: '1',
         bottom: '0',
     },
-    conteudo: {
-       
-    },
     menuLinha: {
         height: '1px',
         background: Cores.azul3,
@@ -64,7 +75,6 @@ const useStyles = makeStyles({
         height: '1px',
         background: Cores.azul3,
         width: '100%',
-        marginLeft: '5%',
     },
     headerTodo:{
         position: 'relative',
@@ -106,9 +116,14 @@ const useStyles = makeStyles({
             cursor: 'pointer',
         }
     },
+    paperMobile: {
+        marginLeft: '3%',
+    },
+    paperWeb: {
+        marginLeft: '15%',
+    },
     paper: {
         marginTop: '1%',
-        marginLeft: '15%',
         marginRight: '3%',
         padding: '1%'
     },

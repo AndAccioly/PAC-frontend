@@ -6,11 +6,11 @@ const useStyles = makeStyles({
     menuLateralItemArrow: {
         display: 'flex',
         paddingLeft: '10%',
-        color: Cores.azul4,
+        color: Cores.azul5,
         "&:hover": {
             background: Cores.azul0,
             cursor: 'pointer',
-            color: Cores.azul4
+            color: Cores.azul5
         }
     },
     menuLink: {
@@ -37,10 +37,10 @@ const useStyles = makeStyles({
 
 function MenuLateralItem(props) {
 
-    const {icon, url, titulo} = props
+    const {icon, url, titulo, onClick} = props
     const classes = useStyles()
     return (
-        <Link to={url} className={classes.menuLink}>
+        <Link to={url} className={classes.menuLink} onClick={() => {onClick() }}>
             <div className={classes.menuLateralItemArrow}>
                 <div className={classes.menuLateralIconArrow}>
                     {icon}

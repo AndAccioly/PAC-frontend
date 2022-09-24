@@ -7,6 +7,7 @@ function Financeiro(props) {
 
 
     return (
+            
         <Paper className={classes.paper}>
             <CardConsultorio
                 consultorio='Consultório 1'
@@ -14,6 +15,7 @@ function Financeiro(props) {
                 classes={classes}
             />
         </Paper>
+           
     )
 }
 

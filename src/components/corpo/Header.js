@@ -37,10 +37,6 @@ function Header(props) {
         <div className={classes.headerTodo}>
             <div className={classes.header}>
                 <div className={classes.headerTitulo}>{defineCorpo(props.corpo)}</div>
-                <div className={classes.logOut}>
-                    <div className={classes.logOutText}>Log out</div>
-                </div>
-
             </div>
             <div className={classes.headerLinha}></div>
         </div>
