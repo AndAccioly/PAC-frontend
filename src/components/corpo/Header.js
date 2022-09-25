@@ -2,6 +2,7 @@ import Box from '@mui/material/Box'
 import Media from 'react-media'
 import logo from '../../img/logo.png'
 import { makeStyles } from '@material-ui/core';
+import MenuRecolhido from '../menu/MenuRecolhido';
 
 const useStyles = makeStyles({
     logo: {
@@ -10,6 +11,7 @@ const useStyles = makeStyles({
         marginRight: '5%'
     },
     headerTitulo: {
+        display: 'flex',
         transform: 'translateY(20%)',
 
     }
@@ -51,22 +53,28 @@ function Header(props) {
     return (
         <div className={classes.headerTodo}>
             <div className={classes.header}>
-                <div className={classes.headerFaixa}>
-                    <div className={classesLocal.headerTitulo}>
-                        {defineCorpo(props.corpo)}
-                    </div>
-                    <Media queries={{ small: { maxWidth: 699 } }}>
-                        {matches =>
-                            matches.small ? (
-                                <img src={logo} alt="Logo" className={classesLocal.logo} />
-                            ) : (
-                                <div >
-
+                <Media queries={{ small: { maxWidth: 699 } }}>
+                    {matches =>
+                        matches.small ? (
+                            <div className={classes.headerFaixaMobile}>
+                                <div className={classesLocal.headerTitulo}>
+                                    <MenuRecolhido classes={classes} />
+                                    {defineCorpo(props.corpo)}
                                 </div>
-                            )
-                        }
-                    </Media>
-                </div>
+                                <img src={logo} alt="Logo" className={classesLocal.logo} />
+                            </div>
+                        ) : (
+                            <div className={classes.headerFaixa}>
+                                <div className={classesLocal.headerTitulo}>
+                                    {defineCorpo(props.corpo)}
+                                </div>
+                            </div>
+                        )
+                    }
+                </Media>
+
+
+
             </div>
         </div>
     )

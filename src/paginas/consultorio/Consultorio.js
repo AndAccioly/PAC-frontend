@@ -12,6 +12,7 @@ import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import ConsultorioForm from "./ConsultorioForm";
 import ConsultorioVisualizarForm from "./ConsultorioVisualizarForm";
+import Icones from "../../util/icones";
 
 const initialValues = [{
     id: '1',
@@ -78,7 +79,7 @@ function Consultorio(props) {
                 <Controls.Button
                     text='Novo Consultório'
                     variant='outlined'
-                    startIcon={<AddIcon />}
+                    startIcon={Icones.addIcon}
                     className={classes.botaoAdicionar}
                     onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
                 />

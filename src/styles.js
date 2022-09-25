@@ -27,8 +27,6 @@ const useStyles = makeStyles({
         borderRight: '3px solid' + Cores.azul3,
     },
     menuRecolhido: {
-        position: 'fixed',
-        zIndex: '5',
         '& .MuiSvgIcon-root': {
             color: Cores.azul5,
             marginTop: '1%',
@@ -44,14 +42,20 @@ const useStyles = makeStyles({
     header: {
         position: 'relative',
         backgroundColor: Cores.azul1,
-        marginLeft: menuWidth,
     },
     headerFaixa: {
+        marginLeft: menuWidth,
         display: 'flex',
         justifyContent: 'space-between',
         fontSize: '36px',
         paddingLeft: '6%',
         color: Cores.azul5
+    },
+    headerFaixaMobile: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        fontSize: '36px',
+        color: Cores.azul5,
     },
     headerTodo: {
         backgroundColor: Cores.azul1,

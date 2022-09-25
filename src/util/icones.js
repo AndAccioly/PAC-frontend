@@ -12,6 +12,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import PrintIcon from '@mui/icons-material/Print';
+import AddIcon from '@mui/icons-material/Add'
+import SearchIcon from "@mui/icons-material/Search";
 
 const dashboardIcon = <DashboardIcon/>
 const perfilIcon = <AccountCircleIcon/>
@@ -27,6 +29,8 @@ const menuIcon = <MenuIcon />
 const arrowRightIcon = <ArrowRightIcon />
 const arrowDropDownIcon = <ArrowDropDownIcon />
 const printIcon = <PrintIcon />
+const addIcon = <AddIcon />
+const searchIcon = <SearchIcon />
 
 const Icones = {
     dashboardIcon,
@@ -42,7 +46,9 @@ const Icones = {
     relatoriosIcon,
     arrowRightIcon,
     arrowDropDownIcon,
-    printIcon
+    printIcon,
+    addIcon,
+    searchIcon
 }
 
 export default Icones

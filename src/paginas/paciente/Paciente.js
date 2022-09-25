@@ -5,8 +5,6 @@ import * as pacienteService from '../../services/pacienteService'
 import { TableCell, TableRow } from "@material-ui/core";
 import { useState } from "react";
 import Controls from "../../components/controls/Controls";
-import { Search } from "@mui/icons-material";
-import AddIcon from '@mui/icons-material/Add'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import CloseIcon from '@mui/icons-material/Close'
 import Popup from '../../components/Popup'
@@ -14,6 +12,7 @@ import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import Methods from "../../util/methods/Methods"
 import PacienteVisualizarForm from "./PacienteVisualizarForm";
+import Icones from "../../util/icones";
 
 const headCells = [
     { id: 'nome', label: 'Nome' },
@@ -92,52 +91,54 @@ function Paciente(props) {
                         className={classes.buscar}
                         label='Procurar paciente'
                         InputProps={{
-                            startAdornment: (<InputAdornment position='start'><Search /></InputAdornment>)
+                            startAdornment: (<InputAdornment position='start'>{Icones.searchIcon}</InputAdornment>)
                         }}
                         onChange={e => Methods.handleSearch(e, setFilterFn)}
                     />
                     <Controls.Button
                         text='Novo Paciente'
                         variant='outlined'
-                        startIcon={<AddIcon />}
+                        startIcon={Icones.addIcon}
                         className={classes.botaoAdicionar}
                         onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
                     />
                 </Toolbar>
-                <TblContainer>
-                    <TblHead />
-                    <TableBody>
-                        {recordsAfterPagingAndSorting().map(item => (
-                            <TableRow key={item.id} onClick={() => { openInPopupFicha(item) }}>
-                                <TableCell>{item.nome}</TableCell>
-                                <TableCell>{item.cpf}</TableCell>
-                                <TableCell>{item.email}</TableCell>
-                                <TableCell>{item.planoSaudeTexto}</TableCell>
-                                <TableCell>
-                                    <Controls.ActionButton
-                                        color='primary'
-                                        onClick={(e) => { openInPopup(e, item) }}>
-                                        <EditOutlinedIcon fontSize='small'/>
-                                    </Controls.ActionButton>
-                                    <Controls.ActionButton
-                                        color='secondary'
-                                        onClick={() => {
-                                            setConfirmDialog({
-                                                isOpen: true,
-                                                title: 'Deseja remover o cliente?',
-                                                subtitle: 'Esta ação não poderá ser desfeita.',
-                                                onConfirm: () => { onDelete(item.id) }
-                                            })
-                                        }}>
-                                        <CloseIcon fontSize='small' />
-                                    </Controls.ActionButton>
-                                </TableCell>
-                            </TableRow>
-                        )
+                <div style={{ maxHeight: 600, overflow: 'auto' }}>
+                    <TblContainer>
+                        <TblHead />
+                        <TableBody>
+                            {recordsAfterPagingAndSorting().map(item => (
+                                <TableRow key={item.id} onClick={() => { openInPopupFicha(item) }}>
+                                    <TableCell>{item.nome}</TableCell>
+                                    <TableCell>{item.cpf}</TableCell>
+                                    <TableCell>{item.email}</TableCell>
+                                    <TableCell>{item.planoSaudeTexto}</TableCell>
+                                    <TableCell>
+                                        <Controls.ActionButton
+                                            color='primary'
+                                            onClick={(e) => { openInPopup(e, item) }}>
+                                            <EditOutlinedIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                        <Controls.ActionButton
+                                            color='secondary'
+                                            onClick={() => {
+                                                setConfirmDialog({
+                                                    isOpen: true,
+                                                    title: 'Deseja remover o cliente?',
+                                                    subtitle: 'Esta ação não poderá ser desfeita.',
+                                                    onConfirm: () => { onDelete(item.id) }
+                                                })
+                                            }}>
+                                            <CloseIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                    </TableCell>
+                                </TableRow>
+                            )
 
-                        )}
-                    </TableBody>
-                </TblContainer>
+                            )}
+                        </TableBody>
+                    </TblContainer>
+                </div>
                 <TblPagination />
             </Paper>
             <Popup

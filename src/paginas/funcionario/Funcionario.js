@@ -1,16 +1,17 @@
-import { Paper, TableBody } from "@mui/material";
+import { InputAdornment, Paper, TableBody, Toolbar } from "@mui/material";
 import { TableCell, TableRow } from "@material-ui/core";
 import { useState } from "react";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@mui/icons-material";
 import UseTable from '../../components/UseTable'
-import AddIcon from '@mui/icons-material/Add'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import CloseIcon from '@mui/icons-material/Close'
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import FuncionarioForm from "./FuncionarioForm";
+import Methods from "../../util/methods/Methods"
+import Icones from "../../util/icones";
 
 const initialValues = [{
     id: '1',
@@ -72,47 +73,60 @@ function Funcionario(props) {
     return (
         <div>
             <Paper className={classes.paper}>
-                <Controls.Button
-                    text='Adicionar funcionário'
-                    variant='outlined'
-                    startIcon={<AddIcon />}
-                    className={classes.botaoAdicionar}
-                    onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
-                />
-                <TblContainer>
-                    <TblHead />
-                    <TableBody>
-                        {recordsAfterPagingAndSorting().map(item => (
-                            <TableRow key={item.id}>
-                                <TableCell>{item.nome}</TableCell>
-                                <TableCell>{item.matricula}</TableCell>
-                                <TableCell>{item.consultorio}</TableCell>
-                                <TableCell>{item.funcao}</TableCell>
-                                <TableCell>
-                                    <Controls.ActionButton
-                                        color='primary'
-                                        onClick={() => { openInPopup(item) }}>
-                                        <EditOutlinedIcon fontSize='small' />
-                                    </Controls.ActionButton>
-                                    <Controls.ActionButton
-                                        color='secondary'
-                                        onClick={() => {
-                                            setConfirmDialog({
-                                                isOpen: true,
-                                                title: 'Deseja remover o cliente?',
-                                                subtitle: 'Esta ação não poderá ser desfeita.',
-                                                onConfirm: () => { onDelete(item.id) }
-                                            })
-                                        }}>
-                                        <CloseIcon fontSize='small' />
-                                    </Controls.ActionButton>
-                                </TableCell>
-                            </TableRow>
-                        )
+                <Toolbar >
+                    <Controls.Input
+                        className={classes.buscar}
+                        label='Procurar paciente'
+                        InputProps={{
+                            startAdornment: (<InputAdornment position='start'>{Icones.searchIcon}</InputAdornment>)
+                        }}
+                        onChange={e => Methods.handleSearch(e, setFilterFn)}
+                    />
+                    <Controls.Button
+                        text='Adicionar funcionário'
+                        variant='outlined'
+                        startIcon={Icones.addIcon}
+                        className={classes.botaoAdicionar}
+                        onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
+                    />
+                </Toolbar>
 
-                        )}
-                    </TableBody>
-                </TblContainer>
+                <div style={{ maxHeight: 600, overflow: 'auto' }}>
+                    <TblContainer>
+                        <TblHead />
+                        <TableBody>
+                            {recordsAfterPagingAndSorting().map(item => (
+                                <TableRow key={item.id}>
+                                    <TableCell>{item.nome}</TableCell>
+                                    <TableCell>{item.matricula}</TableCell>
+                                    <TableCell>{item.consultorio}</TableCell>
+                                    <TableCell>{item.funcao}</TableCell>
+                                    <TableCell>
+                                        <Controls.ActionButton
+                                            color='primary'
+                                            onClick={() => { openInPopup(item) }}>
+                                            <EditOutlinedIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                        <Controls.ActionButton
+                                            color='secondary'
+                                            onClick={() => {
+                                                setConfirmDialog({
+                                                    isOpen: true,
+                                                    title: 'Deseja remover o cliente?',
+                                                    subtitle: 'Esta ação não poderá ser desfeita.',
+                                                    onConfirm: () => { onDelete(item.id) }
+                                                })
+                                            }}>
+                                            <CloseIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                    </TableCell>
+                                </TableRow>
+                            )
+
+                            )}
+                        </TableBody>
+                    </TblContainer>
+                </div>
                 <TblPagination />
             </Paper>
 

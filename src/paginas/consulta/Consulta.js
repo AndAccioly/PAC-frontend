@@ -14,6 +14,7 @@ import ConsultaForm from "./ConsultaForm";
 import ConsultaFiltro from "./ConsultaFiltro";
 import Methods from "../../util/methods/Methods"
 import BuscaAvancada from "../../components/BuscaAvancada";
+import Icones from "../../util/icones";
 
 const initialValues = [{
     id: '1',
@@ -82,20 +83,19 @@ function Consulta(props) {
     return (
         <div>
             <Paper className={classes.paper}>
-
                 <Toolbar >
                     <Controls.Input
                         className={classes.buscar}
                         label='Procurar paciente'
                         InputProps={{
-                            startAdornment: (<InputAdornment position='start'><Search /></InputAdornment>)
+                            startAdornment: (<InputAdornment position='start'>{Icones.searchIcon}</InputAdornment>)
                         }}
                         onChange={e => Methods.handleSearch(e, setFilterFn)}
                     />
                     <Controls.Button
                         text='Agendar Consulta'
                         variant='outlined'
-                        startIcon={<AddIcon />}
+                        startIcon={Icones.addIcon}
                         className={classes.botaoAdicionar}
                         onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
                     />

@@ -97,7 +97,7 @@ export default function ConsultaFiltro(props) {
                         label='Consultório'
                         value={values.consultorio}
                         onChange={handleInputChange}
-                        options={Services.consultorioService.getAllConsultorios()}
+                        options={Services.consultorioService.getAllConsultoriosAsList()}
                         error={erros.consultorio}
                     />
                 </Grid>
@@ -107,7 +107,7 @@ export default function ConsultaFiltro(props) {
                         label='Atendimento'
                         value={values.funcionario}
                         onChange={handleInputChange}
-                        options={Services.funcionarioService.getAllFuncionarios()}
+                        options={Services.funcionarioService.getAllFuncionariosAsList()}
                         error={erros.funcionario}
                     />
                 </Grid>
