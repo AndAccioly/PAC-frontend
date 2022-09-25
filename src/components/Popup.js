@@ -20,10 +20,10 @@ const useStyles = makeStyles({
 export default function Popup(props) {
 
     const classes = useStyles()
-    const { title, children, openPopup, setOpenPopup } = props
+    const { title, children, openPopup, setOpenPopup, maxWidth } = props
 
     return (
-        <Dialog open={openPopup} maxWidth='md' classes={{ paper: classes.dialogWrapper }}>
+        <Dialog open={openPopup} maxWidth={maxWidth || 'md'} classes={{ paper: classes.dialogWrapper }}>
             <DialogTitle className={classes.dialogTitle}>
                 <div style={{ display: 'flex' }}>
                     <Typography variant='h6' component='div' style={{ flexGrow: '1' }}> {title} </Typography>

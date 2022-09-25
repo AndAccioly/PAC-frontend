@@ -12,7 +12,8 @@ import CloseIcon from '@mui/icons-material/Close'
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
-import Methods from "../../components/methods/Methods"
+import Methods from "../../util/methods/Methods"
+import PacienteVisualizarForm from "./PacienteVisualizarForm";
 
 const headCells = [
     { id: 'nome', label: 'Nome' },
@@ -29,6 +30,7 @@ function Paciente(props) {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [openPopupFicha, setOpenPopupFicha] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subtitle: '' })
 
@@ -55,9 +57,16 @@ function Paciente(props) {
         })
     }
 
-    const openInPopup = item => {
+    const openInPopup = (e, item) => {
+        e.preventDefault()
+        e.stopPropagation()
         setRecordForEdit(item)
         setOpenPopup(true)
+    }
+
+    const openInPopupFicha = item => {
+        setRecordForEdit(item)
+        setOpenPopupFicha(true)
     }
 
     const onDelete = id => {
@@ -99,7 +108,7 @@ function Paciente(props) {
                     <TblHead />
                     <TableBody>
                         {recordsAfterPagingAndSorting().map(item => (
-                            <TableRow key={item.id}>
+                            <TableRow key={item.id} onClick={() => { openInPopupFicha(item) }}>
                                 <TableCell>{item.nome}</TableCell>
                                 <TableCell>{item.cpf}</TableCell>
                                 <TableCell>{item.email}</TableCell>
@@ -107,7 +116,7 @@ function Paciente(props) {
                                 <TableCell>
                                     <Controls.ActionButton
                                         color='primary'
-                                        onClick={() => { openInPopup(item) }}>
+                                        onClick={(e) => { openInPopup(e, item) }}>
                                         <EditOutlinedIcon fontSize='small'/>
                                     </Controls.ActionButton>
                                     <Controls.ActionButton
@@ -137,6 +146,18 @@ function Paciente(props) {
                 title='Cadastrar Cliente'
             >
                 <PacienteCadastroForm classes={classes}
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
+
+            </Popup>
+            <Popup
+                openPopup={openPopupFicha}
+                setOpenPopup={setOpenPopupFicha}
+                title='Ficha do Cliente'
+                maxWidth='xg'
+            >
+                <PacienteVisualizarForm classes={classes}
                     addOrEdit={addOrEdit}
                     recordForEdit={recordForEdit}
                 />

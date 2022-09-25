@@ -4,6 +4,7 @@ import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
 import * as planoSaudeService from '../../services/planoSaudeService'
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
+import Services from "../../util/servicos";
 
 const initialValues = {
     id: 0,
@@ -77,7 +78,7 @@ export default function FuncionarioForm(props) {
                         label='Consultório'
                         value={values.consultorio}
                         onChange={handleInputChange}
-                        options={consultorios}
+                        options={Services.consultorioService.getAllConsultoriosAsList()}
                         error={erros.consultorio}
                     />
                 </Grid>

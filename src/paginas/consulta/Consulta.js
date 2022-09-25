@@ -12,7 +12,7 @@ import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import ConsultaForm from "./ConsultaForm";
 import ConsultaFiltro from "./ConsultaFiltro";
-import Methods from "../../components/methods/Methods"
+import Methods from "../../util/methods/Methods"
 import BuscaAvancada from "../../components/BuscaAvancada";
 
 const initialValues = [{
@@ -108,7 +108,7 @@ function Consulta(props) {
                         <TblHead />
                         <TableBody>
                             {recordsAfterPagingAndSorting().map(item => (
-                                <TableRow key={item.id}>
+                                <TableRow key={item.id} onClick={() => { openInPopup(item) }}>
                                     <TableCell>{item.data}</TableCell>
                                     <TableCell>{item.hora}</TableCell>
                                     <TableCell>{item.nome}</TableCell>

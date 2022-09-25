@@ -24,16 +24,18 @@ const useStyles = makeStyles({
         minHeight: '100%',
         position: 'fixed',
         zIndex: '6',
-        borderRight: '2px solid' + Cores.azul3,
+        borderRight: '3px solid' + Cores.azul3,
     },
     menuRecolhido: {
-        width: menuWidth,
         position: 'fixed',
         zIndex: '5',
         '& .MuiSvgIcon-root': {
             color: Cores.azul5,
-            marginTop: '5%',
+            marginTop: '1%',
             fontSize: '3.6rem'
+        },
+        '& .MuiButton-root':{
+            padding: '0px'
         }
     },
     wrapper: {
@@ -42,12 +44,19 @@ const useStyles = makeStyles({
     header: {
         position: 'relative',
         backgroundColor: Cores.azul1,
-        minHeight: '100%',
         marginLeft: menuWidth,
-        width: restoWidth,
-        zIndex: '5',
+    },
+    headerFaixa: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        fontSize: '36px',
+        paddingLeft: '6%',
+        color: Cores.azul5
+    },
+    headerTodo: {
+        backgroundColor: Cores.azul1,
+        paddingBottom: '1%',
+        borderBottom: '3px solid' + Cores.azul3,
     },
     footer: {
         position: 'relative',
@@ -66,32 +75,11 @@ const useStyles = makeStyles({
         marginTop: '10%',
         marginBottom: '10%'
     },
-    headerLinha: {
-        height: '1px',
-        background: Cores.azul3,
-        width: '100%',
-    },
-    headerTodo: {
-        position: 'relative',
-        backgroundColor: Cores.azul1,
-        minHeight: '8%',
-    },
-    menuLateralItens: {
-        marginTop: '10%',
-    },
     versao: {
         position: 'fixed',
         bottom: '0',
         marginBottom: '1%',
         marginLeft: '3%',
-        color: Cores.azul5
-    },
-    headerFaixa: {
-        display: 'flex',
-        width: '100%',
-        justifyContent: 'space-between',
-        fontSize: '35px',
-        marginLeft: '4%',
         color: Cores.azul5
     },
     logOut: {

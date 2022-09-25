@@ -11,6 +11,7 @@ import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import ConsultorioForm from "./ConsultorioForm";
+import ConsultorioVisualizarForm from "./ConsultorioVisualizarForm";
 
 const initialValues = [{
     id: '1',
@@ -42,6 +43,8 @@ function Consultorio(props) {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [openPopupEditar, setOpenPopupEditar] = useState(false)
+    const [openPopupVisualizar, setOpenPopupVisualizar] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subtitle: '' })
 
@@ -57,9 +60,16 @@ function Consultorio(props) {
 
     }
 
-    const openInPopup = item => {
+    const openInPopup = (e,item) => {
+        e.preventDefault()
+        e.stopPropagation()
         //setRecordForEdit(item)
         setOpenPopup(true)
+    }
+
+    const openInPopupVisualizar = item => {
+        //setRecordForEdit(item)
+        setOpenPopupVisualizar(true)
     }
 
     return (
@@ -77,14 +87,14 @@ function Consultorio(props) {
                         <TblHead />
                         <TableBody>
                             {recordsAfterPagingAndSorting().map(item => (
-                                <TableRow key={item.id}>
+                                <TableRow key={item.id} onClick={() => openInPopupVisualizar(item)}>
                                     <TableCell>{item.nome}</TableCell>
                                     <TableCell>{item.responsavel}</TableCell>
                                     <TableCell>{item.tipo}</TableCell>
                                     <TableCell>
                                         <Controls.ActionButton
                                             color='primary'
-                                            onClick={() => { openInPopup(item) }}>
+                                            onClick={(e) => { openInPopup(e, item) }}>
                                             <EditOutlinedIcon fontSize='small' />
                                         </Controls.ActionButton>
                                         <Controls.ActionButton
@@ -113,9 +123,17 @@ function Consultorio(props) {
             <Popup
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
-                title='Criar nova consulta'
+                title='Cadastrar Consultório'
+                maxWidth='lg'
             >
                 <ConsultorioForm />
+            </Popup>
+            <Popup
+                openPopup={openPopupVisualizar}
+                setOpenPopup={setOpenPopupVisualizar}
+                title='Consultório Detalhado'
+            >
+                <ConsultorioVisualizarForm />
             </Popup>
         </div>
     )

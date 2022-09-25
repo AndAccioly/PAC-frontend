@@ -9,9 +9,13 @@ import MenuRecolhido from "./menu/MenuRecolhido";
 
 function Page(props) {
     const classes = useStyles();
+
+
+
     useEffect(() => {
         document.title = "PAC"
     }, []);
+
     return (
         <div className={classes.root}>
             <Media queries={{ small: { maxWidth: 699 } }}>
@@ -23,12 +27,12 @@ function Page(props) {
                     )
                 }
             </Media>
-            {/*<div>*/}
+            <div>
 
-            <Header classes={classes} corpo={props.corpo} />
-            <Wrapper classes={classes} corpo={props.corpo} />
-            {/*<Footer classes = {classes}/>*/}
-            {/*</div>*/}
+                <Header classes={classes} corpo={props.corpo} />
+                <Wrapper classes={classes} corpo={props.corpo} />
+                {/*<Footer classes = {classes}/>*/}
+            </div>
         </div>
 
     )

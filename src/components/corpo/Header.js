@@ -56,23 +56,18 @@ function Header(props) {
                         {defineCorpo(props.corpo)}
                     </div>
                     <Media queries={{ small: { maxWidth: 699 } }}>
-                    {matches =>
-                        matches.small ? (
-                            <img src={logo} alt="Logo" className={classesLocal.logo} />
-                        ) : (
-                            <div >
-                         
-                            </div>
-                        )
-                    }
-                </Media>
-                   
+                        {matches =>
+                            matches.small ? (
+                                <img src={logo} alt="Logo" className={classesLocal.logo} />
+                            ) : (
+                                <div >
+
+                                </div>
+                            )
+                        }
+                    </Media>
                 </div>
             </div>
-
-
-
-            <div className={classes.headerLinha}></div>
         </div>
     )
 }

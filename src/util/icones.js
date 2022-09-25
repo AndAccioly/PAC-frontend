@@ -11,6 +11,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import PrintIcon from '@mui/icons-material/Print';
 
 const dashboardIcon = <DashboardIcon/>
 const perfilIcon = <AccountCircleIcon/>
@@ -25,6 +26,7 @@ const relatoriosIcon = <AssignmentIcon />
 const menuIcon = <MenuIcon />
 const arrowRightIcon = <ArrowRightIcon />
 const arrowDropDownIcon = <ArrowDropDownIcon />
+const printIcon = <PrintIcon />
 
 const Icones = {
     dashboardIcon,
@@ -39,7 +41,8 @@ const Icones = {
     calendarioIcon,
     relatoriosIcon,
     arrowRightIcon,
-    arrowDropDownIcon
+    arrowDropDownIcon,
+    printIcon
 }
 
 export default Icones

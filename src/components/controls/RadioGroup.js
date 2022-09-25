@@ -2,7 +2,7 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup as MuiRadio
 
 export default function RadioGroup(props) {
 
-    const { name, label, value, onChange, items, row } = props;
+    const { name, label, value, onChange, items, row, disabled, ...other } = props;
 
     return (
         <FormControl>
@@ -15,7 +15,7 @@ export default function RadioGroup(props) {
             >
                 {items.map(
                     (item, index) => (
-                        <FormControlLabel key={index} value={item.id} control={<Radio />} label={item.title} />
+                        <FormControlLabel disabled={disabled || false} key={index} value={item.id} control={<Radio />} label={item.title} />
                     )
                 )}
 

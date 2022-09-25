@@ -40,7 +40,7 @@ export default function MenuRecolhido(props) {
                 onClick={handleClick}
             >
 
-                <div classes={classes.menuRecolhidoIcon}>
+                <div>
                     {Icones.menuIcon}
                 </div>
 

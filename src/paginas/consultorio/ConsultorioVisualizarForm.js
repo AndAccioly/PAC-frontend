@@ -10,14 +10,15 @@ const initialValues = {
     id: 0,
     paciente: '',
     funcionario: '',
-    data: new Date(),
+    agendamento: new Date(),
     horaInicio: '',
     duracao: '',
     valor: 0,
     planoSaude: '',
+    consultorio: ''
 }
 
-export default function ExameForm(props) {
+export default function ConsultorioVisualizarForm(props) {
 
     //const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
@@ -61,6 +62,16 @@ export default function ExameForm(props) {
                 </Grid>
                 <Grid item md={4} xs={6}>
                     <Controls.Select
+                        name='consultorio'
+                        label='Consultório'
+                        value={values.consultorio}
+                        onChange={handleInputChange}
+                        options={Services.consultorioService.getAllConsultoriosAsList()}
+                        error={erros.consultorio}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Select
                         name='funcionario'
                         label='Atendimento'
                         value={values.funcionario}
@@ -91,12 +102,22 @@ export default function ExameForm(props) {
                         error={erros.planoSaude}
                     />
                 </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.DatePicker
+                        name='agendamento'
+                        label='Agendamento'
+                        value={values.agendamento}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
 
                 <Grid item xs={2}>
                     <Controls.Button
                         text='Enviar'
                         type='submit'
                     />
+                </Grid>
+                <Grid item xs={2}>
                     <Controls.Button
                         text='Limpar'
                         variant='outlined'

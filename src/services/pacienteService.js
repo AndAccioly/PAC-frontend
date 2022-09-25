@@ -5,6 +5,14 @@ const KEYS = {
     pacienteId: 'pacienteId'
 }
 
+
+export const getPacientesAsList = () => ([
+    { id: '1', value: 'João dos testes' },
+    { id: '2', value: 'Maria das dores' },
+    { id: '3', value: 'José Enfermo' },
+    { id: '4', value: 'Joana Pé Quebrado' }
+])
+
 export function insertPaciente(data) {
     let pacientes = getAllPacientes()
     data['id'] = generatePacienteId()

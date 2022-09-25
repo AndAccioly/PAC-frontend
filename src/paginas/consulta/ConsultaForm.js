@@ -4,6 +4,7 @@ import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
 import * as planoSaudeService from '../../services/planoSaudeService'
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
+import Services from "../../util/servicos";
 
 const initialValues = {
     id: 0,
@@ -17,25 +18,7 @@ const initialValues = {
     consultorio: ''
 }
 
-const pacientes = [
-    { id: '1', value: 'João dos testes' },
-    { id: '2', value: 'Maria das dores' },
-    { id: '3', value: 'José Enfermo' },
-    { id: '4', value: 'Joana Pé Quebrado' }
-]
 
-const funcionarios = [
-    { id: '1', value: 'Médico dos testes' },
-    { id: '2', value: 'Médica das dores' },
-    { id: '3', value: 'Dentista Enfermo' },
-    { id: '4', value: 'Dentista Pé Quebrado' }
-]
-
-const consultorios = [
-    { id: '1', value: 'Consultório 1' },
-    { id: '2', value: 'Consultório 2' },
-    { id: '3', value: 'Consultório 3' }
-]
 
 export default function ConsultaForm(props) {
 
@@ -75,7 +58,7 @@ export default function ConsultaForm(props) {
                         label='Paciente'
                         value={values.paciente}
                         onChange={handleInputChange}
-                        options={pacientes}
+                        options={Services.pacienteService.getPacientesAsList()}
                         error={erros.paciente}
                     />
                 </Grid>
@@ -85,7 +68,7 @@ export default function ConsultaForm(props) {
                         label='Consultório'
                         value={values.consultorio}
                         onChange={handleInputChange}
-                        options={consultorios}
+                        options={Services.consultorioService.getAllConsultoriosAsList()}
                         error={erros.consultorio}
                     />
                 </Grid>
@@ -95,7 +78,7 @@ export default function ConsultaForm(props) {
                         label='Atendimento'
                         value={values.funcionario}
                         onChange={handleInputChange}
-                        options={funcionarios}
+                        options={Services.funcionarioService.getAllFuncionariosAsList()}
                         error={erros.funcionario}
                     />
                 </Grid>

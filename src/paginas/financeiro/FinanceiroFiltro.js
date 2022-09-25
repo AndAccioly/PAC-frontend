@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { Form, useForm } from "../../components/UseForm";
 import * as planoSaudeService from '../../services/planoSaudeService'
-import Services from '../../util/servicos'
+import Services from "../../util/servicos";
 
 const initialValues = {
     paciente: '',
@@ -12,18 +12,20 @@ const initialValues = {
     dataInicio: new Date(),
     dataFim: new Date(),
     planoSaude: '',
-    consultorio: ''
+    consultorio: '',
+    ordenarPor: ''
 }
 
-const tiposConsulta = [
-    { id: '1', value: 'Ortopedia' },
-    { id: '2', value: 'Buco Maxilo' },
-    { id: '3', value: 'Acompanhamento' },
-    { id: '4', value: 'Limpeza Dental' }
+const ordenarPor = [
+    { id: '1', value: 'Nome' },
+    { id: '2', value: 'Tamanho' },
+    { id: '3', value: 'Renda Maior' },
+    { id: '4', value: 'Renda Menos' },
+    { id: '5', value: 'Mais Antigo' },
+    { id: '6', value: 'Mais Novo' }
 ]
 
-
-export default function ConsultaFiltro(props) {
+export default function FinanceiroFiltro(props) {
 
     const validate = (fieldValues = values) => {
 
@@ -73,42 +75,21 @@ export default function ConsultaFiltro(props) {
                 </Grid>
                 <Grid item md={3} xs={6}>
                     <Controls.Select
-                        name='tipo'
-                        label='Tipo de Consulta'
-                        value={values.tipo}
-                        onChange={handleInputChange}
-                        options={tiposConsulta}
-                        error={erros.tipo}
-                    />
-                </Grid>
-                <Grid item md={3} xs={6}>
-                    <Controls.Select
-                        name='planoSaude'
-                        label='Plano de Saúde'
-                        value={values.planoSaude}
-                        onChange={handleInputChange}
-                        options={planoSaudeService.getPlanosSaudeLista()}
-                        error={erros.planoSaude}
-                    />
-                </Grid>
-                <Grid item md={3} xs={6}>
-                    <Controls.Select
                         name='consultorio'
                         label='Consultório'
                         value={values.consultorio}
                         onChange={handleInputChange}
-                        options={Services.consultorioService.getAllConsultorios()}
+                        options={Services.consultorioService.getAllConsultoriosAsList()}
                         error={erros.consultorio}
                     />
                 </Grid>
                 <Grid item md={3} xs={6}>
                     <Controls.Select
-                        name='funcionario'
-                        label='Atendimento'
-                        value={values.funcionario}
+                        name='ordenarPor'
+                        label='Ordenar Por'
+                        value={values.ordenarPor}
                         onChange={handleInputChange}
-                        options={Services.funcionarioService.getAllFuncionarios()}
-                        error={erros.funcionario}
+                        options={ordenarPor}
                     />
                 </Grid>
             </Grid>
