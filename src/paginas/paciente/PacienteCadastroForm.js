@@ -39,10 +39,8 @@ export default function PacienteCadastroForm(props) {
     const classes = props.classes
 
     const { addOrEdit, recordForEdit } = props
-    
+
     const validate = (fieldValues = values) => {
-        console.log('erros')
-        console.log(erros)
         let temp = { ...erros }
         if ('nome' in fieldValues)
             temp.nome = fieldValues.nome ? '' : CAMPO_OBRIGATORIO
@@ -58,11 +56,9 @@ export default function PacienteCadastroForm(props) {
         setErros({
             ...temp
         })
-        
+
         if (fieldValues == values)
-            console.log('aqui')
-        console.log(temp)
-        return Object.values(temp).every(x => x == "")
+            return Object.values(temp).every(x => x == "")
     }
 
     const {
@@ -99,7 +95,7 @@ export default function PacienteCadastroForm(props) {
     }
 
     useEffect(() => {
-        if(recordForEdit != null)
+        if (recordForEdit != null)
             setValues({
                 ...recordForEdit
             })

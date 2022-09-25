@@ -84,7 +84,8 @@ function Consulta(props) {
                     className={classes.botaoAdicionar}
                     onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
                 />
-                <TblContainer>
+                <div style={{maxHeight: 600, overflow: 'auto'}}>
+                <TblContainer >
                     <TblHead />
                     <TableBody>
                         {recordsAfterPagingAndSorting().map(item => (
@@ -122,6 +123,7 @@ function Consulta(props) {
                     </TableBody>
                 </TblContainer>
                 <TblPagination />
+                </div>
             </Paper>
 
             <Popup

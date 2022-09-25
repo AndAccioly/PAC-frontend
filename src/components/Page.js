@@ -14,8 +14,6 @@ function Page(props) {
     }, []);
     return (
         <div className={classes.root}>
-            <Header classes={classes} corpo={props.corpo} />
-
             <Media queries={{ small: { maxWidth: 699 } }}>
                 {matches =>
                     matches.small ? (
@@ -25,9 +23,14 @@ function Page(props) {
                     )
                 }
             </Media>
+            {/*<div>*/}
+
+            <Header classes={classes} corpo={props.corpo} />
             <Wrapper classes={classes} corpo={props.corpo} />
             {/*<Footer classes = {classes}/>*/}
+            {/*</div>*/}
         </div>
+
     )
 }
 

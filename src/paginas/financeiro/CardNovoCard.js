@@ -8,9 +8,9 @@ import ItemFinanceiroForm from "./ItemFinanceiroForm";
 
 const useStyles = makeStyles({
     root: {
-        width: '10%',
+        width: '150px',
+        minWidth: '150px',
         margin: '1%',
-        height: '90%',
     },
     header: {
         textAlign: 'left',
@@ -46,22 +46,21 @@ export default function CardFinanceiro(props) {
 
     const classes = useStyles()
     return (
-        <div className={classes.root}>
-            <Card >
-                <CardHeader
-                    className={classes.header}
-                    title='Novo'
-                >
 
-                </CardHeader>
-                <CardContent className={classes.content}>
-                    <AddIcon 
-                        onClick={() => { openInPopup() }}
-                    />
+        <Card className={classes.root}>
+            <CardHeader
+                className={classes.header}
+                title='Novo'
+            >
 
-                </CardContent>
+            </CardHeader>
+            <CardContent className={classes.content}>
+                <AddIcon
+                    onClick={() => { openInPopup() }}
+                />
 
-            </Card>
+            </CardContent>
+
             <Popup
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
@@ -70,6 +69,7 @@ export default function CardFinanceiro(props) {
                 <ItemFinanceiroForm />
 
             </Popup>
-        </div>
+        </Card>
+
     )
 }

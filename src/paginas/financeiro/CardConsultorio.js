@@ -1,4 +1,4 @@
-import { Typography, Paper, TableBody } from "@mui/material";
+import { Typography, Paper, TableBody, Box } from "@mui/material";
 import CardFinanceiro from "./CardFinanceiro";
 import CardNovoCard from "./CardNovoCard";
 import { makeStyles, TableCell, TableRow } from '@material-ui/core'
@@ -101,22 +101,22 @@ const headCells = [
 const useStyles = makeStyles({
     root: {
         display: 'flex',
-        height: '250px'
+        marginBottom: '2%',
     },
     header: {
+        marginTop: '2%',
         display: 'flex',
         justifyContent: 'space-between',
         color: Cores.azul5,
         '& .MuiTypography-root': {
-            fontSize: '26px'
+            fontSize: '30px'
         }
     },
     linhaForm: {
-        height: '1px',
+        height: '2px',
         background: Cores.azul5,
-        width: '98%',
         marginTop: '0.5%',
-        marginBottom: '2%'
+        marginBottom: '2.5%'
     },
     negativo: {
         color: Cores.vermelhoNegativo,
@@ -162,7 +162,8 @@ export default function CardConsultório(props) {
                 <Typography className={total < 0 ? classes.negativo : classes.positivo}> {Mascaras.dinheiroCifrao(total)} </Typography>
             </div>
             <div className={classes.linhaForm}></div>
-            <div className={classes.root}>
+
+            <div className={classes.root} style={{overflow: 'auto'}}>
                 <CardFinanceiro
                     title='Materiais'
                     content='-100.00'
@@ -194,6 +195,7 @@ export default function CardConsultório(props) {
                     onClickPopup={openInPopup}
                 />
             </div>
+
             <Popup
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}

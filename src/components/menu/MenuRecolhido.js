@@ -27,7 +27,6 @@ export default function MenuRecolhido(props) {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
-        console.log('Clicado')
         setAnchorEl(null);
     };
 
@@ -66,12 +65,14 @@ export default function MenuRecolhido(props) {
                     classes={classes}
                     url='/dashboard'
                     onClick={handleClose}
+                    icon={Icones.dashboardIcon}
                 />
                 <MenuLateralItem
                     titulo='Perfil'
                     classes={classes}
                     url='/perfil'
                     onClick={handleClose}
+                    icon={Icones.perfilIcon}
                   
                 />
                 <MenuLateralItem
@@ -79,18 +80,21 @@ export default function MenuRecolhido(props) {
                     classes={classes}
                     url='/exame'
                     onClick={handleClose}
+                    icon={Icones.examesIcon}
                 />
                 <MenuLateralItem
                     titulo='Consultas'
                     classes={classes}
                     url='/consulta'
                     onClick={handleClose}
+                    icon={Icones.consultaIcon}
                 />
                 <MenuLateralItem
                     titulo='Financeiro'
                     classes={classes}
                     url='/financeiro'
                     onClick={handleClose}
+                    icon={Icones.financeiroIcon}
                 />
 
                 <div className={classes.menuLinha}></div>
@@ -100,30 +104,35 @@ export default function MenuRecolhido(props) {
                     classes={classes}
                     url='/paciente'
                     onClick={handleClose}
+                    icon={Icones.pacienteIcon}
                 />
                 <MenuLateralItem
                     titulo='Consultório'
                     classes={classes}
                     url='/consultorio'
                     onClick={handleClose}
+                    icon={Icones.consultorioIcon}
                 />
                 <MenuLateralItem
                     titulo='Funcionários'
                     classes={classes}
                     url='/funcionario'
                     onClick={handleClose}
+                    icon={Icones.funcionariosIcon}
                 />
                 <MenuLateralItem
                     titulo='Agenda'
                     classes={classes}
                     url='/agenda'
                     onClick={handleClose}
+                    icon={Icones.calendarioIcon}
                 />
                 <MenuLateralItem
                     titulo='Relatórios'
                     classes={classes}
                     url='/relatorios'
                     onClick={handleClose}
+                    icon={Icones.relatoriosIcon}
                 />
             </Menu>
         </div>

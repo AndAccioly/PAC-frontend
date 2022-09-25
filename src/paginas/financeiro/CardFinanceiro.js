@@ -9,9 +9,10 @@ import LockIcon from '@mui/icons-material/Lock';
 
 const useStyles = makeStyles({
     root: {
-        width: '18%',
+        width: '280px',
+        minWidth: '180px',
         margin: '1%',
-        height: '90%',
+        paddingBottom: '1%'
     },
     header: {
         textAlign: 'left',
@@ -22,16 +23,16 @@ const useStyles = makeStyles({
         justifyContent: 'space-between'
     },
     contentPositivo: {
-        fontSize: '30px',
-        marginBottom: '3%',
+        fontSize: '36px',
+        marginBottom: '2%',
         "&:hover": {
             cursor: 'pointer',
             backgroundColor: Cores.verde0,
         }
     },
     contentNegativo: {
-        fontSize: '30px',
-        marginBottom: '3%',
+        fontSize: '36px',
+        marginBottom: '2%',
         "&:hover": {
             cursor: 'pointer',
             backgroundColor: Cores.vermelho0,

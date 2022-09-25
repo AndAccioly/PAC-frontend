@@ -23,7 +23,7 @@ const useStyles = makeStyles({
         width: menuWidth,
         minHeight: '100%',
         position: 'fixed',
-        zIndex: '5',
+        zIndex: '6',
         borderRight: '2px solid' + Cores.azul3,
     },
     menuRecolhido: {
@@ -32,17 +32,12 @@ const useStyles = makeStyles({
         zIndex: '5',
         '& .MuiSvgIcon-root': {
             color: Cores.azul5,
-            marginTop: '5px',
+            marginTop: '5%',
             fontSize: '3.6rem'
         }
     },
-    menuRecolhidoIcon: {
-        transform: 'translateY(18%)',
-        marginLeft: '10px'
-    },
     wrapper: {
         position: 'relative',
-        
     },
     header: {
         position: 'relative',
@@ -84,9 +79,6 @@ const useStyles = makeStyles({
     menuLateralItens:{
         marginTop: '10%',
     },
-    menuLateralTopo:{
-        height: '10%'
-    },
     versao: {
         position:'fixed',
         bottom: '0',
@@ -94,9 +86,11 @@ const useStyles = makeStyles({
         marginLeft: '3%',
         color: Cores.azul5
     },
-    headerTitulo: {
+    headerFaixa: {
+        display: 'flex',
+        width: '100%',
+        justifyContent: 'space-between',
         fontSize: '35px',
-        transform: 'translateY(20%)',
         marginLeft: '4%',
         color: Cores.azul5
     },

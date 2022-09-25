@@ -84,44 +84,46 @@ function Consultorio(props) {
                     className={classes.botaoAdicionar}
                     onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
                 />
-                <TblContainer>
-                    <TblHead />
-                    <TableBody>
-                        {recordsAfterPagingAndSorting().map(item => (
-                            <TableRow key={item.id}>
-                                <TableCell>{item.data}</TableCell>
-                                <TableCell>{item.hora}</TableCell>
-                                <TableCell>{item.nome}</TableCell>
-                                <TableCell>{item.cpf}</TableCell>
-                                <TableCell>{item.consultorio}</TableCell>
-                                <TableCell>{item.atendimento}</TableCell>
-                                <TableCell>{item.tipo}</TableCell>
-                                <TableCell>
-                                    <Controls.ActionButton
-                                        color='primary'
-                                        onClick={() => { openInPopup(item) }}>
-                                        <EditOutlinedIcon fontSize='small' />
-                                    </Controls.ActionButton>
-                                    <Controls.ActionButton
-                                        color='secondary'
-                                        onClick={() => {
-                                            setConfirmDialog({
-                                                isOpen: true,
-                                                title: 'Deseja remover o cliente?',
-                                                subtitle: 'Esta ação não poderá ser desfeita.',
-                                                onConfirm: () => { onDelete(item.id) }
-                                            })
-                                        }}>
-                                        <CloseIcon fontSize='small' />
-                                    </Controls.ActionButton>
-                                </TableCell>
-                            </TableRow>
-                        )
+                <div style={{maxHeight: 600, overflow: 'auto'}}>
+                    <TblContainer>
+                        <TblHead />
+                        <TableBody>
+                            {recordsAfterPagingAndSorting().map(item => (
+                                <TableRow key={item.id}>
+                                    <TableCell>{item.data}</TableCell>
+                                    <TableCell>{item.hora}</TableCell>
+                                    <TableCell>{item.nome}</TableCell>
+                                    <TableCell>{item.cpf}</TableCell>
+                                    <TableCell>{item.consultorio}</TableCell>
+                                    <TableCell>{item.atendimento}</TableCell>
+                                    <TableCell>{item.tipo}</TableCell>
+                                    <TableCell>
+                                        <Controls.ActionButton
+                                            color='primary'
+                                            onClick={() => { openInPopup(item) }}>
+                                            <EditOutlinedIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                        <Controls.ActionButton
+                                            color='secondary'
+                                            onClick={() => {
+                                                setConfirmDialog({
+                                                    isOpen: true,
+                                                    title: 'Deseja remover o cliente?',
+                                                    subtitle: 'Esta ação não poderá ser desfeita.',
+                                                    onConfirm: () => { onDelete(item.id) }
+                                                })
+                                            }}>
+                                            <CloseIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                    </TableCell>
+                                </TableRow>
+                            )
 
-                        )}
-                    </TableBody>
-                </TblContainer>
-                <TblPagination />
+                            )}
+                        </TableBody>
+                    </TblContainer>
+                    <TblPagination />
+                </div>
             </Paper>
 
             <Popup

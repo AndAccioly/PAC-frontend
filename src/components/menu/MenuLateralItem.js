@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import Cores from '../../util/cores';
+import Media from 'react-media'
 
 const useStyles = makeStyles({
     menuLateralItemArrow: {
@@ -22,29 +23,43 @@ const useStyles = makeStyles({
             cursor: 'pointer',
         }
     },
-    menuLateralItem:{
+    menuLateralItem: {
         marginTop: '8%',
         marginBottom: '5%',
         textAlign: 'left',
         marginLeft: '10px',
         fontWeight: '500'
     },
-    menuLateralIconArrow: {
+    menuIconWeb: {
         transform: 'translateY(18%)',
+        marginLeft: '10px'
+    },
+    menuIconMobile: {
+        transform: 'translateY(30%)',
         marginLeft: '10px'
     },
 })
 
 function MenuLateralItem(props) {
 
-    const {icon, url, titulo, onClick} = props
+    const { icon, url, titulo, onClick } = props
     const classes = useStyles()
     return (
-        <Link to={url} className={classes.menuLink} onClick={() => {onClick() }}>
+        <Link to={url} className={classes.menuLink} onClick={() => { onClick() }}>
             <div className={classes.menuLateralItemArrow}>
-                <div className={classes.menuLateralIconArrow}>
-                    {icon}
-                </div>
+                <Media queries={{ small: { maxWidth: 699 } }}>
+                    {matches =>
+                        matches.small ? (
+                            <div className={classes.menuIconMobile}>
+                                {icon}
+                            </div>
+                        ) : (
+                            <div className={classes.menuIconWeb}>
+                                {icon}
+                            </div>
+                        )
+                    }
+                </Media>
                 <div className={classes.menuLateralItem}>{titulo}</div>
             </div>
         </Link>
