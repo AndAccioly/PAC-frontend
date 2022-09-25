@@ -1,4 +1,4 @@
-import { Paper, TableBody } from "@mui/material";
+import { InputAdornment, Paper, TableBody, Toolbar } from "@mui/material";
 import { TableCell, TableRow } from "@material-ui/core";
 import { useState } from "react";
 import Controls from "../../components/controls/Controls";
@@ -11,6 +11,9 @@ import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import ConsultaForm from "./ConsultaForm";
+import ConsultaFiltro from "./ConsultaFiltro";
+import Methods from "../../components/methods/Methods"
+import BuscaAvancada from "../../components/BuscaAvancada";
 
 const initialValues = [{
     id: '1',
@@ -19,15 +22,17 @@ const initialValues = [{
     cpf: '123.456.789-10',
     tipo: 'Ortopedia',
     hora: '12:00',
+    planoSaude: 'Caixa',
     consultorio: 'Consultório 1',
     atendimento: 'Médico José'
 },
 {
     id: '2',
-    data: '10/11/2022 12',
+    data: '10/11/2022',
     nome: 'Maria das Dores',
     hora: '12:30',
-    cpf: '123.456.789-10',
+    planoSaude: 'Camed',
+    cpf: '785.798.458-52',
     tipo: 'Buco Maxilo',
     consultorio: 'Consultório 2',
     atendimento: 'Médica Joana',
@@ -37,12 +42,12 @@ const initialValues = [{
 
 const headCells = [
     { id: 'data', label: 'Data' },
-    { id: 'hora', label: 'Hora' },
+    { id: 'hora', label: 'Horário' },
     { id: 'nome', label: 'Nome' },
-    { id: 'cpf', label: 'CPF' },
     { id: 'consultorio', label: 'Consultório' },
     { id: 'atendimento', label: 'Atendimento' },
     { id: 'tipo', label: 'Tipo' },
+    { id: 'planoSaude', label: 'Plano de Saúde' },
     { id: 'actions', label: 'Ações', disableSorting: true }
 ]
 
@@ -77,52 +82,66 @@ function Consulta(props) {
     return (
         <div>
             <Paper className={classes.paper}>
-                <Controls.Button
-                    text='Agendar Consulta'
-                    variant='outlined'
-                    startIcon={<AddIcon />}
-                    className={classes.botaoAdicionar}
-                    onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
-                />
-                <div style={{maxHeight: 600, overflow: 'auto'}}>
-                <TblContainer >
-                    <TblHead />
-                    <TableBody>
-                        {recordsAfterPagingAndSorting().map(item => (
-                            <TableRow key={item.id}>
-                                <TableCell>{item.data}</TableCell>
-                                <TableCell>{item.hora}</TableCell>
-                                <TableCell>{item.nome}</TableCell>
-                                <TableCell>{item.cpf}</TableCell>
-                                <TableCell>{item.consultorio}</TableCell>
-                                <TableCell>{item.atendimento}</TableCell>
-                                <TableCell>{item.tipo}</TableCell>
-                                <TableCell>
-                                    <Controls.ActionButton
-                                        color='primary'
-                                        onClick={() => { openInPopup(item) }}>
-                                        <EditOutlinedIcon fontSize='small' />
-                                    </Controls.ActionButton>
-                                    <Controls.ActionButton
-                                        color='secondary'
-                                        onClick={() => {
-                                            setConfirmDialog({
-                                                isOpen: true,
-                                                title: 'Deseja remover o cliente?',
-                                                subtitle: 'Esta ação não poderá ser desfeita.',
-                                                onConfirm: () => { onDelete(item.id) }
-                                            })
-                                        }}>
-                                        <CloseIcon fontSize='small' />
-                                    </Controls.ActionButton>
-                                </TableCell>
-                            </TableRow>
-                        )
 
-                        )}
-                    </TableBody>
-                </TblContainer>
-                <TblPagination />
+                <Toolbar >
+                    <Controls.Input
+                        className={classes.buscar}
+                        label='Procurar paciente'
+                        InputProps={{
+                            startAdornment: (<InputAdornment position='start'><Search /></InputAdornment>)
+                        }}
+                        onChange={e => Methods.handleSearch(e, setFilterFn)}
+                    />
+                    <Controls.Button
+                        text='Agendar Consulta'
+                        variant='outlined'
+                        startIcon={<AddIcon />}
+                        className={classes.botaoAdicionar}
+                        onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
+                    />
+                </Toolbar>
+                <BuscaAvancada >
+                    <ConsultaFiltro />
+                </ BuscaAvancada>
+                <div style={{ maxHeight: 600, overflow: 'auto' }}>
+                    <TblContainer >
+                        <TblHead />
+                        <TableBody>
+                            {recordsAfterPagingAndSorting().map(item => (
+                                <TableRow key={item.id}>
+                                    <TableCell>{item.data}</TableCell>
+                                    <TableCell>{item.hora}</TableCell>
+                                    <TableCell>{item.nome}</TableCell>
+                                    <TableCell>{item.consultorio}</TableCell>
+                                    <TableCell>{item.atendimento}</TableCell>
+                                    <TableCell>{item.tipo}</TableCell>
+                                    <TableCell>{item.planoSaude}</TableCell>
+                                    <TableCell>
+                                        <Controls.ActionButton
+                                            color='primary'
+                                            onClick={() => { openInPopup(item) }}>
+                                            <EditOutlinedIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                        <Controls.ActionButton
+                                            color='secondary'
+                                            onClick={() => {
+                                                setConfirmDialog({
+                                                    isOpen: true,
+                                                    title: 'Deseja remover o cliente?',
+                                                    subtitle: 'Esta ação não poderá ser desfeita.',
+                                                    onConfirm: () => { onDelete(item.id) }
+                                                })
+                                            }}>
+                                            <CloseIcon fontSize='small' />
+                                        </Controls.ActionButton>
+                                    </TableCell>
+                                </TableRow>
+                            )
+
+                            )}
+                        </TableBody>
+                    </TblContainer>
+                    <TblPagination />
                 </div>
             </Paper>
 

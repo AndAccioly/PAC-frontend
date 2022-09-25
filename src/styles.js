@@ -71,16 +71,16 @@ const useStyles = makeStyles({
         background: Cores.azul3,
         width: '100%',
     },
-    headerTodo:{
+    headerTodo: {
         position: 'relative',
         backgroundColor: Cores.azul1,
         minHeight: '8%',
     },
-    menuLateralItens:{
+    menuLateralItens: {
         marginTop: '10%',
     },
     versao: {
-        position:'fixed',
+        position: 'fixed',
         bottom: '0',
         marginBottom: '1%',
         marginLeft: '3%',
@@ -99,7 +99,7 @@ const useStyles = makeStyles({
         fontSize: '20px',
         marginRight: '4%',
         width: '7%',
-       
+
     },
     logOutText: {
         transform: 'translateY(50%)',
@@ -119,7 +119,10 @@ const useStyles = makeStyles({
     paper: {
         marginTop: '1%',
         marginRight: '3%',
-        padding: '1%'
+        padding: '1%',
+        '& .MuiToolbar-root': {
+            paddingLeft: '0px',
+        },
     },
     subPaper: {
         marginTop: '1%',
@@ -127,23 +130,23 @@ const useStyles = makeStyles({
         marginRight: '3%',
         padding: '1%'
     },
-    paperTitulo:{
+    paperTitulo: {
         fontSize: '26px',
         marginLeft: '2%',
         display: 'flex',
         color: Cores.azul5
     },
-    paperSubtitulo:{
+    paperSubtitulo: {
         fontSize: '22px',
         marginLeft: '1%',
         display: 'flex',
         color: Cores.azul5,
         marginTop: '2%'
     },
-    paperForm:{
+    paperForm: {
         marginTop: '4%',
     },
-    linhaForm:{
+    linhaForm: {
         height: '1px',
         background: Cores.azul5,
         width: '98%',
@@ -151,13 +154,13 @@ const useStyles = makeStyles({
         marginBottom: '2%'
     },
     buscar: {
-        width: '75%'
+        width: '75%',
     },
-    botaoAdicionar:{
-        
+    botaoAdicionar: {
+
         marginLeft: '10px'
     },
-    
+
 })
 export default useStyles;
 

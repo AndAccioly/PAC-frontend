@@ -12,6 +12,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
+import Methods from "../../components/methods/Methods"
 
 const headCells = [
     { id: 'nome', label: 'Nome' },
@@ -37,18 +38,6 @@ function Paciente(props) {
         TblPagination,
         recordsAfterPagingAndSorting
     } = UseTable(records, headCells, filterFn);
-
-    const handleSearch = e => {
-        let target = e.target
-        setFilterFn({
-            fn: items => {
-                if (target.value == '')
-                    return items
-                else
-                    return items.filter(x => x.nome.toLowerCase().includes(target.value))
-            }
-        })
-    }
 
     const addOrEdit = (paciente, resetForm) => {
         if (paciente.id == 0)
@@ -96,7 +85,7 @@ function Paciente(props) {
                         InputProps={{
                             startAdornment: (<InputAdornment position='start'><Search /></InputAdornment>)
                         }}
-                        onChange={handleSearch}
+                        onChange={e => Methods.handleSearch(e, setFilterFn)}
                     />
                     <Controls.Button
                         text='Novo Paciente'

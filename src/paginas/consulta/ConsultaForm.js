@@ -25,10 +25,10 @@ const pacientes = [
 ]
 
 const funcionarios = [
-    { id: '1', value: 'João dos testes' },
-    { id: '2', value: 'Maria das dores' },
-    { id: '3', value: 'José Enfermo' },
-    { id: '4', value: 'Joana Pé Quebrado' }
+    { id: '1', value: 'Médico dos testes' },
+    { id: '2', value: 'Médica das dores' },
+    { id: '3', value: 'Dentista Enfermo' },
+    { id: '4', value: 'Dentista Pé Quebrado' }
 ]
 
 const consultorios = [

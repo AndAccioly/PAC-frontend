@@ -9,6 +9,8 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import PeopleIcon from '@mui/icons-material/People';
 import MenuIcon from '@mui/icons-material/Menu';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 const dashboardIcon = <DashboardIcon/>
 const perfilIcon = <AccountCircleIcon/>
@@ -21,6 +23,8 @@ const funcionariosIcon = <PeopleIcon />
 const calendarioIcon = <CalendarMonthIcon />
 const relatoriosIcon = <AssignmentIcon />
 const menuIcon = <MenuIcon />
+const arrowRightIcon = <ArrowRightIcon />
+const arrowDropDownIcon = <ArrowDropDownIcon />
 
 const Icones = {
     dashboardIcon,
@@ -33,7 +37,9 @@ const Icones = {
     menuIcon,
     funcionariosIcon,
     calendarioIcon,
-    relatoriosIcon
+    relatoriosIcon,
+    arrowRightIcon,
+    arrowDropDownIcon
 }
 
 export default Icones

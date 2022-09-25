@@ -14,34 +14,22 @@ import ConsultorioForm from "./ConsultorioForm";
 
 const initialValues = [{
     id: '1',
-    data: '10/11/2022',
-    nome: 'João dos Testes',
-    cpf: '123.456.789-10',
-    tipo: 'Ortopedia',
-    hora: '12:00',
-    consultorio: 'Consultório 1',
-    atendimento: 'Médico José'
+    nome: 'Consultório 1',
+    tipo: 'Cirurgia',
+    responsavel: 'Médico José'
 },
 {
     id: '2',
-    data: '10/11/2022 12',
-    nome: 'Maria das Dores',
-    hora: '12:30',
-    cpf: '123.456.789-10',
-    tipo: 'Buco Maxilo',
-    consultorio: 'Consultório 2',
-    atendimento: 'Médica Joana',
+    nome: 'Consultório 2',
+    tipo: 'Odontológico',
+    responsavel: 'Médica Joana',
 
 },
 ]
 
 const headCells = [
-    { id: 'data', label: 'Data' },
-    { id: 'hora', label: 'Hora' },
     { id: 'nome', label: 'Nome' },
-    { id: 'cpf', label: 'CPF' },
-    { id: 'consultorio', label: 'Consultório' },
-    { id: 'atendimento', label: 'Atendimento' },
+    { id: 'responsavel', label: 'Responsável' },
     { id: 'tipo', label: 'Tipo' },
     { id: 'actions', label: 'Ações', disableSorting: true }
 ]
@@ -90,12 +78,8 @@ function Consultorio(props) {
                         <TableBody>
                             {recordsAfterPagingAndSorting().map(item => (
                                 <TableRow key={item.id}>
-                                    <TableCell>{item.data}</TableCell>
-                                    <TableCell>{item.hora}</TableCell>
                                     <TableCell>{item.nome}</TableCell>
-                                    <TableCell>{item.cpf}</TableCell>
-                                    <TableCell>{item.consultorio}</TableCell>
-                                    <TableCell>{item.atendimento}</TableCell>
+                                    <TableCell>{item.responsavel}</TableCell>
                                     <TableCell>{item.tipo}</TableCell>
                                     <TableCell>
                                         <Controls.ActionButton
