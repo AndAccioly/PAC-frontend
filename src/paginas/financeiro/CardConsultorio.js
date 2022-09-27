@@ -201,7 +201,7 @@ export default function CardConsultório(props) {
                 setOpenPopup={setOpenPopup}
                 title={isVisualizar ? 'Visualizar item' : 'Inserir novo item'}
             >
-                <Paper className={classes.paper}>
+                <Paper className={classes.paper} style={{ maxHeight: 600, overflow: 'auto' }}>
                     {isVisualizar ?
                         <div></div>
                         :
@@ -213,7 +213,7 @@ export default function CardConsultório(props) {
                         <TblHead />
                         <TableBody>
                             {recordsAfterPagingAndSorting().map(item => (
-                                <TableRow key={item.id}>
+                                <TableRow key={item.id} >
                                     <TableCell>{item.nome}</TableCell>
                                     <TableCell>{item.quantidade}</TableCell>
                                     <TableCell>{Mascaras.dinheiroCifrao(item.valor)}</TableCell>

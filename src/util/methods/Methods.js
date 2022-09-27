@@ -21,8 +21,24 @@ const handleSearch = (e, setFilterFn) => {
     })
 }
 
+const onClickRemoveMiniItem = (item, lista, setLista) => {
+    const novaLista = lista.filter(x => x !== item)
+    setLista(novaLista)
+}
+
+const onChangeAddMiniItem = (e, lista, setLista, handleInputChange) => {
+    if(!lista.includes(e.target.value)){
+        const novaLista = [...lista, e.target.value]
+        setLista(novaLista)
+    }
+    handleInputChange(e)
+}
+
+
 const Method = {
-    handleSearch
+    handleSearch,
+    onClickRemoveMiniItem,
+    onChangeAddMiniItem
 }
 
 export default Method

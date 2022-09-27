@@ -50,6 +50,7 @@ function Funcionario(props) {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [openPopupVisualizar, setOpenPopupVisualizar] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subtitle: '' })
 
@@ -65,7 +66,14 @@ function Funcionario(props) {
 
     }
 
-    const openInPopup = item => {
+    const openInPopupVisualizar = item => {
+        //setRecordForEdit(item)
+        setOpenPopupVisualizar(true)
+    }
+
+    const openInPopup = (e, item) => {
+        e.preventDefault()
+        e.stopPropagation()
         //setRecordForEdit(item)
         setOpenPopup(true)
     }
@@ -96,7 +104,7 @@ function Funcionario(props) {
                         <TblHead />
                         <TableBody>
                             {recordsAfterPagingAndSorting().map(item => (
-                                <TableRow key={item.id}>
+                                <TableRow key={item.id} onClick={() => openInPopupVisualizar(item)}>
                                     <TableCell>{item.nome}</TableCell>
                                     <TableCell>{item.matricula}</TableCell>
                                     <TableCell>{item.consultorio}</TableCell>
@@ -104,7 +112,7 @@ function Funcionario(props) {
                                     <TableCell>
                                         <Controls.ActionButton
                                             color='primary'
-                                            onClick={() => { openInPopup(item) }}>
+                                            onClick={(e) => { openInPopup(e, item) }}>
                                             <EditOutlinedIcon fontSize='small' />
                                         </Controls.ActionButton>
                                         <Controls.ActionButton
@@ -131,11 +139,18 @@ function Funcionario(props) {
             </Paper>
 
             <Popup
-                openPopup={openPopup}
-                setOpenPopup={setOpenPopup}
-                title='Criar nova consulta'
+                openPopup={openPopupVisualizar}
+                setOpenPopup={setOpenPopupVisualizar}
+                title='Funcionário'
             >
                 <FuncionarioForm />
+            </Popup>
+            <Popup
+                openPopup={openPopup}
+                setOpenPopup={setOpenPopup}
+                title='Cadastrar Funcionário'
+            >
+                <FuncionarioForm classes={classes}/>
             </Popup>
         </div>
     )

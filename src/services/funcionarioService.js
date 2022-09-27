@@ -1,4 +1,8 @@
 
+const KEYS = {
+    funcionario: 'funcionario',
+    funcionarioId: 'funcionarioId'
+}
 
 
 export const getAllFuncionariosAsList = () => ([
@@ -8,11 +12,42 @@ export const getAllFuncionariosAsList = () => ([
     { id: '4', value: 'Dentista Pé Quebrado' }
 ])
 
+export const getAllFuncoesAsList = () => ([
+    { id: '1', value: 'Médico(a)' },
+    { id: '2', value: 'Secretário(a)' },
+    { id: '3', value: 'Auxiliar administrativo(a)' },
+    { id: '4', value: 'Dentista' },
+    { id: '5', value: 'Veterinário(a)' },
+    { id: '6', value: 'Contador(a)' },
+    { id: '7', value: 'Administrador(a)' },
+])
 
-const KEYS = {
-    funcionario: 'funcionario',
-    funcionarioId: 'funcionarioId'
+export function getUltimaMatricula(cargoId){
+    if(['2', '3', '6'].includes(cargoId))
+        return 'A000000'
+    else if(['1', '4', '5'].includes(cargoId))
+        return 'M000000'
+    else   
+        return 'Z000000'
 }
+
+export const getAllMatriculaFuncoesAsList = () => ([
+    { id: '1', value: 'Médico(a)', matricula: 'M' },
+    { id: '2', value: 'Secretário(a)', matricula: 'A' },
+    { id: '3', value: 'Auxiliar administrativo(a)', matricula: 'A' },
+    { id: '4', value: 'Dentista', matricula: 'M' },
+    { id: '5', value: 'Veterinário(a)', matricula: 'M' },
+    { id: '6', value: 'Contador(a)', matricula: 'A' },
+    { id: '7', value: 'Administrador(a)', matricula: 'Z' },
+])
+
+
+export const getAllPermissoesAsList = () => ([
+    { id: '1', value: 'Financeiro' },
+    { id: '2', value: 'Paciente' },
+    { id: '3', value: 'Consultas' },
+    { id: '4', value: 'Exames' },
+])
 
 export function insertFuncionario(data) {
     let funcionarios = getAllFuncionarios()
