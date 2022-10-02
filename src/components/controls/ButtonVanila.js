@@ -3,10 +3,6 @@ import Cores from '../../util/cores'
 
 
 const useStyles = makeStyles({
-    root: {
-        margin: '4px',
-        marginTop: '20px'
-    },
     label: {
         textTransform: 'none'
     },
@@ -34,7 +30,7 @@ const useStyles = makeStyles({
 
 })
 
-export default function Button(props) {
+export default function ButtonVanila(props) {
 
     const { text, size, color, variant, onClick, ...other } = props
     const classes = useStyles()
@@ -46,7 +42,7 @@ export default function Button(props) {
             onClick={onClick}
             color={color || 'primary'}
             {...other}
-            classes={{ root: classes.root, label: classes.label, containedPrimary: classes.containedPrimary, containedSecondary: classes.containedSecondary, outlinedPrimary: classes.outlinedPrimary }}
+            classes={{ label: classes.label, containedPrimary: classes.containedPrimary, containedSecondary: classes.containedSecondary, outlinedPrimary: classes.outlinedPrimary }}
         >
             {text}
         </MuiButton>

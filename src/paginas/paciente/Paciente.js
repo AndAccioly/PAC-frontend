@@ -6,7 +6,7 @@ import { TableCell, TableRow } from "@material-ui/core";
 import { useState } from "react";
 import Controls from "../../components/controls/Controls";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import CloseIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/Delete';
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
@@ -41,7 +41,7 @@ function Paciente(props) {
     } = UseTable(records, headCells, filterFn);
 
     const addOrEdit = (paciente, resetForm) => {
-        if (paciente.id == 0)
+        if (paciente.id === 0)
             pacienteService.insertPaciente(paciente)
         else
             pacienteService.updatePaciente(paciente)
@@ -129,7 +129,7 @@ function Paciente(props) {
                                                     onConfirm: () => { onDelete(item.id) }
                                                 })
                                             }}>
-                                            <CloseIcon fontSize='small' />
+                                            <DeleteIcon fontSize='small' />
                                         </Controls.ActionButton>
                                     </TableCell>
                                 </TableRow>

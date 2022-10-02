@@ -69,7 +69,6 @@ export default function ItemFinanceiroForm(props) {
                     />
                 </Grid>
 
-
                 <Grid item md={6} xs={12}>
                     <Controls.Input
                         name='nome'

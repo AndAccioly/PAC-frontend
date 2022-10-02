@@ -6,7 +6,6 @@ import { Search } from "@mui/icons-material";
 import UseTable from '../../components/UseTable'
 import AddIcon from '@mui/icons-material/Add'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import CloseIcon from '@mui/icons-material/Close'
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
@@ -15,6 +14,8 @@ import ConsultaFiltro from "./ConsultaFiltro";
 import Methods from "../../util/methods/Methods"
 import BuscaAvancada from "../../components/BuscaAvancada";
 import Icones from "../../util/icones";
+import ConsultaVisualizarForm from "./ConsultaVisualizar";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const initialValues = [{
     id: '1',
@@ -60,6 +61,7 @@ function Consulta(props) {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
+    const [openPopupVisualizar, setOpenPopupVisualizar] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subtitle: '' })
 
@@ -72,12 +74,16 @@ function Consulta(props) {
 
     const onDelete = id => {
 
-
     }
 
     const openInPopup = item => {
         //setRecordForEdit(item)
         setOpenPopup(true)
+    }
+
+    const openInPopupVisualizar = item => {
+        //setRecordForEdit(item)
+        setOpenPopupVisualizar(true)
     }
 
     return (
@@ -108,7 +114,7 @@ function Consulta(props) {
                         <TblHead />
                         <TableBody>
                             {recordsAfterPagingAndSorting().map(item => (
-                                <TableRow key={item.id} onClick={() => { openInPopup(item) }}>
+                                <TableRow key={item.id} onClick={() => { openInPopupVisualizar(item) }}>
                                     <TableCell>{item.data}</TableCell>
                                     <TableCell>{item.hora}</TableCell>
                                     <TableCell>{item.nome}</TableCell>
@@ -132,7 +138,7 @@ function Consulta(props) {
                                                     onConfirm: () => { onDelete(item.id) }
                                                 })
                                             }}>
-                                            <CloseIcon fontSize='small' />
+                                            <DeleteIcon fontSize='small' />
                                         </Controls.ActionButton>
                                     </TableCell>
                                 </TableRow>
@@ -151,6 +157,14 @@ function Consulta(props) {
                 title='Criar nova consulta'
             >
                 <ConsultaForm />
+            </Popup>
+            <Popup
+                openPopup={openPopupVisualizar}
+                setOpenPopup={setOpenPopupVisualizar}
+                title='Consulta'
+                maxWidth='lg'
+            >
+                <ConsultaVisualizarForm />
             </Popup>
         </div>
     )

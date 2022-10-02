@@ -8,6 +8,20 @@ const menuWidth = '12%'
 const restoWidth = '88%'
 
 const useStyles = makeStyles({
+    '@global': {
+        '*::-webkit-scrollbar': {
+            width: '0.7em',
+            height: '0.7em',
+        },
+        '*::-webkit-scrollbar-track': {
+            '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+        },
+        '*::-webkit-scrollbar-thumb': {
+            backgroundColor: Cores.azul2,
+            outline: '1px solid ' + Cores.azul5,
+            borderRadius: '100px'
+        }
+    },
     root: {
         display: 'flex',
         flexDirection: 'column',
@@ -32,7 +46,7 @@ const useStyles = makeStyles({
             marginTop: '1%',
             fontSize: '3.6rem'
         },
-        '& .MuiButton-root':{
+        '& .MuiButton-root': {
             padding: '0px'
         }
     },

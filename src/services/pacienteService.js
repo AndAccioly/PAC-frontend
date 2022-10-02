@@ -22,20 +22,20 @@ export function insertPaciente(data) {
 
 export function updatePaciente(data) {
     let pacientes = getAllPacientes()
-    let recordIndex = pacientes.findIndex(x => x.id == data.id)
+    let recordIndex = pacientes.findIndex(x => x.id === data.id)
     pacientes[recordIndex] = { ...data }
     localStorage.setItem(KEYS.paciente, JSON.stringify(pacientes))
 }
 
 export function deletePaciente(id) {
     let pacientes = getAllPacientes()
-    pacientes = pacientes.filter(x => x.id != id)
+    pacientes = pacientes.filter(x => x.id !== id)
     localStorage.setItem(KEYS.paciente, JSON.stringify(pacientes))
 }
 
 
 export function generatePacienteId() {
-    if (localStorage.getItem(KEYS.pacienteId) == null)
+    if (localStorage.getItem(KEYS.pacienteId) === null)
         localStorage.setItem(KEYS.pacienteId, '0')
     var id = parseInt(localStorage.getItem(KEYS.pacienteId))
     localStorage.setItem(KEYS.pacienteId, (++id).toString())
@@ -43,7 +43,7 @@ export function generatePacienteId() {
 }
 
 export function getAllPacientes() {
-    if (localStorage.getItem(KEYS.paciente) == null)
+    if (localStorage.getItem(KEYS.paciente) === null)
         localStorage.setItem(KEYS.paciente, JSON.stringify([]))
     let pacientes = JSON.parse(localStorage.getItem(KEYS.paciente))
     let planosSaude = planoSaudeService.getPlanosSaudeLista()

@@ -58,20 +58,20 @@ export function insertFuncionario(data) {
 
 export function updateFuncionario(data) {
     let funcionarios = getAllFuncionarios()
-    let recordIndex = funcionarios.findIndex(x => x.id == data.id)
+    let recordIndex = funcionarios.findIndex(x => x.id === data.id)
     funcionarios[recordIndex] = { ...data }
     localStorage.setItem(KEYS.funcionario, JSON.stringify(funcionarios))
 }
 
 export function deleteFuncionario(id) {
     let funcionarios = getAllFuncionarios()
-    funcionarios = funcionarios.filter(x => x.id != id)
+    funcionarios = funcionarios.filter(x => x.id !== id)
     localStorage.setItem(KEYS.funcionario, JSON.stringify(funcionarios))
 }
 
 
 export function generateFuncionarioId() {
-    if (localStorage.getItem(KEYS.funcionarioId) == null)
+    if (localStorage.getItem(KEYS.funcionarioId) === null)
         localStorage.setItem(KEYS.funcionarioId, '0')
     var id = parseInt(localStorage.getItem(KEYS.funcionarioId))
     localStorage.setItem(KEYS.funcionarioId, (++id).toString())
@@ -79,7 +79,7 @@ export function generateFuncionarioId() {
 }
 
 export function getAllFuncionarios() {
-    if (localStorage.getItem(KEYS.funcionario) == null)
+    if (localStorage.getItem(KEYS.funcionario) === null)
         localStorage.setItem(KEYS.funcionario, JSON.stringify([]))
     let funcionarios = JSON.parse(localStorage.getItem(KEYS.funcionario))
     return funcionarios

@@ -5,11 +5,15 @@ const azul3 = '#5fa6ec'
 const azul4 = '#328ce7'
 const azul5 = '#1359a0'
 const azul6 = '#0d4072'
+const azulBotao = '#1e6deb'
 const vermelho0= '#ffe3e3'
-const vermelhoClose = '#f77e7e'
+const vermelhoClose = '#f25e5e'
 const vermelhoNegativo = '#bf0a0a'
 const verde0 = '#e3ffe3'
 const verdePositivo = '#089608'
+const verde1 = '#2d9c2d'
+const verde2 = '#217a21'
+const cinzaContorno = '#ababab'
 
 const Cores = {
     azul0,
@@ -19,11 +23,15 @@ const Cores = {
     azul4,
     azul5,
     azul6,
+    azulBotao,
     vermelho0,
     vermelhoClose,
     vermelhoNegativo,
     verde0,
-    verdePositivo
+    verdePositivo,
+    verde1,
+    verde2,
+    cinzaContorno
 }
 
 

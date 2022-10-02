@@ -1,12 +1,13 @@
-import { Paper, TableBody } from "@mui/material";
+import { InputAdornment, Paper, TableBody, Toolbar } from "@mui/material";
 import { TableCell, TableRow } from "@material-ui/core";
 import { useState } from "react";
 import Controls from "../../components/controls/Controls";
 import { Search } from "@mui/icons-material";
 import UseTable from '../../components/UseTable'
+import Methods from '../../util/methods/Methods'
 import AddIcon from '@mui/icons-material/Add'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import CloseIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/Delete';
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
@@ -61,7 +62,7 @@ function Consultorio(props) {
 
     }
 
-    const openInPopup = (e,item) => {
+    const openInPopup = (e, item) => {
         e.preventDefault()
         e.stopPropagation()
         //setRecordForEdit(item)
@@ -76,14 +77,25 @@ function Consultorio(props) {
     return (
         <div>
             <Paper className={classes.paper}>
-                <Controls.Button
-                    text='Novo Consultório'
-                    variant='outlined'
-                    startIcon={Icones.addIcon}
-                    className={classes.botaoAdicionar}
-                    onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
-                />
-                <div style={{maxHeight: 600, overflow: 'auto'}}>
+                <Toolbar >
+                    <Controls.Input
+                        className={classes.buscar}
+                        label='Procurar consultório'
+                        InputProps={{
+                            startAdornment: (<InputAdornment position='start'>{Icones.searchIcon}</InputAdornment>)
+                        }}
+                        onChange={e => Methods.handleSearchConsultorio(e, setFilterFn)}
+                    />
+                    <Controls.Button
+                        text='Cadastrar Consultório'
+                        variant='outlined'
+                        startIcon={Icones.addIcon}
+                        className={classes.botaoAdicionar}
+                        onClick={() => { setOpenPopup(true); setRecordForEdit(null) }}
+                    />
+                </Toolbar>
+
+                <div style={{ maxHeight: 600, overflow: 'auto' }}>
                     <TblContainer>
                         <TblHead />
                         <TableBody>
@@ -108,7 +120,7 @@ function Consultorio(props) {
                                                     onConfirm: () => { onDelete(item.id) }
                                                 })
                                             }}>
-                                            <CloseIcon fontSize='small' />
+                                            <DeleteIcon fontSize='small' />
                                         </Controls.ActionButton>
                                     </TableCell>
                                 </TableRow>

@@ -4,7 +4,7 @@ import Mascaras from '../../util/mascaras'
 import Cores from "../../util/cores";
 import Controls from '../../components/controls/Controls'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import CloseIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/Delete';
 import LockIcon from '@mui/icons-material/Lock';
 
 const useStyles = makeStyles({
@@ -87,7 +87,7 @@ export default function CardFinanceiro(props) {
                     <LockIcon fontSize='medium' />
                 </Controls.ActionButton>
                 <Controls.ActionButton color='secondary'>
-                    <CloseIcon fontSize='medium' />
+                    <DeleteIcon fontSize='medium' />
                 </Controls.ActionButton>
             </div>
 

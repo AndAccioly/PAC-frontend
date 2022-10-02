@@ -14,12 +14,12 @@ function Financeiro(props) {
             <FinanceiroFiltro />
             <CardConsultorio
                 consultorio='Consultório 1'
-                total={200}
+                total={200000}
                 classes={classes}
             />
             <CardConsultorio
                 consultorio='Consultório 2'
-                total={200}
+                total={200000}
                 classes={classes}
             />
         </Paper>

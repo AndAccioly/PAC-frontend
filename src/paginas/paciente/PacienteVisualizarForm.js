@@ -52,14 +52,14 @@ export default function PacienteVisualizarForm(props) {
         if ('telefone' in fieldValues)
             temp.telefone = fieldValues.telefone.length > 5 ? '' : CAMPO_OBRIGATORIO
         if ('planoSaude' in fieldValues)
-            temp.planoSaude = fieldValues.planoSaude.length != 0 ? '' : CAMPO_OBRIGATORIO
+            temp.planoSaude = fieldValues.planoSaude.length !== 0 ? '' : CAMPO_OBRIGATORIO
 
         setErros({
             ...temp
         })
 
-        if (fieldValues == values)
-            return Object.values(temp).every(x => x == "")
+        if (fieldValues === values)
+            return Object.values(temp).every(x => x === "")
     }
 
     const {
@@ -96,7 +96,7 @@ export default function PacienteVisualizarForm(props) {
     }
 
     useEffect(() => {
-        if (recordForEdit != null)
+        if (recordForEdit !== null)
             setValues({
                 ...recordForEdit
             })

@@ -5,6 +5,7 @@ import * as planoSaudeService from '../../services/planoSaudeService'
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
+import Cores from "../../util/cores";
 
 const initialValues = {
     id: 0,
@@ -20,7 +21,7 @@ const initialValues = {
 
 
 
-export default function ConsultaForm(props) {
+export default function ConsultaVisualizarForm(props) {
 
     //const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
@@ -57,9 +58,8 @@ export default function ConsultaForm(props) {
                         name='paciente'
                         label='Paciente'
                         value={values.paciente}
-                        onChange={handleInputChange}
                         options={Services.pacienteService.getPacientesAsList()}
-                        error={erros.paciente}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
@@ -67,9 +67,8 @@ export default function ConsultaForm(props) {
                         name='consultorio'
                         label='Consultório'
                         value={values.consultorio}
-                        onChange={handleInputChange}
                         options={Services.consultorioService.getAllConsultoriosAsList()}
-                        error={erros.consultorio}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
@@ -77,9 +76,8 @@ export default function ConsultaForm(props) {
                         name='funcionario'
                         label='Atendimento'
                         value={values.funcionario}
-                        onChange={handleInputChange}
                         options={Services.funcionarioService.getAllFuncionariosAsList()}
-                        error={erros.funcionario}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
@@ -87,9 +85,8 @@ export default function ConsultaForm(props) {
                         name='planoSaude'
                         label='Plano de Saúde'
                         value={values.planoSaude}
-                        onChange={handleInputChange}
                         options={planoSaudeService.getPlanosSaudeLista()}
-                        error={erros.planoSaude}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
@@ -97,7 +94,7 @@ export default function ConsultaForm(props) {
                         name='agendamento'
                         label='Agendamento'
                         value={values.agendamento}
-                        onChange={handleInputChange}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
@@ -105,24 +102,24 @@ export default function ConsultaForm(props) {
                         name='valor'
                         label='Valor'
                         value={Mascaras.dinheiro(values.valor)}
-                        onChange={handleInputChange}
-                        error={erros.valor}
                         InputProps={{
                             startAdornment: (<InputAdornment position='start'>R$</InputAdornment>)
                         }}
+                        disabled={true}
                     />
                 </Grid>
+
                 <Grid item xs={2}>
                     <Controls.Button
-                        text='Enviar'
+                        text='Iniciar consulta'
                         type='submit'
+                        color='secondary'
                     />
                 </Grid>
                 <Grid item xs={2}>
                     <Controls.Button
-                        text='Limpar'
+                        text='Fechar'
                         variant='outlined'
-                        onClick={onClickLimpar}
                     />
                 </Grid>
             </Grid>

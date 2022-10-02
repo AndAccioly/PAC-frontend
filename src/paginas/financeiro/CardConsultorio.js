@@ -9,7 +9,7 @@ import UseTable from '../../components/UseTable'
 import Controls from "../../components/controls/Controls";
 import Popup from "../../components/Popup";
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import CloseIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/Delete';
 import ReceitaForm from "./ReceitaForm";
 
 
@@ -200,6 +200,7 @@ export default function CardConsultório(props) {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
                 title={isVisualizar ? 'Visualizar item' : 'Inserir novo item'}
+                maxWidth='lg'
             >
                 <Paper className={classes.paper} style={{ maxHeight: 600, overflow: 'auto' }}>
                     {isVisualizar ?
@@ -217,7 +218,7 @@ export default function CardConsultório(props) {
                                     <TableCell>{item.nome}</TableCell>
                                     <TableCell>{item.quantidade}</TableCell>
                                     <TableCell>{Mascaras.dinheiroCifrao(item.valor)}</TableCell>
-                                    <TableCell>
+                                    <TableCell style={{display: 'flex'}}>
                                         <Controls.ActionButton
                                             color='primary'
                                         >
@@ -227,7 +228,7 @@ export default function CardConsultório(props) {
                                         <Controls.ActionButton
                                             color='secondary'
                                         >
-                                            <CloseIcon fontSize='small' />
+                                            <DeleteIcon fontSize='small' />
                                         </Controls.ActionButton>
 
                                     </TableCell>

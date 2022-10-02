@@ -5,7 +5,7 @@ import Controls from "../../components/controls/Controls";
 import { Search } from "@mui/icons-material";
 import UseTable from '../../components/UseTable'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import CloseIcon from '@mui/icons-material/Close'
+import DeleteIcon from '@mui/icons-material/Delete';
 import Popup from '../../components/Popup'
 import Notificacao from "../../components/Notificacao";
 import ConfirmDialog from "../../components/dialog/ConfirmDialog";
@@ -125,7 +125,7 @@ function Funcionario(props) {
                                                     onConfirm: () => { onDelete(item.id) }
                                                 })
                                             }}>
-                                            <CloseIcon fontSize='small' />
+                                            <DeleteIcon fontSize='small' />
                                         </Controls.ActionButton>
                                     </TableCell>
                                 </TableRow>
