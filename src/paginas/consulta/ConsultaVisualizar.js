@@ -109,9 +109,9 @@ export default function ConsultaVisualizarForm(props) {
                     />
                 </Grid>
 
-                <Grid item xs={2}>
+                <Grid item xs={2} style={{width: '250px'}}>
                     <Controls.Button
-                        text='Iniciar consulta'
+                        text='Iniciar Consulta'
                         type='submit'
                         color='secondary'
                     />

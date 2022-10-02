@@ -14,21 +14,7 @@ import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import ConsultorioForm from "./ConsultorioForm";
 import ConsultorioVisualizarForm from "./ConsultorioVisualizarForm";
 import Icones from "../../util/icones";
-
-const initialValues = [{
-    id: '1',
-    nome: 'Consultório 1',
-    tipo: 'Cirurgia',
-    responsavel: 'Médico José'
-},
-{
-    id: '2',
-    nome: 'Consultório 2',
-    tipo: 'Odontológico',
-    responsavel: 'Médica Joana',
-
-},
-]
+import Services from "../../util/servicos"
 
 const headCells = [
     { id: 'nome', label: 'Nome' },
@@ -41,7 +27,7 @@ const headCells = [
 function Consultorio(props) {
     const classes = props.classes;
 
-    const [records, setRecords] = useState(initialValues)
+    const [records, setRecords] = useState(Services.consultorioService.getAllConsultorios())
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
@@ -60,6 +46,22 @@ function Consultorio(props) {
     const onDelete = id => {
 
 
+    }
+
+    const addOrEdit = (consultorio, resetForm) => {
+        if (consultorio.id === 0)
+            Services.consultorioService.insertConsultorio(consultorio)
+        else
+            Services.consultorioService.updateConsultorio(consultorio)
+        resetForm()
+        setRecordForEdit(null)
+        setOpenPopup(false)
+        setRecords(Services.consultorioService.getAllConsultorios())
+        setNotify({
+            isOpen: true,
+            message: 'Inserido com sucesso',
+            type: 'success'
+        })
     }
 
     const openInPopup = (e, item) => {
@@ -137,11 +139,15 @@ function Consultorio(props) {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
                 title='Cadastrar Consultório'
-                maxWidth='lg'
+
             >
-                <ConsultorioForm />
+                <ConsultorioForm
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
             </Popup>
             <Popup
+
                 openPopup={openPopupVisualizar}
                 setOpenPopup={setOpenPopupVisualizar}
                 title='Consultório Detalhado'

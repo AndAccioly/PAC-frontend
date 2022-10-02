@@ -2,10 +2,11 @@ import { makeStyles } from "@material-ui/core";
 import PanelDia from "./dia/PanelDia";
 import PanelMes from "./mes/PanelMes";
 import PanelAno from "./ano/PanelAno";
+import Cores from "../../util/cores";
 
 const useStyles = makeStyles({
     corpo: {
-        backgroundColor: 'white',
+        backgroundColor: Cores.azul0,
         height: '90.3%',
         margin: 'auto',
         borderRadius: '10px',

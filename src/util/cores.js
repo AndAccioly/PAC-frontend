@@ -14,6 +14,7 @@ const verdePositivo = '#089608'
 const verde1 = '#2d9c2d'
 const verde2 = '#217a21'
 const cinzaContorno = '#ababab'
+const cinzaFundo = '#e8e8e8'
 
 const Cores = {
     azul0,
@@ -31,7 +32,8 @@ const Cores = {
     verdePositivo,
     verde1,
     verde2,
-    cinzaContorno
+    cinzaContorno,
+    cinzaFundo
 }
 
 

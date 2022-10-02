@@ -21,10 +21,10 @@ const tipoConsultorio = [
 
 export default function ConsultorioForm(props) {
 
-    //const { addOrEdit, recordForEdit } = props
+    const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
-
-    }
+        return true
+    }  
     const {
         values,
         setValues,
@@ -38,7 +38,7 @@ export default function ConsultorioForm(props) {
         e.preventDefault()
         if (validate()) {
             console.log('validou')
-            //addOrEdit(values, resetForm)
+            addOrEdit(values, resetForm)
         } else {
             console.log('errou')
         }
@@ -50,7 +50,8 @@ export default function ConsultorioForm(props) {
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
-                <Grid item md={4} xs={6}>
+
+                <Grid item md={6} xs={6}>
                     <Controls.Input
                         name='nome'
                         label='Nome'
@@ -59,8 +60,7 @@ export default function ConsultorioForm(props) {
                         error={erros.valor}
                     />
                 </Grid>
-
-                <Grid item md={4} xs={6}>
+                <Grid item md={6} xs={6}>
                     <Controls.Select
                         name='responsavel'
                         label='Responsável'
@@ -70,8 +70,7 @@ export default function ConsultorioForm(props) {
                         error={erros.responsavel}
                     />
                 </Grid>
-
-                <Grid item md={4} xs={6}>
+                <Grid item md={12} xs={6}>
                     <Controls.Select
                         name='tipo'
                         label='Tipo'
@@ -81,15 +80,14 @@ export default function ConsultorioForm(props) {
                         error={erros.tipo}
                     />
                 </Grid>
-                
 
-                <Grid item xs={2}>
+                <Grid item md={6} xs={4}>
                     <Controls.Button
                         text='Enviar'
                         type='submit'
                     />
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item md={6} xs={4}>
                     <Controls.Button
                         text='Limpar'
                         variant='outlined'

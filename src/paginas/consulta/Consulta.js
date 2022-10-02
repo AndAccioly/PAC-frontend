@@ -72,11 +72,14 @@ function Consulta(props) {
         recordsAfterPagingAndSorting
     } = UseTable(records, headCells, filterFn);
 
-    const onDelete = id => {
-
+    const onDelete = (e, id) => {
+        e.preventDefault()
+        e.stopPropagation()
     }
 
-    const openInPopup = item => {
+    const openInPopup = (e, item) => {
+        e.preventDefault()
+        e.stopPropagation()
         //setRecordForEdit(item)
         setOpenPopup(true)
     }
@@ -125,17 +128,17 @@ function Consulta(props) {
                                     <TableCell>
                                         <Controls.ActionButton
                                             color='primary'
-                                            onClick={() => { openInPopup(item) }}>
+                                            onClick={(e) => { openInPopup(e, item) }}>
                                             <EditOutlinedIcon fontSize='small' />
                                         </Controls.ActionButton>
                                         <Controls.ActionButton
                                             color='secondary'
-                                            onClick={() => {
+                                            onClick={(e) => {
                                                 setConfirmDialog({
                                                     isOpen: true,
                                                     title: 'Deseja remover o cliente?',
                                                     subtitle: 'Esta ação não poderá ser desfeita.',
-                                                    onConfirm: () => { onDelete(item.id) }
+                                                    onConfirm: () => { onDelete(e, item.id) }
                                                 })
                                             }}>
                                             <DeleteIcon fontSize='small' />

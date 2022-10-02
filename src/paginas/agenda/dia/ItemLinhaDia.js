@@ -7,15 +7,18 @@ const useStyles = makeStyles({
         textAlign: 'left',
         height: '100px',
         display: 'flex',
-        width: '100%',
+        width: '99%',
+        backgroundColor: 'white',
+        borderRadius: '10px',
+        marginTop: '4px',
         '&:hover': {
-            backgroundColor: 'gray'
+            backgroundColor: Cores.cinzaFundo,
+            cursor: 'pointer'
         }
     },
     metades: {
         height: '100%',
         width: '100%',
-        borderBottom: '1px solid' + Cores.azul4
     },
     metadeCima: {
         height: '50%',
@@ -29,7 +32,6 @@ const useStyles = makeStyles({
         width: '7%',
         height: '100%',
         borderRight: '1px solid ' + Cores.azul4,
-        borderBottom: '1px solid ' + Cores.azul4
     },
     texto: {
         marginTop: '40%',

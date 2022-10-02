@@ -5,15 +5,17 @@ import Util from '../../../util/methods/Util'
 const item = {
     width: '14.3%',
     border: '1px solid ' + Cores.azul4,
-    height: '104px',
-    backgroundColor: Cores.azul4,
+    height: '106px',
+    backgroundColor: Cores.cinzaFundo,
 
 }
 
 const useStyles = makeStyles({
     corpo: {
-        maxHeight: 700,
+        maxHeight: 750,
         overflow: 'auto',
+        backgroundColor: Cores.azul1,
+        borderRadius: '10px'
     },
     header: {
         marginTop: '1%',
@@ -21,15 +23,16 @@ const useStyles = makeStyles({
 
     },
     headerItem: {
-        height: '30px',
+        height: '35px',
         width: '14.3%',
-        border: '1px solid ' + Cores.azul4,
+        marginLeft: '2px',
+        marginRight: '2px',
+        backgroundColor: 'white',
         borderRadius: '10px'
     },
     semanas: {
         marginTop: '1%',
-        border: '1px solid ' + Cores.azul4,
-        borderRadius: '15px'
+        borderRadius: '10px'
     },
     semana: {
         width: '100%',
@@ -37,45 +40,16 @@ const useStyles = makeStyles({
 
     },
     diaItem: {
+        borderRadius: '10px',
+        margin: '2px',
+        backgroundColor: 'white',
         width: item.width,
         height: item.height,
-        borderBottom: item.border,
-        borderRight: item.border,
         '&:hover': {
-            borderRadius: '10px',
             backgroundColor: item.backgroundColor,
             cursor: 'pointer'
         }
     },
-    diaItemUltimo: {
-        width: item.width,
-        height: item.height,
-        borderBottom: item.border,
-        '&:hover': {
-            borderRadius: '10px',
-            backgroundColor: item.backgroundColor,
-            cursor: 'pointer'
-        }
-    },
-    diaItemUltimaLinha: {
-        width: item.width,
-        height: item.height,
-        borderRight: item.border,
-        '&:hover': {
-            borderRadius: '10px',
-            backgroundColor: item.backgroundColor,
-            cursor: 'pointer'
-        }
-    },
-    diaItemUltimaLinhaUltimo: {
-        width: item.width,
-        height: item.height,
-        '&:hover': {
-            borderRadius: '10px',
-            backgroundColor: item.backgroundColor,
-            cursor: 'pointer'
-        }
-    }
 })
 
 
@@ -93,10 +67,6 @@ export default function PanelMes(props) {
     })
 
     var semanasJsxGrupos = Util.dividirArrayEmGrupos(semanasJsx, 7)
-
-    console.log('Semanas:')
-    console.log(semanasJsxGrupos)
-
     return (
         <div className={classes.corpo}>
             <div className={classes.header}>
@@ -110,34 +80,11 @@ export default function PanelMes(props) {
                 {semanasJsxGrupos.map((grupo, indexGrupo) => {
                     return (<div key={indexGrupo} className={classes.semana}>
                         {grupo.map((semana, index) => {
-                            if(indexGrupo / 5 === 1){
-                                if(index / 6 === 1){
-                                    return (
-                                        <div key={index} className={classes.diaItemUltimaLinhaUltimo}>
-                                            {semana}
-                                        </div>
-                                    )
-                                }else{
-                                    return (
-                                        <div key={index} className={classes.diaItemUltimaLinha}>
-                                            {semana}
-                                        </div>
-                                    )
-                                }
-                            }
-                            if (index / 6 === 1) {
-                                return (
-                                    <div key={index} className={classes.diaItemUltimo}>
-                                        {semana}
-                                    </div>
-                                )
-                            } else {
-                                return (
-                                    <div key={index} className={classes.diaItem}>
-                                        {semana}
-                                    </div>
-                                )
-                            }
+                             return (
+                                <div key={index} className={classes.diaItem}>
+                                    {semana}
+                                </div>
+                            )
                         })}
                     </div>)
                 })}

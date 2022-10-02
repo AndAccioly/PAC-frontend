@@ -5,7 +5,7 @@ import ItemLinhaDia from "./ItemLinhaDia";
 const useStyles = makeStyles({
     corpo: {
         display: 'grid',
-        maxHeight: 700,
+        maxHeight: 718,
         overflow: 'auto',
     },
 
@@ -25,7 +25,7 @@ export default function PanelDia(props) {
         <div className={classes.corpo}>
             {workingValues.map(
                 (item, index) => (
-                    <ItemLinhaDia item={item} index={index} />
+                    <ItemLinhaDia key={index} item={item} index={index} />
                 )
             )}
         </div>
