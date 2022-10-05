@@ -136,7 +136,7 @@ function Consulta(props) {
                                             onClick={(e) => {
                                                 setConfirmDialog({
                                                     isOpen: true,
-                                                    title: 'Deseja remover o cliente?',
+                                                    title: 'Deseja remover a consulta ' + item.nome + ' ?',
                                                     subtitle: 'Esta ação não poderá ser desfeita.',
                                                     onConfirm: () => { onDelete(e, item.id) }
                                                 })

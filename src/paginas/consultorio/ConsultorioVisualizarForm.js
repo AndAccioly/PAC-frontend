@@ -1,4 +1,4 @@
-import { Grid, InputAdornment } from "@mui/material";
+import { Grid, InputAdornment, makeStyles } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
 import * as planoSaudeService from '../../services/planoSaudeService'
@@ -10,13 +10,23 @@ import { Troubleshoot } from "@mui/icons-material";
 const initialValues = {
     id: 0,
     nome: '',
-    numFuncionarios: '',
-    renda: 0,
+    tipo: '',
+    numFuncionarios: 7,
+    responsavel: '',
+    renda: '',
 }
+const tipoConsultorio = [
+    { id: '1', value: 'Cirurgia' },
+    { id: '2', value: 'Atendimento Geral' },
+    { id: '3', value: 'Consultas' }
+]
+
+
 
 export default function ConsultorioVisualizarForm(props) {
 
-    //const { addOrEdit, recordForEdit } = props
+    const { addOrEdit, recordForEdit } = props
+
     const validate = (fieldValues = values) => {
 
     }
@@ -33,25 +43,53 @@ export default function ConsultorioVisualizarForm(props) {
         e.preventDefault()
         if (validate()) {
             console.log('validou')
-            //addOrEdit(values, resetForm)
+            addOrEdit(values, resetForm)
         } else {
             console.log('errou')
         }
     }
-
+    
     function onClickLimpar() {
         resetForm()
     }
+
+    useEffect(() => {
+        if (recordForEdit !== null)
+            setValues({
+                ...recordForEdit,
+                renda: '1000.00',
+                numFuncionarios: 7
+            })
+    }, [recordForEdit])
+
     return (
         <Form onSubmit={handleSubmit}>
-            <Grid container>
+            <Grid container >
 
                 <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='nome'
                         label='Nome'
                         value={values.nome}
-                        disabled={Troubleshoot}
+                        disabled={true}
+                    />
+                </Grid>
+                <Grid item md={6} xs={6}>
+                    <Controls.Select
+                        name='responsavel'
+                        label='Responsável'
+                        value={values.responsavel}
+                        options={Services.funcionarioService.getAllFuncionariosAsList()}
+                        disabled={true}
+                    />
+                </Grid>
+                <Grid item md={12} xs={6}>
+                    <Controls.Select
+                        name='tipo'
+                        label='Tipo'
+                        value={values.tipo}
+                        options={tipoConsultorio}
+                        disabled={true}
                     />
                 </Grid>
 

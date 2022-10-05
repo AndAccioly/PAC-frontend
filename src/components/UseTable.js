@@ -77,6 +77,10 @@ export default function UseTable(records, headCells, filterFn) {
         setPage(0)
     }
 
+    const labelDisplayedRows = ({ from, to, count }) => { 
+        return `${from}–${to} de ${count !== -1 ? count : `mais que ${to}`}`;
+    }
+
     const TblPagination = () => (
         <TablePagination
             component='div'
@@ -86,6 +90,8 @@ export default function UseTable(records, headCells, filterFn) {
             count={records.length}
             onPageChange={handleChangePage}
             onRowsPerPageChange={handleChangeRowsPerPage}
+            labelDisplayedRows={labelDisplayedRows}
+            labelRowsPerPage='Itens por página'
         />)
 
     function stableSort(array, comparator) {

@@ -24,6 +24,7 @@ const headCells = [
 ]
 
 
+
 function Consultorio(props) {
     const classes = props.classes;
 
@@ -31,7 +32,6 @@ function Consultorio(props) {
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
-    const [openPopupEditar, setOpenPopupEditar] = useState(false)
     const [openPopupVisualizar, setOpenPopupVisualizar] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subtitle: '' })
@@ -43,9 +43,19 @@ function Consultorio(props) {
         recordsAfterPagingAndSorting
     } = UseTable(records, headCells, filterFn);
 
-    const onDelete = id => {
+    const onDelete = (id) => {
 
-
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false
+        })
+        Services.consultorioService.deleteConsultorio(id)
+        setRecords(Services.consultorioService.getAllConsultorios())
+        setNotify({
+            isOpen: true,
+            message: 'Removido com sucesso',
+            type: 'success'
+        })
     }
 
     const addOrEdit = (consultorio, resetForm) => {
@@ -67,12 +77,12 @@ function Consultorio(props) {
     const openInPopup = (e, item) => {
         e.preventDefault()
         e.stopPropagation()
-        //setRecordForEdit(item)
+        setRecordForEdit(item)
         setOpenPopup(true)
     }
 
     const openInPopupVisualizar = item => {
-        //setRecordForEdit(item)
+        setRecordForEdit(item)
         setOpenPopupVisualizar(true)
     }
 
@@ -114,12 +124,14 @@ function Consultorio(props) {
                                         </Controls.ActionButton>
                                         <Controls.ActionButton
                                             color='secondary'
-                                            onClick={() => {
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
                                                 setConfirmDialog({
                                                     isOpen: true,
-                                                    title: 'Deseja remover o cliente?',
+                                                    title: 'Deseja remover o consultório ' + item.nome + '?',
                                                     subtitle: 'Esta ação não poderá ser desfeita.',
-                                                    onConfirm: () => { onDelete(item.id) }
+                                                    onConfirm: () => { onDelete( item.id) }
                                                 })
                                             }}>
                                             <DeleteIcon fontSize='small' />
@@ -139,9 +151,9 @@ function Consultorio(props) {
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
                 title='Cadastrar Consultório'
-
             >
                 <ConsultorioForm
+                    classes={classes}
                     addOrEdit={addOrEdit}
                     recordForEdit={recordForEdit}
                 />
@@ -152,8 +164,19 @@ function Consultorio(props) {
                 setOpenPopup={setOpenPopupVisualizar}
                 title='Consultório Detalhado'
             >
-                <ConsultorioVisualizarForm />
+                <ConsultorioVisualizarForm 
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
             </Popup>
+            <Notificacao
+                notify={notify}
+                setNotify={setNotify}
+            />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     )
 }

@@ -20,11 +20,11 @@ const tipoConsultorio = [
 ]
 
 export default function ConsultorioForm(props) {
-
+    const classes = props.classes
     const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
         return true
-    }  
+    }
     const {
         values,
         setValues,
@@ -47,11 +47,18 @@ export default function ConsultorioForm(props) {
     function onClickLimpar() {
         resetForm()
     }
+
+    useEffect(() => {
+        if (recordForEdit !== null)
+            setValues({
+                ...recordForEdit
+            })
+    }, [recordForEdit])
+
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
-
-                <Grid item md={6} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Input
                         name='nome'
                         label='Nome'
@@ -60,7 +67,7 @@ export default function ConsultorioForm(props) {
                         error={erros.valor}
                     />
                 </Grid>
-                <Grid item md={6} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Select
                         name='responsavel'
                         label='Responsável'
@@ -70,7 +77,7 @@ export default function ConsultorioForm(props) {
                         error={erros.responsavel}
                     />
                 </Grid>
-                <Grid item md={12} xs={6}>
+                <Grid item md={4} xs={6}>
                     <Controls.Select
                         name='tipo'
                         label='Tipo'
@@ -80,7 +87,6 @@ export default function ConsultorioForm(props) {
                         error={erros.tipo}
                     />
                 </Grid>
-
                 <Grid item md={6} xs={4}>
                     <Controls.Button
                         text='Enviar'
