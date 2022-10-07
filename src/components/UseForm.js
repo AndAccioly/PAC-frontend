@@ -3,11 +3,14 @@ import {useState} from 'react'
 
 const useStyles = makeStyles({
     root: {
-        marginTop: '2%',
         textAlign: 'left',
         '& .MuiFormControl-root':{
-            marginTop: '20px',
             width: '90%',
+            marginTop: '15px'
+        },
+        '& .MuiOutlinedInput-root':{
+        },
+        '& .MuiOutlinedInput-root':{
         }
     }
 })

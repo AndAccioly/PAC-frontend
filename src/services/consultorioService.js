@@ -1,3 +1,4 @@
+import Services from "../util/servicos"
 
 const KEYS = {
     consultorio: 'consultorio',
@@ -10,6 +11,11 @@ export const getAllConsultoriosAsList = () => ([
     { id: '3', value: 'Consultório Alameda' }
 ])
 
+export const getAllTipoConsultorio = () =>([
+    { id: '1', value: 'Cirurgia' },
+    { id: '2', value: 'Atendimento Geral' },
+    { id: '3', value: 'Consultas' }
+])
 
 export function insertConsultorio(data) {
     let consultorios = getAllConsultorios()
@@ -44,6 +50,13 @@ export function getAllConsultorios() {
     if (localStorage.getItem(KEYS.consultorio) === null)
         localStorage.setItem(KEYS.consultorio, JSON.stringify([]))
     let consultorios = JSON.parse(localStorage.getItem(KEYS.consultorio))
-    return consultorios
+
+    let funcionarios = Services.funcionarioService.getAllFuncionariosAsList()
+    let tipos = getAllTipoConsultorio()
+    return consultorios.map(x => ({
+        ...x,
+        responsavelTexto: funcionarios[x.responsavel - 1].value,
+        tipoTexto: tipos[x.tipo - 1].value
+    }))
 
 }

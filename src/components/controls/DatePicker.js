@@ -5,7 +5,6 @@ import brLocale from "date-fns/locale/pt-BR";
 
 const useStyles = makeStyles({
     root: {
-
         '& .MuiIconButton-root.Mui-disabled': {
             color: 'rgba(12, 43, 92, 0.8)',
         },

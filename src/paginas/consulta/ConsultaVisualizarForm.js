@@ -1,7 +1,6 @@
 import { Grid, InputAdornment } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
-import * as planoSaudeService from '../../services/planoSaudeService'
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
@@ -23,7 +22,7 @@ const initialValues = {
 
 export default function ConsultaVisualizarForm(props) {
 
-    //const { addOrEdit, recordForEdit } = props
+    const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
 
     }
@@ -40,15 +39,23 @@ export default function ConsultaVisualizarForm(props) {
         e.preventDefault()
         if (validate()) {
             console.log('validou')
-            //addOrEdit(values, resetForm)
+            addOrEdit(values, resetForm)
         } else {
             console.log('errou')
         }
     }
 
-    function onClickLimpar() {
-        resetForm()
+    function onClickImprimir() {
+
     }
+
+    useEffect(() => {
+        if (recordForEdit !== null)
+            setValues({
+                ...recordForEdit
+            })
+    }, [recordForEdit])
+
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
@@ -85,7 +92,7 @@ export default function ConsultaVisualizarForm(props) {
                         name='planoSaude'
                         label='Plano de Saúde'
                         value={values.planoSaude}
-                        options={planoSaudeService.getPlanosSaudeLista()}
+                        options={Services.pacienteService.getPlanosSaudeLista()}
                         disabled={true}
                     />
                 </Grid>
@@ -120,6 +127,7 @@ export default function ConsultaVisualizarForm(props) {
                     <Controls.Button
                         text='Fechar'
                         variant='outlined'
+                        onClick={onClickImprimir}
                     />
                 </Grid>
             </Grid>

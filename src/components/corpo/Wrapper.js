@@ -45,7 +45,7 @@ function defineCorpo(corpoId, classes) {
 function Body(props) {
     const classes = props.classes;
     return (
-        <div>
+        <div className={classes.wrapper}>
             <Media queries={{ small: { maxWidth: 699 } }}>
                 {matches =>
                     matches.small ? (

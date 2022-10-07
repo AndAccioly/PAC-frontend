@@ -1,11 +1,11 @@
 import { Grid } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
-import * as planoSaudeService from '../../services/planoSaudeService'
 import EnderecoForm from "../../components/EnderecoForm";
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Icones from "../../util/icones";
+import Services from "../../util/servicos";
 
 const CAMPO_OBRIGATORIO = 'Campo obrigatório.'
 const CAMPO_INVALIDO = 'Valor inválido.'
@@ -150,7 +150,7 @@ export default function PacienteVisualizarForm(props) {
                         name='planoSaude'
                         label='Plano de Saúde'
                         value={values.planoSaude}
-                        options={planoSaudeService.getPlanosSaudeLista()}
+                        options={Services.pacienteService.getPlanosSaudeLista()}
                         disabled={true}
                     />
                 </Grid>

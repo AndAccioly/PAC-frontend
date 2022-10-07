@@ -2,10 +2,12 @@ import useStyles from "../styles"
 import React, { useEffect } from 'react';
 import Wrapper from "./corpo/Wrapper"
 import Header from "./corpo/Header"
-import Footer from "./corpo/Footer"
 import MenuLateral from "./menu/MenuLateral"
 import Media from 'react-media'
-import MenuRecolhido from "./menu/MenuRecolhido";
+import HeaderBar from "./corpo/HeaderBar";
+import MenuLateralNovo from "./menu/MenuLateralNovo";
+import { makeStyles } from '@material-ui/core';
+
 
 function Page(props) {
     const classes = useStyles();
@@ -22,16 +24,13 @@ function Page(props) {
                             <div>
                                 <Header classes={classes} corpo={props.corpo} />
                                 <Wrapper classes={classes} corpo={props.corpo} />
-                                {/*<Footer classes = {classes}/>*/}
                             </div>
                     ) : (
                         <div>
-                            <MenuLateral classes={classes} />
-                            <div>
-
-                                <Header classes={classes} corpo={props.corpo} />
+                            <HeaderBar classes={classes} corpo={props.corpo} />
+                            <div className={classes.body}>
+                                <MenuLateralNovo classes={classes} />
                                 <Wrapper classes={classes} corpo={props.corpo} />
-                                {/*<Footer classes = {classes}/>*/}
                             </div>
                         </div>
                     )

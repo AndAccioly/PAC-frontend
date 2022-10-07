@@ -31,6 +31,9 @@ const useStyles = makeStyles({
         width: '100%',
         minWidth: '100%'
     },
+    body: {
+        display: 'flex',
+    },
     menuLateral: {
         backgroundColor: Cores.azul1,
         height: '100%',
@@ -51,7 +54,10 @@ const useStyles = makeStyles({
         }
     },
     wrapper: {
-        position: 'relative',
+        position: 'absolute',
+        width: '96%',
+        marginLeft: '3%',
+        zIndex: 2
     },
     header: {
         position: 'relative',
@@ -120,7 +126,7 @@ const useStyles = makeStyles({
         marginLeft: '3%',
     },
     paperWeb: {
-        marginLeft: '15%',
+        marginLeft: '1%',
     },
     paper: {
         marginTop: '1%',

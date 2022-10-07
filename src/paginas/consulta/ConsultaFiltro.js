@@ -1,26 +1,18 @@
 import { Grid } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { Form, useForm } from "../../components/UseForm";
-import * as planoSaudeService from '../../services/planoSaudeService'
 import Services from '../../util/servicos'
 
 const initialValues = {
     paciente: '',
     funcionario: '',
     cpf: '',
-    tipo: '',
+    tipoConsulta: '',
     dataInicio: new Date(),
     dataFim: new Date(),
     planoSaude: '',
     consultorio: ''
 }
-
-const tiposConsulta = [
-    { id: '1', value: 'Ortopedia' },
-    { id: '2', value: 'Buco Maxilo' },
-    { id: '3', value: 'Acompanhamento' },
-    { id: '4', value: 'Limpeza Dental' }
-]
 
 
 export default function ConsultaFiltro(props) {
@@ -73,12 +65,12 @@ export default function ConsultaFiltro(props) {
                 </Grid>
                 <Grid item md={3} xs={6}>
                     <Controls.Select
-                        name='tipo'
+                        name='tipoConsulta'
                         label='Tipo de Consulta'
-                        value={values.tipo}
+                        value={values.tipoConsulta}
                         onChange={handleInputChange}
-                        options={tiposConsulta}
-                        error={erros.tipo}
+                        options={Services.consultaService.getAllTipoConsulta()}
+                        error={erros.tipoConsulta}
                     />
                 </Grid>
                 <Grid item md={3} xs={6}>
@@ -87,7 +79,7 @@ export default function ConsultaFiltro(props) {
                         label='Plano de Saúde'
                         value={values.planoSaude}
                         onChange={handleInputChange}
-                        options={planoSaudeService.getPlanosSaudeLista()}
+                        options={Services.pacienteServico.getPlanosSaudeLista()}
                         error={erros.planoSaude}
                     />
                 </Grid>

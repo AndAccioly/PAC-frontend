@@ -4,8 +4,8 @@ import Cores from '../../util/cores'
 
 const useStyles = makeStyles({
     root: {
-        margin: '4px',
-        marginTop: '20px'
+        margin: '2px',
+        marginTop: '10px'
     },
     label: {
         textTransform: 'none'

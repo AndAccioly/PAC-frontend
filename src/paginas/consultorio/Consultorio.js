@@ -44,7 +44,6 @@ function Consultorio(props) {
     } = UseTable(records, headCells, filterFn);
 
     const onDelete = (id) => {
-
         setConfirmDialog({
             ...confirmDialog,
             isOpen: false
@@ -79,7 +78,7 @@ function Consultorio(props) {
         e.stopPropagation()
         setRecordForEdit(item)
         setOpenPopup(true)
-    }
+    } 
 
     const openInPopupVisualizar = item => {
         setRecordForEdit(item)
@@ -114,8 +113,8 @@ function Consultorio(props) {
                             {recordsAfterPagingAndSorting().map(item => (
                                 <TableRow key={item.id} onClick={() => openInPopupVisualizar(item)}>
                                     <TableCell>{item.nome}</TableCell>
-                                    <TableCell>{item.responsavel}</TableCell>
-                                    <TableCell>{item.tipo}</TableCell>
+                                    <TableCell>{item.responsavelTexto}</TableCell>
+                                    <TableCell>{item.tipoTexto}</TableCell>
                                     <TableCell>
                                         <Controls.ActionButton
                                             color='primary'
@@ -129,7 +128,7 @@ function Consultorio(props) {
                                                 e.stopPropagation();
                                                 setConfirmDialog({
                                                     isOpen: true,
-                                                    title: 'Deseja remover o consultório ' + item.nome + '?',
+                                                    title: 'Deseja remover a consulta?',
                                                     subtitle: 'Esta ação não poderá ser desfeita.',
                                                     onConfirm: () => { onDelete( item.id) }
                                                 })

@@ -1,7 +1,6 @@
 import { Grid, InputAdornment } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
-import * as planoSaudeService from '../../services/planoSaudeService'
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
@@ -12,12 +11,6 @@ const initialValues = {
     responsavel: '',
     tipo: '',
 }
-
-const tipoConsultorio = [
-    { id: '1', value: 'Cirurgia' },
-    { id: '2', value: 'Atendimento Geral' },
-    { id: '3', value: 'Consultas' }
-]
 
 export default function ConsultorioForm(props) {
     const classes = props.classes
@@ -75,7 +68,7 @@ export default function ConsultorioForm(props) {
                         onChange={handleInputChange}
                         options={Services.funcionarioService.getAllFuncionariosAsList()}
                         error={erros.responsavel}
-                    />
+                    /> 
                 </Grid>
                 <Grid item md={4} xs={6}>
                     <Controls.Select
@@ -83,17 +76,39 @@ export default function ConsultorioForm(props) {
                         label='Tipo'
                         value={values.tipo}
                         onChange={handleInputChange}
-                        options={tipoConsultorio}
+                        options={Services.consultorioService.getAllTipoConsultorio()}
                         error={erros.tipo}
                     />
                 </Grid>
-                <Grid item md={6} xs={4}>
+
+
+              
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='nome'
+                        label='Nome'
+                        value={values.nome}
+                        onChange={handleInputChange}
+                        error={erros.valor}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='nome'
+                        label='Nome'
+                        value={values.nome}
+                        onChange={handleInputChange}
+                        error={erros.valor}
+                    />
+                </Grid>
+
+                <Grid item md={2}>
                     <Controls.Button
                         text='Enviar'
                         type='submit'
                     />
                 </Grid>
-                <Grid item md={6} xs={4}>
+                <Grid item md={2}>
                     <Controls.Button
                         text='Limpar'
                         variant='outlined'

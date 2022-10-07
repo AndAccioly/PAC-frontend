@@ -1,7 +1,6 @@
 import { Grid, InputAdornment, makeStyles } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
-import * as planoSaudeService from '../../services/planoSaudeService'
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
@@ -15,13 +14,6 @@ const initialValues = {
     responsavel: '',
     renda: '',
 }
-const tipoConsultorio = [
-    { id: '1', value: 'Cirurgia' },
-    { id: '2', value: 'Atendimento Geral' },
-    { id: '3', value: 'Consultas' }
-]
-
-
 
 export default function ConsultorioVisualizarForm(props) {
 
@@ -88,7 +80,7 @@ export default function ConsultorioVisualizarForm(props) {
                         name='tipo'
                         label='Tipo'
                         value={values.tipo}
-                        options={tipoConsultorio}
+                        options={Services.consultorioService.getAllTipoConsultorio()}
                         disabled={true}
                     />
                 </Grid>

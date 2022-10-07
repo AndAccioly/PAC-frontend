@@ -3,12 +3,12 @@ const handleSearchConsultorio = (e, setFilterFn) => {
     let target = e.target
     setFilterFn({
         fn: items => {
-            if (target.value === ''){
+            if (target.value === '') {
                 return items
-            }else{
-                
-                    return items.filter(x => x.nome.toLowerCase().includes(target.value))
-                
+            } else {
+
+                return items.filter(x => x.nome.toLowerCase().includes(target.value))
+
             }
         }
     })
@@ -18,14 +18,28 @@ const handleSearch = (e, setFilterFn) => {
     let target = e.target
     setFilterFn({
         fn: items => {
-            if (target.value === ''){
+            if (target.value === '') {
                 return items
-            }else{
-                if (/\d/.test(target.value)){
+            } else {
+                if (/\d/.test(target.value)) {
                     return items.filter(x => x.cpf.replace('-', '').replaceAll('.', '').includes(target.value.replace('-', '').replaceAll('.', '')))
-                } else{
+                } else {
                     return items.filter(x => x.nome.toLowerCase().includes(target.value))
                 }
+            }
+        }
+    })
+}
+
+const handleSearchConsulta = (e, setFilterFn) => {
+    let target = e.target
+    setFilterFn({
+        fn: items => {
+            if (target.value === '') {
+                return items
+            } else {
+                return items.filter(x => x.pacienteTexto.toLowerCase().includes(target.value))
+
             }
         }
     })
@@ -37,7 +51,7 @@ const onClickRemoveMiniItem = (item, lista, setLista) => {
 }
 
 const onChangeAddMiniItem = (e, lista, setLista, handleInputChange) => {
-    if(!lista.includes(e.target.value)){
+    if (!lista.includes(e.target.value)) {
         const novaLista = [...lista, e.target.value]
         setLista(novaLista)
     }
@@ -47,9 +61,10 @@ const onChangeAddMiniItem = (e, lista, setLista, handleInputChange) => {
 
 const Method = {
     handleSearch,
+    handleSearchConsulta,
     onClickRemoveMiniItem,
     onChangeAddMiniItem,
-    handleSearchConsultorio
+    handleSearchConsultorio,
 }
 
 export default Method

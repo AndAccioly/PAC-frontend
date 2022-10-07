@@ -14,33 +14,10 @@ import ConsultaFiltro from "./ConsultaFiltro";
 import Methods from "../../util/methods/Methods"
 import BuscaAvancada from "../../components/BuscaAvancada";
 import Icones from "../../util/icones";
-import ConsultaVisualizarForm from "./ConsultaVisualizar";
+import ConsultaVisualizarForm from "./ConsultaVisualizarForm";
 import DeleteIcon from '@mui/icons-material/Delete';
+import Services from "../../util/servicos";
 
-const initialValues = [{
-    id: '1',
-    data: '10/11/2022',
-    nome: 'João dos Testes',
-    cpf: '123.456.789-10',
-    tipo: 'Ortopedia',
-    hora: '12:00',
-    planoSaude: 'Caixa',
-    consultorio: 'Consultório 1',
-    atendimento: 'Médico José'
-},
-{
-    id: '2',
-    data: '10/11/2022',
-    nome: 'Maria das Dores',
-    hora: '12:30',
-    planoSaude: 'Camed',
-    cpf: '785.798.458-52',
-    tipo: 'Buco Maxilo',
-    consultorio: 'Consultório 2',
-    atendimento: 'Médica Joana',
-
-},
-]
 
 const headCells = [
     { id: 'data', label: 'Data' },
@@ -48,7 +25,7 @@ const headCells = [
     { id: 'nome', label: 'Nome' },
     { id: 'consultorio', label: 'Consultório' },
     { id: 'atendimento', label: 'Atendimento' },
-    { id: 'tipo', label: 'Tipo' },
+    { id: 'tipoConsulta', label: 'Tipo de Consulta' },
     { id: 'planoSaude', label: 'Plano de Saúde' },
     { id: 'actions', label: 'Ações', disableSorting: true }
 ]
@@ -57,7 +34,7 @@ const headCells = [
 function Consulta(props) {
     const classes = props.classes;
 
-    const [records, setRecords] = useState(initialValues)
+    const [records, setRecords] = useState(Services.consultaService.getAllConsultas())
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
@@ -72,20 +49,45 @@ function Consulta(props) {
         recordsAfterPagingAndSorting
     } = UseTable(records, headCells, filterFn);
 
-    const onDelete = (e, id) => {
-        e.preventDefault()
-        e.stopPropagation()
+    const onDelete = (id) => {
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false
+        })
+        Services.consultaService.deleteConsulta(id)
+        setRecords(Services.consultaService.getAllConsultas())
+        setNotify({
+            isOpen: true,
+            message: 'Removido com sucesso',
+            type: 'success'
+        })
+    }
+    const addOrEdit = (consulta, resetForm) => {
+        console.log(consulta)
+        if (consulta.id === 0)
+            Services.consultaService.insertConsulta(consulta)
+        else
+            Services.consultaService.updateConsulta(consulta)
+        resetForm()
+        setRecordForEdit(null)
+        setOpenPopup(false)
+        setRecords(Services.consultaService.getAllConsultas())
+        setNotify({
+            isOpen: true,
+            message: 'Inserido com sucesso',
+            type: 'success'
+        })
     }
 
     const openInPopup = (e, item) => {
         e.preventDefault()
         e.stopPropagation()
-        //setRecordForEdit(item)
+        setRecordForEdit(item)
         setOpenPopup(true)
     }
 
     const openInPopupVisualizar = item => {
-        //setRecordForEdit(item)
+        setRecordForEdit(item)
         setOpenPopupVisualizar(true)
     }
 
@@ -99,7 +101,7 @@ function Consulta(props) {
                         InputProps={{
                             startAdornment: (<InputAdornment position='start'>{Icones.searchIcon}</InputAdornment>)
                         }}
-                        onChange={e => Methods.handleSearch(e, setFilterFn)}
+                        onChange={e => Methods.handleSearchConsulta(e, setFilterFn)}
                     />
                     <Controls.Button
                         text='Agendar Consulta'
@@ -118,13 +120,13 @@ function Consulta(props) {
                         <TableBody>
                             {recordsAfterPagingAndSorting().map(item => (
                                 <TableRow key={item.id} onClick={() => { openInPopupVisualizar(item) }}>
-                                    <TableCell>{item.data}</TableCell>
+                                    <TableCell>{item.agendamento}</TableCell>
                                     <TableCell>{item.hora}</TableCell>
-                                    <TableCell>{item.nome}</TableCell>
-                                    <TableCell>{item.consultorio}</TableCell>
-                                    <TableCell>{item.atendimento}</TableCell>
-                                    <TableCell>{item.tipo}</TableCell>
-                                    <TableCell>{item.planoSaude}</TableCell>
+                                    <TableCell>{item.pacienteTexto}</TableCell>
+                                    <TableCell>{item.consultorioTexto}</TableCell>
+                                    <TableCell>{item.funcionarioTexto}</TableCell>
+                                    <TableCell>{item.tipoConsultaTexto}</TableCell>
+                                    <TableCell>{item.planoSaudeTexto}</TableCell>
                                     <TableCell>
                                         <Controls.ActionButton
                                             color='primary'
@@ -134,11 +136,13 @@ function Consulta(props) {
                                         <Controls.ActionButton
                                             color='secondary'
                                             onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
                                                 setConfirmDialog({
                                                     isOpen: true,
                                                     title: 'Deseja remover a consulta ' + item.nome + ' ?',
                                                     subtitle: 'Esta ação não poderá ser desfeita.',
-                                                    onConfirm: () => { onDelete(e, item.id) }
+                                                    onConfirm: () => { onDelete(item.id) }
                                                 })
                                             }}>
                                             <DeleteIcon fontSize='small' />
@@ -159,7 +163,10 @@ function Consulta(props) {
                 setOpenPopup={setOpenPopup}
                 title='Criar nova consulta'
             >
-                <ConsultaForm />
+                <ConsultaForm
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
             </Popup>
             <Popup
                 openPopup={openPopupVisualizar}
@@ -167,8 +174,19 @@ function Consulta(props) {
                 title='Consulta'
                 maxWidth='lg'
             >
-                <ConsultaVisualizarForm />
+                <ConsultaVisualizarForm
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
             </Popup>
+            <Notificacao
+                notify={notify}
+                setNotify={setNotify}
+            />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     )
 }
