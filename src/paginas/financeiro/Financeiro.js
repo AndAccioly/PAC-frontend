@@ -9,21 +9,23 @@ function Financeiro(props) {
 
 
     return (
-            
+
         <Paper className={classes.paper} >
             <FinanceiroFiltro />
-            <CardConsultorio
-                consultorio='Consultório 1'
-                total={200000}
-                classes={classes}
-            />
-            <CardConsultorio
-                consultorio='Consultório 2'
-                total={200000}
-                classes={classes}
-            />
+            <div style={{ maxHeight: 725, overflow: 'auto' }}>
+                <CardConsultorio
+                    consultorio='Consultório 1'
+                    total={200000}
+                    classes={classes}
+                />
+                <CardConsultorio
+                    consultorio='Consultório 2'
+                    total={200000}
+                    classes={classes}
+                />
+            </div>
         </Paper>
-           
+
     )
 }
 

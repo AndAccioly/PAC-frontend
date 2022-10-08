@@ -2,19 +2,23 @@ import useStyles from "../styles"
 import React, { useEffect } from 'react';
 import Wrapper from "./corpo/Wrapper"
 import Header from "./corpo/Header"
-import MenuLateral from "./menu/MenuLateral"
 import Media from 'react-media'
 import HeaderBar from "./corpo/HeaderBar";
 import MenuLateralNovo from "./menu/MenuLateralNovo";
 import { makeStyles } from '@material-ui/core';
-
+import { useState } from "react";
 
 function Page(props) {
     const classes = useStyles();
+    const [menuAberto, setMenuAberto] = useState(true)
 
     useEffect(() => {
         document.title = "PAC"
     }, []);
+
+    const abrirMenu = () => {
+        setMenuAberto(!menuAberto)
+    }
 
     return (
         <div className={classes.root}>
@@ -27,10 +31,14 @@ function Page(props) {
                             </div>
                     ) : (
                         <div>
-                            <HeaderBar classes={classes} corpo={props.corpo} />
+                            <HeaderBar classes={classes} corpo={props.corpo} abrirMenu={abrirMenu}/>
                             <div className={classes.body}>
-                                <MenuLateralNovo classes={classes} />
-                                <Wrapper classes={classes} corpo={props.corpo} />
+                                {menuAberto?
+                                    <MenuLateralNovo classes={classes} />
+                                    :
+                                    <div></div>
+                                }
+                                <Wrapper classes={classes} corpo={props.corpo} menuAberto={menuAberto}/>
                             </div>
                         </div>
                     )

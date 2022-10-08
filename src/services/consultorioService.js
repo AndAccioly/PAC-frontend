@@ -5,11 +5,17 @@ const KEYS = {
     consultorioId: 'consultorioId'
 }
 
-export const getAllConsultoriosAsList = () => ([
-    { id: '1', value: 'Consultório Torre' },
-    { id: '2', value: 'Consultório Avenida 2' },
-    { id: '3', value: 'Consultório Alameda' }
-])
+export function getAllConsultoriosAsList(){
+    const consultorios = getAllConsultorios()
+    return consultorios.map((item, index) => ({
+        id: item.id,
+        value: item.nome
+    }))
+}
+
+export function getConsultorioPorId(id){
+    return(getAllConsultoriosAsList().filter(x => x.id === id))
+}
 
 export const getAllTipoConsultorio = () =>([
     { id: '1', value: 'Cirurgia' },

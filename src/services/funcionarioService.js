@@ -1,3 +1,4 @@
+import Services from "../util/servicos"
 
 const KEYS = {
     funcionario: 'funcionario',
@@ -22,13 +23,17 @@ export const getAllFuncoesAsList = () => ([
     { id: '7', value: 'Administrador(a)' },
 ])
 
-export function getUltimaMatricula(cargoId){
-    if(['2', '3', '6'].includes(cargoId))
+export function getUltimaMatricula(cargoId) {
+    if (['2', '3', '6'].includes(cargoId))
         return 'A000000'
-    else if(['1', '4', '5'].includes(cargoId))
+    else if (['1', '4', '5'].includes(cargoId))
         return 'M000000'
-    else   
+    else
         return 'Z000000'
+}
+
+export function getPermissaoPorId(id){
+    return(getAllPermissoesAsList().filter(x => x.id === id))
 }
 
 export const getAllMatriculaFuncoesAsList = () => ([
@@ -82,7 +87,21 @@ export function getAllFuncionarios() {
     if (localStorage.getItem(KEYS.funcionario) === null)
         localStorage.setItem(KEYS.funcionario, JSON.stringify([]))
     let funcionarios = JSON.parse(localStorage.getItem(KEYS.funcionario))
-    return funcionarios
+    const cargos = getAllFuncoesAsList()
+    const permissoes = getAllPermissoesAsList()
+
+    return funcionarios.map(x => ({
+        ...x,
+        cargoTexto: cargos[x.cargo - 1].value,
+        consultoriosTexto: x.listaConsultorios.map((item) => (
+            Services.consultorioService.getConsultorioPorId(item)
+        )),
+        permissoesTexto: x.listaPermissoes.map((item) => (
+            getPermissaoPorId(item)
+        ))
+
+
+    }))
 
 
 }

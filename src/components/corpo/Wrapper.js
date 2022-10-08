@@ -56,7 +56,7 @@ function Body(props) {
                         </div>
                     ) : (
                         <div className={classes.paperWeb}>
-                            <div className={classes.wrapper}>
+                            <div className={props.menuAberto? classes.wrapper : classes.wrapperSemMenu}>
                                 {defineCorpo(props.corpo, classes)}
                             </div>
                         </div>

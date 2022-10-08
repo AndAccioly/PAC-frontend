@@ -1,8 +1,10 @@
 const azul0 = '#e8f2fc'
-const azul1 = '#d1e6fa'
-const azul2 = '#8dbff2'
+const azul1 = '#bbd9f7'
+const azul2 = '#76b3ef'
+
 const azul3 = '#1976d2'
-const azul4 = '#328ce7'
+
+const azul4 = '#1566b7'
 const azul5 = '#1359a0'
 const azul6 = '#0d4072'
 const azulBotao = '#1e6deb'

@@ -1,28 +1,43 @@
 import { Grid, InputAdornment } from "@mui/material";
 import Controls from "../../components/controls/Controls";
-import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
+import { useForm, Form } from '../../components/UseForm';
+import { makeStyles } from "@material-ui/core"
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
+import Cores from "../../util/cores";
 
 const initialValues = {
     id: 0,
-    paciente: '',
-    funcionario: '',
-    horaInicio: '',
-    duracao: '',
+    nome: '',
     valor: 0,
-    funcao: '',
-    planoSaude: '',
-    consultorio: '',
-    dataNascimento: new Date()
+    salario: '',
+    cargo: '',
+    dataNascimento: new Date(),
+    listaConsultorios: [],
+    listaPermissoes: [],
+    consultoriosTexto: [],
+    permissoesTexto: []
 }
+
+
+const useStyles = makeStyles({
+    linha: {
+        height: '1px',
+        background: Cores.azul3,
+        width: '100%',
+        marginTop: '4%',
+        marginBottom: '1%'
+    }
+})
 
 export default function FuncionarioVisualizarForm(props) {
 
-    //const { addOrEdit, recordForEdit } = props
-    const validate = (fieldValues = values) => {
+    const { addOrEdit, recordForEdit } = props
+    const classes = useStyles()
 
+    const validate = (fieldValues = values) => {
+        return true;
     }
     const {
         values,
@@ -37,7 +52,7 @@ export default function FuncionarioVisualizarForm(props) {
         e.preventDefault()
         if (validate()) {
             console.log('validou')
-            //addOrEdit(values, resetForm)
+            addOrEdit(values, resetForm)
         } else {
             console.log('errou')
         }
@@ -46,6 +61,14 @@ export default function FuncionarioVisualizarForm(props) {
     function onClickLimpar() {
         resetForm()
     }
+
+    useEffect(() => {
+        if (recordForEdit !== null)
+            setValues({
+                ...recordForEdit
+            })
+    }, [recordForEdit])
+
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
@@ -54,37 +77,24 @@ export default function FuncionarioVisualizarForm(props) {
                         name='nome'
                         label='Nome'
                         value={values.nome}
-                        onChange={handleInputChange}
-                        error={erros.nome}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
                     <Controls.Select
-                        name='consultorio'
-                        label='Consultório'
-                        value={values.consultorio}
-                        onChange={handleInputChange}
-                        options={Services.consultorioService.getAllConsultoriosAsList()}
-                        error={erros.consultorio}
-                    />
-                </Grid>
-                <Grid item md={4} xs={6}>
-                    <Controls.Select
-                        name='funcao'
-                        label='Função'
-                        value={values.funcao}
-                        onChange={handleInputChange}
+                        name='cargo'
+                        label='Cargo'
+                        value={values.cargo}
                         options={Services.funcionarioService.getAllFuncoesAsList()}
-                        error={erros.funcao}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
                     <Controls.Input
-                        name='valor'
-                        label='Valor'
-                        value={Mascaras.dinheiro(values.valor)}
-                        onChange={handleInputChange}
-                        error={erros.valor}
+                        name='salario'
+                        label='Salário'
+                        value={Mascaras.dinheiro(values.salario)}
+                        disabled={true}
                         InputProps={{
                             startAdornment: (<InputAdornment position='start'>R$</InputAdornment>)
                         }}
@@ -95,10 +105,26 @@ export default function FuncionarioVisualizarForm(props) {
                         name='dataNascimento'
                         label='Data de Nascimento'
                         value={values.dataNascimento}
-                        onChange={handleInputChange}
+                        disabled={true}
                     />
                 </Grid>
+                <Grid item md={12} xs={6}>
+                    <div className={classes.linha} />
+                    {values.consultoriosTexto.map((item, index) => (
+                        <div key={index}>
+                            {item[0].value}
+                        </div>
+                    ))}
+                </Grid>
 
+                <Grid item md={12} xs={6}>
+                    <div className={classes.linha} />
+                    {values.permissoesTexto.map((item, index) => (
+                        <div key={index}>
+                            {item[0].value}
+                        </div>
+                    ))}
+                </Grid>
                 <Grid item xs={2}>
                     <Controls.Button
                         text='Enviar'

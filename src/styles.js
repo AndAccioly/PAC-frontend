@@ -59,6 +59,12 @@ const useStyles = makeStyles({
         marginLeft: '3%',
         zIndex: 2
     },
+    wrapperSemMenu: {
+        position: 'absolute',
+        width: '96%',
+        marginLeft: '1%',
+        zIndex: 2
+    },
     header: {
         position: 'relative',
         backgroundColor: Cores.azul1,

@@ -12,32 +12,12 @@ import ConfirmDialog from "../../components/dialog/ConfirmDialog";
 import FuncionarioForm from "./FuncionarioForm";
 import Methods from "../../util/methods/Methods"
 import Icones from "../../util/icones";
-
-const initialValues = [{
-    id: '1',
-    nome: 'João dos Testes',
-    cpf: '123.456.789-10',
-    funcao: 'Médico',
-    matricula: 'M00001',
-    consultorio: 'Consultório 1',
-    atendimento: 'José Torres'
-},
-{
-    id: '2',
-    nome: 'Maria das Dores',
-    cpf: '123.456.789-10',
-    matricula: 'S00002',
-    funcao: 'Secretária',
-    consultorio: 'Consultório 2',
-    atendimento: 'Jurema',
-
-},
-]
+import Services from "../../util/servicos";
+import FuncionarioVisualizarForm from "./FuncionarioVisualizarForm";
 
 const headCells = [
     { id: 'nome', label: 'Nome' },
     { id: 'matricula', label: 'Matrícula' },
-    { id: 'consultorio', label: 'Consultório' },
     { id: 'funcao', label: 'Função' },
     { id: 'actions', label: 'Ações', disableSorting: true }
 ]
@@ -46,7 +26,7 @@ const headCells = [
 function Funcionario(props) {
     const classes = props.classes;
 
-    const [records, setRecords] = useState(initialValues)
+    const [records, setRecords] = useState(Services.funcionarioService.getAllFuncionarios())
     const [recordForEdit, setRecordForEdit] = useState(null)
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
@@ -62,19 +42,47 @@ function Funcionario(props) {
     } = UseTable(records, headCells, filterFn);
 
     const onDelete = id => {
-
+        setConfirmDialog({
+            ...confirmDialog,
+            isOpen: false
+        })
+        Services.funcionarioService.deleteFuncionario(id)
+        setRecords(Services.funcionarioService.getAllFuncionarios())
+        setNotify({
+            isOpen: true,
+            message: 'Removido com sucesso',
+            type: 'success'
+        })
 
     }
 
+    const addOrEdit = (funcionario, resetForm) => {
+        console.log(funcionario)
+        if (funcionario.id === 0)
+            Services.funcionarioService.insertFuncionario(funcionario)
+        else
+            Services.funcionarioService.updateFuncionario(funcionario)
+        resetForm()
+        setRecordForEdit(null)
+        setOpenPopup(false)
+        setRecords(Services.funcionarioService.getAllFuncionarios())
+        setNotify({
+            isOpen: true,
+            message: 'Inserido com sucesso',
+            type: 'success'
+        })
+    }
+
     const openInPopupVisualizar = item => {
-        //setRecordForEdit(item)
+        console.log(item)
+        setRecordForEdit(item)
         setOpenPopupVisualizar(true)
     }
 
     const openInPopup = (e, item) => {
         e.preventDefault()
         e.stopPropagation()
-        //setRecordForEdit(item)
+        setRecordForEdit(item)
         setOpenPopup(true)
     }
 
@@ -107,8 +115,7 @@ function Funcionario(props) {
                                 <TableRow key={item.id} onClick={() => openInPopupVisualizar(item)}>
                                     <TableCell>{item.nome}</TableCell>
                                     <TableCell>{item.matricula}</TableCell>
-                                    <TableCell>{item.consultorio}</TableCell>
-                                    <TableCell>{item.funcao}</TableCell>
+                                    <TableCell>{item.cargoTexto}</TableCell>
                                     <TableCell>
                                         <Controls.ActionButton
                                             color='primary'
@@ -117,10 +124,12 @@ function Funcionario(props) {
                                         </Controls.ActionButton>
                                         <Controls.ActionButton
                                             color='secondary'
-                                            onClick={() => {
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                e.stopPropagation();
                                                 setConfirmDialog({
                                                     isOpen: true,
-                                                    title: 'Deseja remover o cliente?',
+                                                    title: 'Deseja remover o funcionário ' + item.nome + ' ?',
                                                     subtitle: 'Esta ação não poderá ser desfeita.',
                                                     onConfirm: () => { onDelete(item.id) }
                                                 })
@@ -143,15 +152,29 @@ function Funcionario(props) {
                 setOpenPopup={setOpenPopupVisualizar}
                 title='Funcionário'
             >
-                <FuncionarioForm />
+                <FuncionarioVisualizarForm
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
             </Popup>
             <Popup
                 openPopup={openPopup}
                 setOpenPopup={setOpenPopup}
                 title='Cadastrar Funcionário'
             >
-                <FuncionarioForm classes={classes}/>
+                <FuncionarioForm
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
             </Popup>
+            <Notificacao
+                notify={notify}
+                setNotify={setNotify}
+            />
+            <ConfirmDialog
+                confirmDialog={confirmDialog}
+                setConfirmDialog={setConfirmDialog}
+            />
         </div>
     )
 }

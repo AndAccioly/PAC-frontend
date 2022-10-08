@@ -1,28 +1,24 @@
 import { Grid, InputAdornment } from "@mui/material";
 import { makeStyles } from "@material-ui/core"
 import Controls from "../../components/controls/Controls";
-import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
+import { useForm, Form } from '../../components/UseForm';
 import { useEffect, useState } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
 import Cores from "../../util/cores";
 import ItemMini from "../../components/ItemMini";
 import Methods from "../../util/methods/Methods";
-import { VolunteerActivismOutlined } from "@mui/icons-material";
 
 const initialValues = {
     id: 0,
-    paciente: '',
-    funcionario: '',
-    horaInicio: '',
-    duracao: '',
+    nome: '',
     salario: 0,
     cargo: '',
-    permissao: '',
-    planoSaude: '',
-    consultorio: '',
+    matricula: '',
     dataNascimento: new Date(),
-    matricula: ''
+    matricula: '',
+    listaPermissoes: [],
+    listaConsultorios: []
 }
 
 const useStyles = makeStyles({
@@ -36,16 +32,16 @@ const useStyles = makeStyles({
 })
 
 
-export default function FuncionarioForm() {
+export default function FuncionarioForm(props) {
 
     const [listaConsultorios, setListaConsultorios] = useState([])
     const [listaPermissoes, setListaPermissoes] = useState([])
     const [matricula, setMatricula] = useState('')
+    const { addOrEdit, recordForEdit } = props
     
     const classes = useStyles()
-    //const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
-
+        return true
     }
 
     const {
@@ -73,9 +69,10 @@ export default function FuncionarioForm() {
 
     const handleSubmit = e => {
         e.preventDefault()
+        e.stopPropagation()
         if (validate()) {
             console.log('validou')
-            //addOrEdit(values, resetForm)
+            addOrEdit({...values, matricula, listaPermissoes, listaConsultorios }, resetForm)
         } else {
             console.log('errou')
         }
@@ -86,6 +83,13 @@ export default function FuncionarioForm() {
         setListaConsultorios([])
         setListaPermissoes([])
     }
+
+    useEffect(() => {
+        if (recordForEdit !== null)
+            setValues({
+                ...recordForEdit
+            })
+    }, [recordForEdit])
 
     return (
         <Form onSubmit={handleSubmit}>
