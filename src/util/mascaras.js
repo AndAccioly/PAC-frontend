@@ -11,7 +11,17 @@ function dinheiro(valor) {
 }
 
 function dinheiroCifrao(valor){
+    if(valor === '0') return 'R$0,00'
     return "R$" + dinheiro(valor)
+}
+
+function numeroInteiro(valor){
+    if(valor === undefined || Number(valor) === 0)
+        return '0'
+    while(valor.charAt(0) === '0'){
+        valor = valor.substring(1, valor.lenth)
+    }
+    return valor.replace(/\D/g, "")
 }
 
 function maxLength(valor, tam){
@@ -31,7 +41,8 @@ const Mascaras = {
     dinheiroCifrao,
     maxLength,
     dinheiro,
-    cpf
+    cpf,
+    numeroInteiro
 }
 
 export default Mascaras

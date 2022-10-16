@@ -79,7 +79,7 @@ export default function ConsultaFiltro(props) {
                         label='Plano de Saúde'
                         value={values.planoSaude}
                         onChange={handleInputChange}
-                        options={Services.pacienteServico.getPlanosSaudeLista()}
+                        options={Services.pacienteService.getPlanosSaudeLista()}
                         error={erros.planoSaude}
                     />
                 </Grid>

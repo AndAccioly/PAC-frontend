@@ -138,7 +138,7 @@ function Consulta(props) {
                                             onClick={(e) => {
                                                 e.preventDefault();
                                                 e.stopPropagation();
-                                                setConfirmDialog({
+                                                setConfirmDialog({ 
                                                     isOpen: true,
                                                     title: 'Deseja remover a consulta ' + item.nome + ' ?',
                                                     subtitle: 'Esta ação não poderá ser desfeita.',

@@ -10,6 +10,7 @@ const initialValues = {
     nome: '',
     responsavel: '',
     tipo: '',
+    cardsFinanceiros: []
 }
 
 export default function ConsultorioForm(props) {
@@ -78,27 +79,6 @@ export default function ConsultorioForm(props) {
                         onChange={handleInputChange}
                         options={Services.consultorioService.getAllTipoConsultorio()}
                         error={erros.tipo}
-                    />
-                </Grid>
-
-
-              
-                <Grid item md={4} xs={6}>
-                    <Controls.Input
-                        name='nome'
-                        label='Nome'
-                        value={values.nome}
-                        onChange={handleInputChange}
-                        error={erros.valor}
-                    />
-                </Grid>
-                <Grid item md={4} xs={6}>
-                    <Controls.Input
-                        name='nome'
-                        label='Nome'
-                        value={values.nome}
-                        onChange={handleInputChange}
-                        error={erros.valor}
                     />
                 </Grid>
 

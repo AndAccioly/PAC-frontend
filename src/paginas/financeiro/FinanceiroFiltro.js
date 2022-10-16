@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import Controls from "../../components/controls/Controls";
 import { Form, useForm } from "../../components/UseForm";
 import Services from "../../util/servicos";
+import { useEffect, useState } from "react";
 
 const initialValues = {
     paciente: '',
@@ -26,6 +27,8 @@ const ordenarPor = [
 
 export default function FinanceiroFiltro(props) {
 
+    const {consultorios} = props
+    const [listaConsultorios, setListaConsultorios] = useState(Services.consultorioService.getAllConsultoriosAsList)
     const validate = (fieldValues = values) => {
 
     }
@@ -53,6 +56,8 @@ export default function FinanceiroFiltro(props) {
         }
     }
 
+
+
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
@@ -78,7 +83,7 @@ export default function FinanceiroFiltro(props) {
                         label='Consultório'
                         value={values.consultorio}
                         onChange={handleInputChange}
-                        options={Services.consultorioService.getAllConsultoriosAsList()}
+                        options={listaConsultorios}
                         error={erros.consultorio}
                     />
                 </Grid>

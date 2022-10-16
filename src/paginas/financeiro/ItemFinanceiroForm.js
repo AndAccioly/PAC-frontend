@@ -1,32 +1,33 @@
 import Controls from "../../components/controls/Controls";
 import { Form, useForm } from "../../components/UseForm";
 import { Grid } from "@mui/material";
+import Services from "../../util/servicos";
+import { useEffect, useState } from "react";
 
-const tipoFinanceiro = [
+const categorias = [
     { id: 'lucro', title: 'Lucro' },
     { id: 'despesa', title: 'Despesa' },
 ]
 
-const initialItems={
-    tipoFinanceiro: 'lucro',
+const initialItems = {
+    id: 0,
+    consultorioId: 0,
+    categoria: 'lucro',
     tipo: '',
     nome: '',
+    itensFinanceiros: [],
+    valor: '0'
 }
 
-const tipos = [
-    { id: '1', value: 'Materiais' },
-    { id: '2', value: 'Consultas' },
-    { id: '3', value: 'Cirurgias' },
-    { id: '4', value: 'Contas' },
-    { id: '5', value: 'Funcionários' },
-    { id: '6', value: 'Outro' },
-]
+
 export default function ItemFinanceiroForm(props) {
 
+    const { addOrEdit, recordForEdit } = props
+    const [isAlterar, setIsAlterar] = useState(false)
     const validate = (fieldValues = values) => {
-
+        return true
     }
-    
+
     const {
         values,
         setValues,
@@ -37,24 +38,39 @@ export default function ItemFinanceiroForm(props) {
     } = useForm(initialItems, true, validate)
 
     const handleSubmit = e => {
-        console.log('validou')
-
+        e.preventDefault()
+        e.stopPropagation()
+        if (validate()) {
+            console.log('validou')
+            addOrEdit(values, resetForm)
+        } else {
+            console.log('errou')
+        }
     }
 
     function onClickLimpar() {
         resetForm()
     }
 
+    useEffect(() => {
+        if (recordForEdit !== null){
+            setIsAlterar(true)
+            setValues({
+                ...recordForEdit
+            })
+        }
+    }, [recordForEdit])
+
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
                 <Grid item md={12} xs={12}>
                     <Controls.RadioGroup
-                        value={values.tipoFinanceiro}
+                        value={values.categoria}
                         label='Tipo'
-                        name='tipoFinanceiro'
+                        name='categoria'
                         onChange={handleInputChange}
-                        items={tipoFinanceiro}
+                        items={categorias}
                         row={true}
                     />
                 </Grid>
@@ -64,7 +80,7 @@ export default function ItemFinanceiroForm(props) {
                         label='Tipo'
                         value={values.tipo}
                         onChange={handleInputChange}
-                        options={tipos}
+                        options={Services.financeiroService.getAllTipoFinanceiro()}
                         error={erros.tipo}
                     />
                 </Grid>
@@ -79,12 +95,28 @@ export default function ItemFinanceiroForm(props) {
                     />
                 </Grid>
 
-                <Grid item xs={2}>
-                    <Controls.Button
-                        text='Adicionar'
-                        type='submit'
-                    />
-                </Grid>
+                {isAlterar ?
+                    <Grid item xs={2} >
+                        <Controls.Button
+                            text='Alterar'
+                            type='submit'
+                        />
+                    </Grid>
+
+                    :
+                    <Grid item xs={4} >
+                        <Controls.Button
+                            text='Adicionar'
+                            type='submit'
+                        />
+                        <Controls.Button
+                            text='Limpar'
+                            variant='outlined'
+                            onClick={onClickLimpar}
+                        />
+                    </Grid>
+
+                }
             </Grid>
         </Form>
     )

@@ -3,16 +3,19 @@ import { Form, useForm } from "../../components/UseForm";
 import { Grid } from "@mui/material";
 import Mascaras from "../../util/mascaras";
 
-const tipoFinanceiro = [
-    { id: 'despesa', title: 'Despesa' },
-    { id: 'lucro', title: 'Lucro' },
-]
+
+const initialValues = {
+    id: 0,
+    nome: '',
+    quantidade: 0,
+    valor: ''
+}
 
 export default function ReceitaForm(props) {
 
-    
+    const { addOrEdit } = props
     const validate = (fieldValues = values) => {
-
+        return true
     }
 
     const {
@@ -22,15 +25,20 @@ export default function ReceitaForm(props) {
         erros,
         resetForm,
         setErros
-    } = useForm(props.receitas, true, validate)
+    } = useForm(initialValues, true, validate)
 
     const handleSubmit = e => {
-        console.log('validou')
+        e.preventDefault()
+        e.stopPropagation()
+        if (validate()) {
+            console.log('validou')
+            console.log('valores indo')
+            console.log(values)
+            addOrEdit(values, resetForm)
+        } else {
+            console.log('errou')
+        }
 
-    }
-
-    function onClickLimpar() {
-        resetForm()
     }
 
     return (
@@ -49,7 +57,7 @@ export default function ReceitaForm(props) {
                     <Controls.Input
                         name='quantidade'
                         label='Quantidade'
-                        value={values.quantidade}
+                        value={Mascaras.numeroInteiro(values.quantidade)}
                         onChange={handleInputChange}
                         error={erros.quantidade}
                     />
