@@ -50,10 +50,10 @@ export function getAllConsultas() {
     const planosSaude = Services.pacienteService.getPlanosSaudeLista()
     const funcionarios = Services.funcionarioService.getAllFuncionariosAsList()
     const consultorios = Services.consultorioService.getAllConsultoriosAsList()
-    
+
     return consultas.map(x => ({
         ...x,
-        pacienteTexto: pacientes[x.paciente - 1].value,
+        pacienteTexto: pacientes.filter(p => p.id === x.paciente)[0].value,
         tipoConsultaTexto: tiposConsulta[x.tipoConsulta - 1].value,
         planoSaudeTexto: planosSaude[x.planoSaude - 1].value,
         funcionarioTexto: funcionarios[x.funcionario - 1].value,

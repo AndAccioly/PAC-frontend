@@ -22,7 +22,7 @@ const initialValues = {
 
 export default function ConsultaVisualizarForm(props) {
 
-    const { addOrEdit, recordForEdit } = props
+    const { addOrEdit, recordForEdit, abrirIniciarConsulta } = props
     const validate = (fieldValues = values) => {
 
     }
@@ -38,10 +38,8 @@ export default function ConsultaVisualizarForm(props) {
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()) {
-            console.log('validou')
             addOrEdit(values, resetForm)
         } else {
-            console.log('errou')
         }
     }
 
@@ -121,6 +119,7 @@ export default function ConsultaVisualizarForm(props) {
                         text='Iniciar Consulta'
                         type='submit'
                         color='secondary'
+                        onClick={(e) => abrirIniciarConsulta(e, values)}
                     />
                 </Grid>
                 <Grid item xs={2}>

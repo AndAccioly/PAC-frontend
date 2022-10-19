@@ -34,10 +34,8 @@ export default function ExameForm(props) {
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()) {
-            console.log('validou')
             //addOrEdit(values, resetForm)
         } else {
-            console.log('errou')
         }
     }
 

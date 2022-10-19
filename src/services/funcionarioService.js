@@ -1,4 +1,5 @@
 import Services from "../util/servicos"
+import { getConsultorioPorId } from "./consultorioService"
 
 const KEYS = {
     funcionario: 'funcionario',
@@ -6,12 +7,14 @@ const KEYS = {
 }
 
 
-export const getAllFuncionariosAsList = () => ([
-    { id: '1', value: 'Médico dos testes' },
-    { id: '2', value: 'Médica das dores' },
-    { id: '3', value: 'Dentista Enfermo' },
-    { id: '4', value: 'Dentista Pé Quebrado' }
-])
+export function getAllFuncionariosAsList(){
+    let itens = []
+    let funcionarios = getAllFuncionariosSemTexto()
+    funcionarios.map(item => {
+        itens.push({id: item.id, value: item.nome})
+    })
+    return itens
+}
 
 export const getAllFuncoesAsList = () => ([
     { id: '1', value: 'Médico(a)' },
@@ -48,10 +51,10 @@ export const getAllMatriculaFuncoesAsList = () => ([
 
 
 export const getAllPermissoesAsList = () => ([
-    { id: '1', value: 'Financeiro' },
-    { id: '2', value: 'Paciente' },
-    { id: '3', value: 'Consultas' },
-    { id: '4', value: 'Exames' },
+    { id: 1, value: 'Financeiro' },
+    { id: 2, value: 'Paciente' },
+    { id: 3, value: 'Consultas' },
+    { id: 4, value: 'Exames' },
 ])
 
 export function insertFuncionario(data) {
@@ -59,6 +62,28 @@ export function insertFuncionario(data) {
     data['id'] = generateFuncionarioId()
     funcionarios.push(data)
     localStorage.setItem(KEYS.funcionario, JSON.stringify(funcionarios))
+
+    data.listaConsultorios.map(item => {
+        let consultorio = getConsultorioPorId(item)
+        if(consultorio.funcionarios === undefined || consultorio.funcionarios === null)
+            consultorio.funcionarios = []
+        consultorio.funcionarios.push(data.id)
+        Services.consultorioService.updateConsultorio(consultorio)
+    })
+}
+
+export function getFuncionariosAsList(lista){
+    let funcionarios = getAllFuncionarios()
+    if (Number(lista.length) === 0){
+        return [{ id: '0', value: 'Nenhum funcionário cadastrado' }]
+    }
+    let listaFinal = []
+    lista.map(item => {
+        let func = funcionarios.filter(x => x.id === item)
+        if(func.length > 0)
+            listaFinal.push({id: func[0].id, value: func[0].nome})
+    })
+    return listaFinal
 }
 
 export function updateFuncionario(data) {
@@ -89,12 +114,11 @@ export function getAllFuncionarios() {
     let funcionarios = JSON.parse(localStorage.getItem(KEYS.funcionario))
     const cargos = getAllFuncoesAsList()
     const permissoes = getAllPermissoesAsList()
-
-    return funcionarios.map(x => ({
+    const final = funcionarios.map(x => ({
         ...x,
         cargoTexto: cargos[x.cargo - 1].value,
         consultoriosTexto: x.listaConsultorios.map((item) => (
-            Services.consultorioService.getConsultorioPorId(item)
+            Services.consultorioService.getConsultorioPorId(item).nome
         )),
         permissoesTexto: x.listaPermissoes.map((item) => (
             getPermissaoPorId(item)
@@ -102,6 +126,14 @@ export function getAllFuncionarios() {
 
 
     }))
+    return final
+}
+
+export function getAllFuncionariosSemTexto() {
+    if (localStorage.getItem(KEYS.funcionario) === null)
+        localStorage.setItem(KEYS.funcionario, JSON.stringify([]))
+    let funcionarios = JSON.parse(localStorage.getItem(KEYS.funcionario))
+    return funcionarios
 
 
 }

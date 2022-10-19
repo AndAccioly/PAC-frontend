@@ -51,11 +51,40 @@ const useStyles = makeStyles({
 
 })
 
+const initialValues = [
+    {
+        Appointment: {
+            data: '',
+            horario: '',
+            duracao: '',
+            pacienteId: '',
+            pacienteTexto: '',
+            consultorioId: '',
+            consultorioTexto: '',
+            funcionarioId:'',
+            funcionarioTexto:'',
+        }
+    },
+    {
+        Appointment: {
+            data: '',
+            horario: '',
+            duracao: '',
+            pacienteId: '',
+            pacienteTexto: '',
+            consultorioId: '',
+            consultorioTexto: '',
+            funcionarioId:'',
+            funcionarioTexto:'',
+        }
+    },
+]
+
 export default function Agenda(props) {
 	const classes = props.classes;
 	const [tipoVisualizacao, setTipoVisualizacao] = useState('2')
 	const [openPopup, setOpenPopup] = useState(false)
-
+    const [appointments, setAppointments] = useState(initialValues)
 
 	const onChangeVisualizacao = (item) => {
 		setTipoVisualizacao(item)

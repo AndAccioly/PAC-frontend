@@ -39,10 +39,8 @@ export default function ConsultaForm(props) {
         e.preventDefault()
         e.stopPropagation()
         if (validate()) {
-            console.log('validou')
             addOrEdit(values, resetForm)
         } else {
-            console.log('errou')
         }
     }
 

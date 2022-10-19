@@ -35,6 +35,7 @@ const useStyles = makeStyles({
 const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
 export default function PanelAno(props) {
     const classes = useStyles();
+    const {appointments} = props
 
     var mesJsx = []
 

@@ -10,7 +10,7 @@ const useStyles = makeStyles({
         width: '99%',
         backgroundColor: 'white',
         borderRadius: '10px',
-        marginTop: '4px',
+        marginTop: '1px',
         '&:hover': {
             backgroundColor: Cores.cinzaFundo,
             cursor: 'pointer'
@@ -35,8 +35,19 @@ const useStyles = makeStyles({
     },
     texto: {
         marginTop: '40%',
+    },
+    teste: {
+        width: '20%',
+        backgroundColor: 'red',
+        height: '150%',
+        marginLeft: '10px',
+        marginTop: '1px',
+        borderRadius: '10px',
+        position: 'relative',
+        '&:hover': {
+            backgroundColor: 'blue'
+        }
     }
-
 })
 
 
@@ -55,10 +66,24 @@ export default function ItemLinhaDia(props) {
             </div>
             <div className={classes.metades}>
                 <div className={classes.metadeCima}>
-                    a
+                    {props.render ?
+                        <div style={{ display: 'flex', height: 'inherit' }}>
+                            <div className={classes.teste}>
+                                Appointment
+                            </div>
+                            <div className={classes.teste}>
+                                Appointment
+                            </div>
+                            <div className={classes.teste}>
+                                Appointment
+                            </div>
+                        </div>
+                        :
+                        null
+                    }
                 </div>
                 <div className={classes.metadeBaixo}>
-                    b
+                  b
                 </div>
             </div>
 

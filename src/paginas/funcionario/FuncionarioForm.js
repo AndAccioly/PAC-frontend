@@ -18,7 +18,10 @@ const initialValues = {
     dataNascimento: new Date(),
     matricula: '',
     listaPermissoes: [],
-    listaConsultorios: []
+    listaConsultorios: [],
+    consultorio: '',
+    permissao: ''
+
 }
 
 const useStyles = makeStyles({
@@ -71,10 +74,8 @@ export default function FuncionarioForm(props) {
         e.preventDefault()
         e.stopPropagation()
         if (validate()) {
-            console.log('validou')
             addOrEdit({...values, matricula, listaPermissoes, listaConsultorios }, resetForm)
         } else {
-            console.log('errou')
         }
     }
 
@@ -89,6 +90,10 @@ export default function FuncionarioForm(props) {
             setValues({
                 ...recordForEdit
             })
+            if(recordForEdit !== null){
+                setListaConsultorios(recordForEdit.listaConsultorios)
+                setListaPermissoes(recordForEdit.listaPermissoes)
+            }
     }, [recordForEdit])
 
     return (
@@ -160,6 +165,7 @@ export default function FuncionarioForm(props) {
                         setItems={setListaConsultorios}
                         onClickRemove={Methods.onClickRemoveMiniItem}
                         nomes={Services.consultorioService.getAllConsultoriosAsList()}
+                        isVisualizar={false}
                     />
                 </Grid>
 
@@ -181,6 +187,7 @@ export default function FuncionarioForm(props) {
                         setItems={setListaPermissoes}
                         onClickRemove={Methods.onClickRemoveMiniItem}
                         nomes={Services.funcionarioService.getAllPermissoesAsList()}
+                        isVisualizar={false}
                     />
                 </Grid>
 

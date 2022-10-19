@@ -1,4 +1,3 @@
-
 const KEYS = {
     paciente: 'paciente',
     pacienteId: 'pacienteId'
@@ -12,14 +11,15 @@ export const getPlanosSaudeLista = () => ([
 ])
 
 
+export const getPacientesAsList = () => {
+    let itens = []
+    let pacientes = getAllPacientes()
+    pacientes.map(item => {
+        itens.push({id: item.id, value: item.nome})
+    })
+    return itens    
+}
 
-
-export const getPacientesAsList = () => ([
-    { id: '1', value: 'João dos testes' },
-    { id: '2', value: 'Maria das dores' },
-    { id: '3', value: 'José Enfermo' },
-    { id: '4', value: 'Joana Pé Quebrado' }
-])
 
 export function insertPaciente(data) {
     let pacientes = getAllPacientes()

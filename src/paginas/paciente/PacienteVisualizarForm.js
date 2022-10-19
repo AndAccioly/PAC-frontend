@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
 import Controls from "../../components/controls/Controls";
-import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
-import EnderecoForm from "../../components/EnderecoForm";
+import { useForm, Form } from '../../components/UseForm';
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Icones from "../../util/icones";
@@ -18,9 +17,6 @@ const initialValues = {
     sexo: 'masculino',
     planoSaude: '',
     dataNascimento: new Date(),
-}
-
-const enderecoInicial = {
     bairro: '',
     rua: '',
     cep: '',
@@ -71,18 +67,8 @@ export default function PacienteVisualizarForm(props) {
         setErros
     } = useForm(initialValues, true, validate)
 
-    const {
-        enderecoValues,
-        setEnderecoValues,
-        handleEnderecoInputChange,
-        enderecoErros,
-        resetFormEndereco,
-        setEnderecoErros
-    } = useEnderecoForm(enderecoInicial, true, validate)
-
     function onClickLimpar() {
         resetForm()
-        resetFormEndereco()
     }
 
     const handleSubmit = e => {

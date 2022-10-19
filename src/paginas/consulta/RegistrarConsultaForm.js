@@ -7,15 +7,15 @@ import Services from "../../util/servicos";
 
 const initialValues = {
     id: 0,
-    nome: '',
-    responsavel: '0',
-    tipo: '',
-    cardsFinanceiros: [],
-    funcionarios: []
+    consultaId: '',
+    descricao: '',
+    pacienteNome: ''
 }
 
-export default function ConsultorioForm(props) {
-    const classes = props.classes
+
+
+export default function RegistrarConsultaForm(props) {
+
     const { addOrEdit, recordForEdit } = props
     const validate = (fieldValues = values) => {
         return true
@@ -31,6 +31,7 @@ export default function ConsultorioForm(props) {
 
     const handleSubmit = e => {
         e.preventDefault()
+        e.stopPropagation()
         if (validate()) {
             addOrEdit(values, resetForm)
         } else {
@@ -40,54 +41,62 @@ export default function ConsultorioForm(props) {
     function onClickLimpar() {
         resetForm()
     }
-
     useEffect(() => {
+        console.log('RegistrarConsultaForm useEffect')
+        console.log(recordForEdit)
         if (recordForEdit !== null)
             setValues({
                 ...recordForEdit
             })
     }, [recordForEdit])
-
     return (
         <Form onSubmit={handleSubmit}>
             <Grid container>
                 <Grid item md={4} xs={6}>
                     <Controls.Input
-                        name='nome'
-                        label='Nome'
-                        value={values.nome}
-                        onChange={handleInputChange}
-                        error={erros.valor}
+                        name='paciente'
+                        label='Paciente'
+                        value={values.paciente}
+                        disabled={true}
                     />
                 </Grid>
                 <Grid item md={4} xs={6}>
-                    <Controls.Select
-                        name='responsavel'
-                        label='Responsável'
-                        value={values.responsavel}
-                        onChange={handleInputChange}
-                        options={Services.funcionarioService.getFuncionariosAsList(values.funcionarios)}
-                        error={erros.responsavel}
-                    /> 
+                    <Controls.Input
+                        name='paciente'
+                        label='Paciente'
+                        value={values.paciente}
+                        disabled={true}
+                    />
                 </Grid>
                 <Grid item md={4} xs={6}>
-                    <Controls.Select
-                        name='tipo'
-                        label='Tipo'
-                        value={values.tipo}
-                        onChange={handleInputChange}
-                        options={Services.consultorioService.getAllTipoConsultorio()}
-                        error={erros.tipo}
+                    <Controls.Input
+                        name='paciente'
+                        label='Paciente'
+                        value={values.paciente}
+                        disabled={true}
                     />
                 </Grid>
 
-                <Grid item md={2}>
+                <Grid item md={12} xs={12}>
+                    <Controls.Input
+                        name='paciente'
+                        label=''
+                        multiline
+                        rows={15}
+                        maxRows={20}
+                        value={values.descricao}
+                        onChange={handleInputChange}
+                        error={erros.paciente}
+                    />
+                </Grid>
+
+                <Grid item xs={2}>
                     <Controls.Button
                         text='Enviar'
                         type='submit'
                     />
                 </Grid>
-                <Grid item md={2}>
+                <Grid item xs={2}>
                     <Controls.Button
                         text='Limpar'
                         variant='outlined'

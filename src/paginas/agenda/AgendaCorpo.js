@@ -3,6 +3,7 @@ import PanelDia from "./dia/PanelDia";
 import PanelMes from "./mes/PanelMes";
 import PanelAno from "./ano/PanelAno";
 import Cores from "../../util/cores";
+import { useState } from "react";
 
 const useStyles = makeStyles({
     corpo: {
@@ -15,26 +16,28 @@ const useStyles = makeStyles({
     },
 })
 
-function defineCorpo(corpoId) {
+
+
+function defineCorpo(corpoId, appointments) {
     switch (corpoId) {
         case '1':
-            return <PanelDia />
+            return <PanelDia appointments={appointments}/>
         case '2':
-            return <PanelMes />
+            return <PanelMes appointments={appointments}/>
         case '3':
-            return <PanelAno />
+            return <PanelAno appointments={appointments}/>
         default:
-            return <PanelDia />
+            return <PanelDia appointments={appointments}/>
     }
 }
 
 export default function AgendaCorpo(props) {
     const classes = useStyles();
-
+    const {appointments} = props
 
     return (
         <div className={classes.corpo}>
-            {defineCorpo(props.tipoVisualizacao)}
+            {defineCorpo(props.tipoVisualizacao, appointments)}
         </div>
     )
 

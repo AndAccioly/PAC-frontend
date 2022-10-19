@@ -20,13 +20,19 @@ const workingValues = ['7:00', '8:00', '10:00', '11:00', '12:00',
 
 export default function PanelDia(props) {
     const classes = useStyles();
+    const {appointments} = props
 
     return (
         <div className={classes.corpo}>
             {workingValues.map(
-                (item, index) => (
-                    <ItemLinhaDia key={index} item={item} index={index} />
-                )
+                (item, index) => {
+                    if(item === '8:00'){
+                        return (<ItemLinhaDia key={index} item={item} index={index} render={true}/>)
+                    }else{
+                        return (<ItemLinhaDia key={index} item={item} index={index} />)
+                    }
+
+                }
             )}
         </div>
     )

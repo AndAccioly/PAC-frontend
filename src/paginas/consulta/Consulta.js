@@ -17,6 +17,7 @@ import Icones from "../../util/icones";
 import ConsultaVisualizarForm from "./ConsultaVisualizarForm";
 import DeleteIcon from '@mui/icons-material/Delete';
 import Services from "../../util/servicos";
+import RegistrarConsultaForm from "./RegistrarConsultaForm";
 
 
 const headCells = [
@@ -39,6 +40,7 @@ function Consulta(props) {
     const [filterFn, setFilterFn] = useState({ fn: items => { return items } })
     const [openPopup, setOpenPopup] = useState(false)
     const [openPopupVisualizar, setOpenPopupVisualizar] = useState(false)
+    const [openPopupRegistrar, setOpenPopupRegistrar] = useState(false)
     const [notify, setNotify] = useState({ isOpen: false, message: '', type: '' })
     const [confirmDialog, setConfirmDialog] = useState({ isOpen: false, title: '', subtitle: '' })
 
@@ -89,6 +91,15 @@ function Consulta(props) {
     const openInPopupVisualizar = item => {
         setRecordForEdit(item)
         setOpenPopupVisualizar(true)
+    }
+
+    const abrirIniciarConsulta = (e, item) => {
+        console.log('Iniciar consulta')
+        e.preventDefault()
+        e.stopPropagation()
+        setRecordForEdit(item)
+        setOpenPopupVisualizar(false)
+        setOpenPopupRegistrar(true)
     }
 
     return (
@@ -175,6 +186,21 @@ function Consulta(props) {
                 maxWidth='lg'
             >
                 <ConsultaVisualizarForm
+                    abrirIniciarConsulta={abrirIniciarConsulta}
+                    setOpenPopupVisualizar={setOpenPopupVisualizar}
+                    setOpenPopupRegistrar={setOpenPopupRegistrar}
+                    addOrEdit={addOrEdit}
+                    recordForEdit={recordForEdit}
+                />
+            </Popup>
+            <Popup
+                openPopup={openPopupRegistrar}
+                setOpenPopup={setOpenPopupRegistrar}
+                title='Registrar consulta'
+                maxWidth='lg'
+            >
+                <RegistrarConsultaForm
+                    setOpenPopupVisualizar={setOpenPopupVisualizar}
                     addOrEdit={addOrEdit}
                     recordForEdit={recordForEdit}
                 />

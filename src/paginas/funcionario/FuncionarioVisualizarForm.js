@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
 import Cores from "../../util/cores";
+import ItemMini from "../../components/ItemMini";
+import Methods from "../../util/methods/Methods";
 
 const initialValues = {
     id: 0,
@@ -51,10 +53,8 @@ export default function FuncionarioVisualizarForm(props) {
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()) {
-            console.log('validou')
             addOrEdit(values, resetForm)
         } else {
-            console.log('errou')
         }
     }
 
@@ -108,23 +108,23 @@ export default function FuncionarioVisualizarForm(props) {
                         disabled={true}
                     />
                 </Grid>
-                <Grid item md={12} xs={6}>
-                    <div className={classes.linha} />
-                    {values.consultoriosTexto.map((item, index) => (
-                        <div key={index}>
-                            {item[0].value}
-                        </div>
-                    ))}
-                </Grid>
-
-                <Grid item md={12} xs={6}>
-                    <div className={classes.linha} />
-                    {values.permissoesTexto.map((item, index) => (
-                        <div key={index}>
-                            {item[0].value}
-                        </div>
-                    ))}
-                </Grid>
+                <div className={classes.linha} />
+                Consultórios
+                <ItemMini
+                    items={values.consultoriosTexto}
+                    onClickRemove={Methods.onClickRemoveMiniItem}
+                    nomes={Services.consultorioService.getAllConsultoriosAsList()}
+                    isVisualizar={true}
+                />
+                <div className={classes.linha} />
+                Permissões
+                <ItemMini
+                    items={values.listaPermissoes}
+                    onClickRemove={Methods.onClickRemoveMiniItem}
+                    nomes={Services.funcionarioService.getAllPermissoesAsList()}
+                    isVisualizar={true}
+                />
+                <div className={classes.linha} />
                 <Grid item xs={2}>
                     <Controls.Button
                         text='Enviar'

@@ -57,7 +57,6 @@ function Funcionario(props) {
     }
 
     const addOrEdit = (funcionario, resetForm) => {
-        console.log(funcionario)
         if (funcionario.id === 0)
             Services.funcionarioService.insertFuncionario(funcionario)
         else
@@ -74,7 +73,6 @@ function Funcionario(props) {
     }
 
     const openInPopupVisualizar = item => {
-        console.log(item)
         setRecordForEdit(item)
         setOpenPopupVisualizar(true)
     }

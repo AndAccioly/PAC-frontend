@@ -31,12 +31,8 @@ export default function ReceitaForm(props) {
         e.preventDefault()
         e.stopPropagation()
         if (validate()) {
-            console.log('validou')
-            console.log('valores indo')
-            console.log(values)
             addOrEdit(values, resetForm)
         } else {
-            console.log('errou')
         }
 
     }

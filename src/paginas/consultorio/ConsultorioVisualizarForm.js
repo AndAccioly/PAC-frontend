@@ -10,9 +10,9 @@ const initialValues = {
     id: 0,
     nome: '',
     tipo: '',
-    numFuncionarios: 7,
     responsavel: '',
     renda: '',
+    funcionarios: []
 }
 
 export default function ConsultorioVisualizarForm(props) {
@@ -34,10 +34,8 @@ export default function ConsultorioVisualizarForm(props) {
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()) {
-            console.log('validou')
             addOrEdit(values, resetForm)
         } else {
-            console.log('errou')
         }
     }
     
@@ -89,7 +87,7 @@ export default function ConsultorioVisualizarForm(props) {
                     <Controls.Input
                         name='numFuncionarios'
                         label='Número de Funcionários'
-                        value={values.numFuncionarios}
+                        value={values.funcionarios.length}
                         disabled={true}
                     />
                 </Grid>

@@ -5,12 +5,22 @@ const useStyles = makeStyles({
     root: {
         textAlign: 'left',
         '& .MuiFormControl-root':{
-            width: '90%',
-            marginTop: '15px'
+            paddingLeft: '10px',
+            width: '100%',
+            marginTop: '15px',
+            marginRight: '10px',
+            '& .MuiInputLabel-root':{
+                marginLeft: '10px'
+            },
         },
-        '& .MuiOutlinedInput-root':{
+        '& .MuiButton': {
+            marginLeft: '10px'
         },
-        '& .MuiOutlinedInput-root':{
+        '& .MuiGrid-root ':{
+            paddingRight: '10px',
+        },
+        '& .makeStyles-root-142':{
+            marginLeft: '10px'
         }
     }
 })
@@ -42,38 +52,6 @@ export function useForm(initialValues, validateOnChange=false, validate){
         setValues,
         handleInputChange,
         resetForm
-    }
-
-}
-
-
-export function useEnderecoForm(initialValues, validateOnChange=false, validate){
-
-    const [enderecoValues, setEnderecoValues] = useState(initialValues)
-    const [enderecoErros, setEnderecoErros] = useState(initialValues)
-    
-    function resetFormEndereco(){
-        setEnderecoValues(initialValues)
-        setEnderecoErros({})
-    }
-
-    const handleEnderecoInputChange = e => {
-        const {name, value} = e.target
-        setEnderecoValues({
-            ...enderecoValues,
-            [name]: value
-        })
-        if(validateOnChange)
-        validate({[name]: value})
-    }
-
-    return {
-        enderecoErros,
-        setEnderecoErros,
-        enderecoValues,
-        setEnderecoValues,
-        handleEnderecoInputChange,
-        resetFormEndereco
     }
 
 }

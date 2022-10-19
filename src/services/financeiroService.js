@@ -15,18 +15,13 @@ export const getAllTipoFinanceiro = () => ([
         { id: '6', value: 'Outro' },
 ])
 
-export function getConsultorioPorId(id, consultorios){
-    let consultorio = consultorios.filter(x => x.id === id)
-    return(consultorio[0])
-}
-
 export function insertCardFinanceiro(data) {
     let cardsFinanceiros = getAllCardsFinanceiros()
     data['id'] = generateCardFinanceiroId()
     cardsFinanceiros.push(data)
     localStorage.setItem(KEYS.cardFinanceiro, JSON.stringify(cardsFinanceiros))
 
-    let consultorio = getConsultorioPorId(data.consultorioId, Services.consultorioService.getAllConsultorios())
+    let consultorio = Services.consultorioService.getConsultorioPorId(data.consultorioId, Services.consultorioService.getAllConsultorios())
     if(consultorio.cardsFinanceiros === undefined || consultorio.cardsFinanceiros === null)
         consultorio.cardsFinanceiros = []
     consultorio.cardsFinanceiros.push(data)
@@ -34,7 +29,7 @@ export function insertCardFinanceiro(data) {
 }
 
 export function updateCardFinanceiro(data) {
-    let consultorio = getConsultorioPorId(data.consultorioId, Services.consultorioService.getAllConsultorios())
+    let consultorio = Services.consultorioService.getConsultorioPorId(data.consultorioId, Services.consultorioService.getAllConsultorios())
     
     let recordConsultorioIndex = consultorio.cardsFinanceiros.findIndex(x => x.id === data.id)
     consultorio.cardsFinanceiros[recordConsultorioIndex] = { ...data }
@@ -49,7 +44,7 @@ export function updateCardFinanceiro(data) {
 
 export function deleteCardFinanceiro(id) {
     let cardParaRemover = getAllCardsFinanceiros().filter(x => x.id === id)[0]
-    let consultorio = getConsultorioPorId(cardParaRemover.consultorioId,  Services.consultorioService.getAllConsultorios())
+    let consultorio = Services.consultorioService.getConsultorioPorId(cardParaRemover.consultorioId)
     let cardsAtualizados = consultorio.cardsFinanceiros.filter(x => x.id !== id)
     consultorio = {...consultorio, cardsFinanceiros: cardsAtualizados}
 

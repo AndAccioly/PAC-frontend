@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
 import Controls from "../../components/controls/Controls";
-import { useForm, Form, useEnderecoForm } from '../../components/UseForm';
-import EnderecoForm from "../../components/EnderecoForm";
+import { useForm, Form } from '../../components/UseForm';
 import { useEffect } from "react";
 import Mascaras from "../../util/mascaras";
 import Services from "../../util/servicos";
@@ -17,16 +16,13 @@ const initialValues = {
     sexo: 'masculino',
     planoSaude: '',
     dataNascimento: new Date(),
-}
-
-const enderecoInicial = {
     bairro: '',
     rua: '',
     cep: '',
     numero: '',
     estado: '',
     cidade: '',
-    complemento: '',
+    complemento: ''
 }
 
 const sexoItems = [
@@ -70,27 +66,15 @@ export default function PacienteCadastroForm(props) {
         setErros
     } = useForm(initialValues, true, validate)
 
-    const {
-        enderecoValues,
-        setEnderecoValues,
-        handleEnderecoInputChange,
-        enderecoErros,
-        resetFormEndereco,
-        setEnderecoErros
-    } = useEnderecoForm(enderecoInicial, true, validate)
-
     function onClickLimpar() {
         resetForm()
-        resetFormEndereco()
     }
 
     const handleSubmit = e => {
         e.preventDefault()
         if (validate()) {
-            console.log('validou')
             addOrEdit(values, resetForm)
         } else {
-            console.log('errou')
         }
     }
 
@@ -172,12 +156,64 @@ export default function PacienteCadastroForm(props) {
             </Grid>
             <div className={classes.paperSubtitulo}>Endereço</div>
             <div className={classes.linhaForm}></div>
-
-            <EnderecoForm
-                values={enderecoValues}
-                handleInputChange={handleEnderecoInputChange}
-
-            />
+            <Grid container>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='cep'
+                        label='CEP'
+                        value={values.cep}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='estado'
+                        label='Estado'
+                        value={values.estado}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='cidade'
+                        label='Cidade'
+                        value={values.cidade}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='bairro'
+                        label='Bairro'
+                        value={values.bairro}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='rua'
+                        label='Rua'
+                        value={values.rua}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='numero'
+                        label='Número'
+                        value={values.numero}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+                <Grid item md={4} xs={6}>
+                    <Controls.Input
+                        name='complemento'
+                        label='Complemento'
+                        value={values.complemento}
+                        onChange={handleInputChange}
+                    />
+                </Grid>
+            </Grid>
 
             <div className={classes.linhaForm}></div>
             <Grid item xs={2}>

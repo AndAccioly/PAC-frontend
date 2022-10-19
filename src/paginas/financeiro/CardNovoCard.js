@@ -39,7 +39,6 @@ export default function CardFinanceiro(props) {
     }
 
     const addOrEdit = (item, resetForm) => {
-        console.log('Inserindo cardNovoCard')
         if (item.id === 0)
             Services.financeiroService.insertCardFinanceiro({...item, consultorioId: consultorio.id})
         resetForm()

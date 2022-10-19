@@ -34,7 +34,7 @@ const useStyles = makeStyles({
         marginLeft: '15%',
         cursor: 'pointer',
         '& .MuiSvgIcon-root': {
-            color: Cores.azul5,
+            color: Cores.azul3,
             marginTop: '1%',
             fontSize: '2.4rem'
         },

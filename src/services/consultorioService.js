@@ -5,7 +5,7 @@ const KEYS = {
     consultorioId: 'consultorioId'
 }
 
-export function getAllConsultoriosAsList(){
+export function getAllConsultoriosAsList() {
     const consultorios = getAllConsultorios()
     return consultorios.map((item, index) => ({
         id: item.id,
@@ -13,7 +13,7 @@ export function getAllConsultoriosAsList(){
     }))
 }
 
-export const getAllTipoConsultorio = () =>([
+export const getAllTipoConsultorio = () => ([
     { id: '1', value: 'Cirurgia' },
     { id: '2', value: 'Atendimento Geral' },
     { id: '3', value: 'Consultas' }
@@ -31,6 +31,12 @@ export function updateConsultorio(data) {
     let recordIndex = consultorios.findIndex(x => x.id === data.id)
     consultorios[recordIndex] = { ...data }
     localStorage.setItem(KEYS.consultorio, JSON.stringify(consultorios))
+}
+
+export function getConsultorioPorId(id) {
+    let consultorios = getAllConsultorios()
+    let consultorio = consultorios.filter(x => x.id === id)
+    return (consultorio[0])
 }
 
 export function deleteConsultorio(id) {
@@ -53,13 +59,25 @@ export function getAllConsultorios() {
         localStorage.setItem(KEYS.consultorio, JSON.stringify([]))
     let consultorios = JSON.parse(localStorage.getItem(KEYS.consultorio))
     let funcionarios = Services.funcionarioService.getAllFuncionariosAsList()
+
     let tipos = getAllTipoConsultorio()
 
-    const consultoriosFim = consultorios.map(x => ({
-        ...x,
-        responsavelTexto: funcionarios[x.responsavel - 1].value,
-        tipoTexto: tipos[x.tipo - 1].value
-    }))
+    const consultoriosFim = consultorios.map(x => {
+        let selecionado = funcionarios.filter(func => func.id === x.responsavel)
+        if (selecionado.length > 0) {
+            return ({
+                ...x,
+                responsavelTexto: selecionado[0].value,
+                tipoTexto: tipos[x.tipo - 1].value
+            })
+        }else{
+            return ({
+                ...x,
+                responsavelTexto: '',
+                tipoTexto: tipos[x.tipo - 1].value
+            })
+        }
+    })
     return consultoriosFim
 
 }

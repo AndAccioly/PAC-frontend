@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles({
     root: {
+        paddingLeft: '10px',
         '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled': {
             '-webkit-text-fill-color': 'rgba(0, 0, 0, 0.8)',
         },

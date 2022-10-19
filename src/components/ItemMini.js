@@ -14,6 +14,7 @@ const useStyles = makeStyles({
         borderRadius: '10px',
         paddingLeft: '3%',
         marginTop: '7%',
+        minWidth: '80px',
         '& .MuiSvgIcon-root': {
             marginLeft: '10px',
             backgroundColor: Cores.azul2,
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
             color: Cores.azul5,
             fontSize: '1.2rem',
             transform: 'translateY(10%)',
-            '&:hover':{
+            '&:hover': {
                 cursor: 'pointer',
                 color: 'white',
                 backgroundColor: Cores.vermelhoClose
@@ -31,19 +32,28 @@ const useStyles = makeStyles({
 })
 
 export default function ItemMini(props) {
-    const { items, onClickRemove, nomes, setItems } = props
+    const { items, onClickRemove, nomes, setItems, isVisualizar } = props
     const classes = useStyles()
-
     return (
         <div className={classes.root}>
             {items.map(
-                    (item, index) => (
+                (item, index) => {
+                    return (
                         <div key={index} className={classes.mini}>
-                            {nomes.filter(x => x.id === item).map(option => option.value)}
-                            <CloseIcon onClick={() => onClickRemove(item, items, setItems)}/>
+                            {isVisualizar ?
+                                <div>
+                                    {item}
+                                </div>
+                                :
+                                <div>
+                                    {nomes.filter(x => x.id === item).map(option => option.value)}
+                                    <CloseIcon onClick={() => onClickRemove(item, items, setItems)} />
+                                </div>
+                            }
+
                         </div>
                     )
-                )}
+                })}
         </div>
     )
 }
